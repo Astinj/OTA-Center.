@@ -1,0 +1,103 @@
+BODY
+{
+    background-color: #C0C0C0;
+    color: #000000;
+    font-size: 12pt;
+    margin: 0;
+    padding: 5;
+}
+
+#Kop, #Dat, #Foot
+{
+    border: #000000 solid 1px;
+    font-family: Arial;
+    margin: 1px;
+    padding: 1px;
+    width: 50%;
+    text-align: left;
+    color: #000000;
+}
+
+#Kop
+{
+    background-color: #32CD32;
+    font-weight: bold;
+    padding: 2pt;
+    margin-bottom: 0px;
+}
+
+#Dat
+{
+    background-color: #FFA500;
+    padding: 2pt;
+    margin-top: -1px;
+    margin-bottom: -1px;
+}
+
+#Foot
+{
+    background-color: #87CEEB;
+    padding: 2pt;
+    margin-top: 0px;
+}
+
+A
+{
+    text-decoration: none;
+    color: #00008B;
+}
+
+A:hover
+{
+    text-decoration: none;
+    color: #0000CD;
+    position: relative;
+    left: 2;
+}
+
+#Mod
+{
+    font-size: 10pt;
+    width: 30%;
+    margin: -1px;
+    padding: 1px;
+    float: right;
+    border: #000000 solid 1px;
+    background-color: #00BFFF;
+}
+
+INPUT
+{
+    font-size: 9pt;
+    border: #000000 solid 1px;
+    background-color: #FFFFFF;
+    margin: 1pt;
+    padding: 1pt;
+    font-family: Arial;
+}
+
+INPUT:hover
+{
+    font-size: 9pt;
+    border: #000000 solid 1px;
+    background-color: #C0C0C0;
+    margin: 1pt;
+    padding: 1pt;
+}
+
+#TxtArea
+{
+    font-size: 9pt;
+    border: #000000 solid 1px;
+    background-color: #FFFFFF;
+    font-family: Arial;
+    margin: 1pt;
+    padding: 1pt;
+}
+
+#Line
+{
+    height: 1pt;
+    margin-bottom: 3pt;
+    margin-top: 3pt;
+}

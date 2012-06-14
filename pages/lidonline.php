@@ -7,11 +7,12 @@
 // Include deze pagina daarom waar je hem wilt hebben als < ? include("lidonline.php"); ? > (zonder spaties bij haakjes)
 
 // config.php al eerder geinclude? Maak van de volgende regel dan commentaar (# of //)
-$sql = "SELECT naam,status FROM gebruikers WHERE DATE_SUB(NOW(),INTERVAL 10 MINUTE) <= lastactive ORDER BY naam ASC";
-$query = mysql_query($sql);
-$tellen = mysql_num_rows($query);
+
+$sql = "SELECT `naam`, `status` FROM `gebruikers` WHERE DATE_SUB(NOW(),INTERVAL 10 MINUTE) <= `lastactive` ORDER BY `naam` ASC";
+$query = $db->query($sql);
+$tellen = $query->num_rows;
 $i = 1;
-while($rij = mysql_fetch_object($query)) {
+while($rij = $query->fetch_object()) {
  $naam = htmlspecialchars($rij->naam);
  $status = htmlspecialchars($rij->status);
  if($status == 1) {

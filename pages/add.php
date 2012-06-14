@@ -1,7 +1,7 @@
 <?php
 // Connect to server and select database.
-mysql_connect("$db_host", "$db_user", "$db_pass")or die("cannot connect");
-mysql_select_db("$db_db")or die("cannot select DB");
+//mysql_connect("$db_host", "$db_user", "$db_pass")or die("cannot connect");
+//mysql_select_db("$db_db")or die("cannot select DB");
 if(isset($_SESSION['user_id'])) {
 ?>
 
@@ -79,6 +79,6 @@ if(isset($_SESSION['user_id'])) {
 	exit();
 }
 // close connection
-mysql_close();
+//mysql_close();
 
 ?>

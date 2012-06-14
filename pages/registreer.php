@@ -9,9 +9,17 @@ if(!isset($_SESSION['user_id'])) {
   // Velden controleren
   if($_POST['user'] != "" AND $_POST['pass1'] != "" AND $_POST['pass2'] != "" AND $_POST['email'] != "") {
    // Gebuikersnaamcheck
-   $sql = "SELECT id FROM gebruikers WHERE naam='".$_POST['user']."'";
-   $query = mysql_query($sql);
-   $tellen = mysql_num_rows($query);
+   $stmt = $db->stmt_init();
+   $stmt->prepare('SELECT `id` FROM `gebruikers` WHERE `naam` = ?');
+   $stmt->bind_param('s', $_POST['user']);
+   $stmt->execute();
+   $stmt->store_result();
+   $tellen = $stmt->num_rows;
+   $stmt->free_result();
+   $stmt->close();
+   //$sql = "SELECT id FROM gebruikers WHERE naam='".$_POST['user']."'";
+   //$query = mysql_query($sql);
+   //$tellen = mysql_num_rows($query);
    if($tellen == 0) {
     // E-mailcheck
     if(preg_match("/^[A-Z0-9._%-]+@[A-Z0-9._%-]+\.[A-Z]{2,6}$/i", $_POST['email'])) {
@@ -25,13 +33,17 @@ if(!isset($_SESSION['user_id'])) {
        }
       }
       $md5pass = md5($_POST['pass1']);
-      $sql = "INSERT INTO gebruikers (naam,wachtwoord,status,email,actief,actcode) VALUES ('".$_POST['user']."','".$md5pass."',0,'".$_POST['email']."',0,'".$actcode."')";
-      $query = mysql_query($sql);
-      if($query == TRUE) {
-       $sql = "SELECT id FROM gebruikers WHERE naam='".$_POST['user']."'";
-       $query = mysql_query($sql);
-       $rij = mysql_fetch_object($query);
-       $dbid = htmlspecialchars($rij->id);
+      $stmt = $db->stmt_init();
+      $stmt->prepare('INSERT INTO `gebruikers` (`naam`, `wachtwoord`, `status`, `email`, `actief`, `actcode`) VALUES (?, ?, 0, ?, 0, ?)');
+      $stmt->bind_param('', $_POST['user'], $md5pass, $_POST['email'], $actcode);
+      
+      //$sql = "INSERT INTO gebruikers (naam,wachtwoord,status,email,actief,actcode) VALUES ('".$_POST['user']."','".$md5pass."',0,'".$_POST['email']."',0,'".$actcode."')";
+      //$query = mysql_query($sql);
+      if($stmt->execute()) {
+       //$sql = "SELECT id FROM gebruikers WHERE naam='".$_POST['user']."'";
+       //$query = mysql_query($sql);
+       //$rij = mysql_fetch_object($query);
+       $dbid = htmlspecialchars($db->insert_id);
        $bericht = "Hello ".$_POST['user'].",\nYou have registered on this site: ".$sitenaam.", this is the activation mail.\nTo activate your account click on the link below.\n\n";
        $bericht .= "Confirm registration: ".$forgoturl."?page=activeren&id=".$dbid."&code=".$actcode."&registratie=true \n\n";
        $bericht .= "As soon as you clicked on the link you will be able to login with:\n";
@@ -47,6 +59,7 @@ if(!isset($_SESSION['user_id'])) {
       }else{
        echo "An error has occured while registering your account. Please try again later.<br />\n<a href=\"javascript:history.back()\">&laquo; Go Back</a>";
       }
+      $stmt->close();
      }else{
       echo "The passwords you typed did not match, please try again.<br />\n<a href=\"javascript:history.back()\">&laquo; Go Back</a>";
      }

@@ -4,13 +4,13 @@
 // Support by info@sensation-devs.org (Email)
 // Pagina: update: you can edit the details of given rom(id)
 // the adress would be something like this: http://<domain>/<path>/update.php?id=<romid>
-include('./pages/safe.php');
+include('safe.php');
 // Connect to server and select database.
 error_reporting(E_ALL); 
 ini_set('display_errors', true);
 
-mysql_connect($db_host, $db_user, $db_pass)or die("cannot connect");
-mysql_select_db($db_db)or die("cannot select DB");
+//mysql_connect($db_host, $db_user, $db_pass)or die("cannot connect");
+//mysql_select_db($db_db)or die("cannot select DB");
 
 // get value of id that sent from address bar
 
@@ -21,10 +21,18 @@ $id = $_GET['id'];
 
 
 // Retrieve data from database
-$sql = "SELECT * FROM roms WHERE id = '".$id."'";
-$result=mysql_query($sql);
+$stmt = $db->stmt_init();
+$stmt->prepare('SELECT `id`, `rom`, `version`, `buildfingerprint`, `url`, `md5`, `changelog`, `device`, `romversionname`, `userid` FROM `roms` WHERE `id` = ?');
+$stmt->bind_param('i', $id);
+$stmt->execute();
+$stmt->bind_result($id, $rom, $version, $buildfingerprint, $url, $md5, $changelog, $device, $romversionname, $userid);
+$stmt->fetch();
+$stmt->close();
 
-$rows=mysql_fetch_array($result);
+//$sql = "SELECT * FROM roms WHERE id = '".$id."'";
+//$result=mysql_query($sql);
+
+//$rows=mysql_fetch_array($result);
 if(isset($_SESSION['user_id'])) {
 	if ($_SESSION['user_status'] == 1) {
 ?>
@@ -35,42 +43,42 @@ if(isset($_SESSION['user_id'])) {
  <form id="RegisterUserForm" action="?page=update_ac" method="post">
  	<fieldset>
          <p>
-            <label for="rom"><? echo $rows['rom']; ?></label>
-            <input id="rom" name="rom" type="text" class="rom" value="<? echo $rows['rom']; ?>" />
+            <label for="rom"><? echo $rom; ?></label>
+            <input id="rom" name="rom" type="text" class="rom" value="<? echo $rom; ?>" />
          </p>
          <p>
-            <label for="version"><? echo $rows['version']; ?></label>
-            <input id="version" name="version" type="text" class="rom" value="<? echo $rows['version']; ?>" />
+            <label for="version"><? echo $version; ?></label>
+            <input id="version" name="version" type="text" class="rom" value="<? echo $version; ?>" />
          </p>
 		 <p>
-            <label for="buildfingerprint"><? echo $rows['buildfingerprint']; ?></label>
-            <input id="buildfingerprint" name="buildfingerprint" type="text" class="rom" value="<? echo $rows['buildfingerprint']; ?>" />
+            <label for="buildfingerprint"><? echo $buildfingerprint; ?></label>
+            <input id="buildfingerprint" name="buildfingerprint" type="text" class="rom" value="<? echo $buildfingerprint; ?>" />
          </p>
 		 <p>
-            <label for="url"><? echo $rows['url']; ?></label>
-            <input id="url" name="url" type="text" class="rom" value="<? echo $rows['url']; ?>" />
+            <label for="url"><? echo $url; ?></label>
+            <input id="url" name="url" type="text" class="rom" value="<? echo $url; ?>" />
          </p>
 		 <p>
-            <label for="md5"><? echo $rows['md5']; ?></label>
-            <input id="md5" name="md5" type="text" class="rom" value="<? echo $rows['md5']; ?>" />
+            <label for="md5"><? echo $md5; ?></label>
+            <input id="md5" name="md5" type="text" class="rom" value="<? echo $md5; ?>" />
          </p>		
 		 <p>
-            <label for="changelog"><? echo $rows['changelog']; ?></label>
-			<textarea id="changelog" name="changelog" class="rom" value="<? echo $rows['changelog']; ?>"></textarea>			
+            <label for="changelog"><? echo $changelog; ?></label>
+			<textarea id="changelog" name="changelog" class="rom" value="<? echo $changelog; ?>"></textarea>			
          </p>		
 		 <p>
-            <label for="device"><? echo $rows['device']; ?></label>
-            <input id="device" name="device" type="text" class="rom" value="<? echo $rows['device']; ?>" />
+            <label for="device"><? echo $device; ?></label>
+            <input id="device" name="device" type="text" class="rom" value="<? echo $device; ?>" />
          </p>		
          <p>
-            <label for="romversionname"><? echo $rows['romversionname']; ?></label>
-            <input id="romversionname" name="romversionname" type="text" class="rom" value="<? echo $rows['romversionname']; ?>" />
+            <label for="romversionname"><? echo $romversionname; ?></label>
+            <input id="romversionname" name="romversionname" type="text" class="rom" value="<? echo $romversionname; ?>" />
          </p>		
 		 <p>
-            <label for="userid"><? echo $rows['userid']; ?></label>
-            <input id="userid" name="userid" type="text" class="rom" value="<? echo $rows['userid']; ?>" />
+            <label for="userid"><? echo $userid; ?></label>
+            <input id="userid" name="userid" type="text" class="rom" value="<? echo $userid; ?>" />
          </p>			 
-		 			<input name="id" type="hidden" id="id" value="<? echo $rows['id']; ?>">
+		 			<input name="id" type="hidden" id="id" value="<? echo $id; ?>">
          <p>
             <button id="updateRomNew" name="submit_form" type="submit">Update Rom</button>
          </p>
@@ -103,7 +111,7 @@ if(isset($_SESSION['user_id'])) {
 </script>
 <?
 } else { 
-   if($rows['userid'] == $_SESSION['user_id']) { 
+   if($userid == $_SESSION['user_id']) { 
 	?>
 
 	<div id="registration">
@@ -112,39 +120,39 @@ if(isset($_SESSION['user_id'])) {
  <form id="RegisterUserForm" action="?page=update_ac" method="post">
  	<fieldset>
          <p>
-            <label for="rom"><? echo $rows['rom']; ?></label>
-            <input id="rom" name="rom" type="text" class="rom" value="<? echo $rows['rom']; ?>" />
+            <label for="rom"><? echo $rom; ?></label>
+            <input id="rom" name="rom" type="text" class="rom" value="<? echo $rom; ?>" />
          </p>
          <p>
-            <label for="version"><? echo $rows['version']; ?></label>
-            <input id="version" name="version" type="text" class="rom" value="<? echo $rows['version']; ?>" />
+            <label for="version"><? echo $version; ?></label>
+            <input id="version" name="version" type="text" class="rom" value="<? echo $version; ?>" />
          </p>
 		 <p>
-            <label for="buildfingerprint"><? echo $rows['buildfingerprint']; ?></label>
-            <input id="buildfingerprint" name="buildfingerprint" type="text" class="rom" value="<? echo $rows['buildfingerprint']; ?>" />
+            <label for="buildfingerprint"><? echo $buildfingerprint; ?></label>
+            <input id="buildfingerprint" name="buildfingerprint" type="text" class="rom" value="<? echo $buildfingerprint; ?>" />
          </p>
 		 <p>
-            <label for="url"><? echo $rows['url']; ?></label>
-            <input id="url" name="url" type="text" class="rom" value="<? echo $rows['url']; ?>" />
+            <label for="url"><? echo $url; ?></label>
+            <input id="url" name="url" type="text" class="rom" value="<? echo $url; ?>" />
          </p>
 		 <p>
-            <label for="md5"><? echo $rows['md5']; ?></label>
-            <input id="md5" name="md5" type="text" class="rom" value="<? echo $rows['md5']; ?>" />
+            <label for="md5"><? echo $md5; ?></label>
+            <input id="md5" name="md5" type="text" class="rom" value="<? echo $md5; ?>" />
          </p>		
 		 <p>
-            <label for="changelog"><? echo $rows['changelog']; ?></label>
-			<textarea id="changelog" name="changelog" class="rom" value="<? echo $rows['changelog']; ?>"></textarea>			
+            <label for="changelog"><? echo $changelog; ?></label>
+			<textarea id="changelog" name="changelog" class="rom" value="<? echo $changelog; ?>"></textarea>			
          </p>		
 		 <p>
-            <label for="device"><? echo $rows['device']; ?></label>
-            <input id="device" name="device" type="text" class="rom" value="<? echo $rows['device']; ?>" />
+            <label for="device"><? echo $device; ?></label>
+            <input id="device" name="device" type="text" class="rom" value="<? echo $device; ?>" />
          </p>		
          <p>
-            <label for="romversionname"><? echo $rows['romversionname']; ?></label>
-            <input id="romversionname" name="romversionname" type="text" class="rom" value="<? echo $rows['romversionname']; ?>" />
+            <label for="romversionname"><? echo $romversionname; ?></label>
+            <input id="romversionname" name="romversionname" type="text" class="rom" value="<? echo $romversionname; ?>" />
          </p>				 
-		 			<input name="id" type="hidden" id="id" value="<? echo $rows['id']; ?>">
-					<input name="userid" type="hidden" id="user" value="<? echo $rows['userid']; ?>">
+		 			<input name="id" type="hidden" id="id" value="<? echo $id; ?>">
+					<input name="userid" type="hidden" id="user" value="<? echo $userid; ?>">
          <p>
             <button id="updateRomNew" name="submit_form" type="submit">Update Rom</button>
          </p>

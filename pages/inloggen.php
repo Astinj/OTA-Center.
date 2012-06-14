@@ -31,13 +31,21 @@ if(isset($_SESSION['user_id'])) {
 }else{
  if(isset($_COOKIE['user_id'])) {
   // Cookie uitlezen, sessie aanmaken
-  $sql = "SELECT id,status,wachtwoord,actief FROM gebruikers WHERE id='".$_COOKIE['user_id']."'";
-  $query = mysql_query($sql);
-  $rij = mysql_fetch_object($query);
-  $id = htmlspecialchars($rij->id);
-  $status = htmlspecialchars($rij->status);
-  $dbpass = htmlspecialchars($rij->wachtwoord);
-  $actief = htmlspecialchars($rij->actief);
+  $stmt = $db->stmt_init();
+  $stmt->prepare('SELECT `id`, `status`, `wachtwoord`, `actief` FROM `gebruikers` WHERE `id` = ?');
+  $stmt->bind_param('i', $_COOKIE['user_id']);
+  $stmt->execute();
+  $stmt->bind_result($rij_id, $rij_status, $rij_wachtwoord, $rij_actief);
+  $stmt->fetch();
+  $stmt->close();
+  
+  //$sql = "SELECT id,status,wachtwoord,actief FROM gebruikers WHERE id='".$_COOKIE['user_id']."'";
+  //$query = mysql_query($sql);
+  //$rij = mysql_fetch_object($query);
+  $id = htmlspecialchars($rij_id);
+  $status = htmlspecialchars($rij_status);
+  $dbpass = htmlspecialchars($rij_wachtwoord);
+  $actief = htmlspecialchars($rij_actief);
   if($dbpass == $_COOKIE['user_password'] AND $actief == 1) {
    $_SESSION['user_id'] = $id;
    $_SESSION['user_status'] = $status;
@@ -55,16 +63,24 @@ if(isset($_SESSION['user_id'])) {
  }else{
   if(isset($_POST['submit'])) {
    // Inloggen
-   $sql = "SELECT id,naam,wachtwoord,status,actief,lastactive FROM gebruikers WHERE naam='".$_POST['user']."'";
-   $query = mysql_query($sql);
-   $rij = mysql_fetch_object($query);
-   $dbpass = htmlspecialchars($rij->wachtwoord);
+   $stmt = $db->stmt_init();
+   $stmt->prepare('SELECT `id`, `naam`, `wachtwoord`, `status`, `actief`, `lastactive` FROM `gebruikers` WHERE `naam` = ?');
+   $stmt->bind_param('s', $_POST['user']);
+   $stmt->execute();
+   $stmt->bind_result($rij_id, $rij_naam, $rij_wachtwoord, $rij_status, $rij_actief, $rij_lastactive);
+   $stmt->fetch();
+   $stmt->close();
+   
+   //$sql = "SELECT id,naam,wachtwoord,status,actief,lastactive FROM gebruikers WHERE naam='".$_POST['user']."'";
+   //$query = mysql_query($sql);
+   //$rij = mysql_fetch_object($query);
    $userpass = md5($_POST['pass']);
-   $userid = htmlspecialchars($rij->id);
-   $userstatus = htmlspecialchars($rij->status);
-   $username = htmlspecialchars($rij->naam);
-   $useractief = htmlspecialchars($rij->actief);
-   $lastactive = htmlspecialchars($rij->lastactive);
+   $dbpass = htmlspecialchars($rij_wachtwoord);
+   $userid = htmlspecialchars($rij_id);
+   $userstatus = htmlspecialchars($rij_status);
+   $username = htmlspecialchars($rij_naam);
+   $useractief = htmlspecialchars($rij_actief);
+   $lastactive = htmlspecialchars($rij_lastactive);
    if($dbpass == $userpass) {
     if($useractief == 1) {
      $_SESSION['user_id'] = $userid;

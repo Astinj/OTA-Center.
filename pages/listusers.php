@@ -5,12 +5,12 @@
 // Pagina: list-roms.php: Give all roms in database table 'roms'.
 // the adress would be something like this: http://<domain>/<path>/list-roms.php
 // Connect to server and select database.
-include('./pages/safe_admin.php');
-mysql_connect("$db_host", "$db_user", "$db_pass")or die("cannot connect");
-mysql_select_db("$db_db")or die("cannot select DB");
+include('safe_admin.php');
+//mysql_connect("$db_host", "$db_user", "$db_pass")or die("cannot connect");
+//mysql_select_db("$db_db")or die("cannot select DB");
 
 	$sql="SELECT * FROM gebruikers";
-	$result=mysql_query($sql);
+	$result=$db->query($sql);
 ?>
 <H2>Userlist</H2>
 <table style="width:100%; border-spacing:0;">
@@ -23,7 +23,7 @@ mysql_select_db("$db_db")or die("cannot select DB");
 <th><a href="?page=useradd">Add Rom</a></th>
 </tr>
 <?php
-	while($rows=mysql_fetch_array($result)){
+	while($rows=$result->fetch_array()){
 ?>
 <tr>
 <td><? echo $rows['naam']; ?></td>

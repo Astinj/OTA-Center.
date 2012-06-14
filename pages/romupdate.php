@@ -12,9 +12,9 @@ include("config.php");
 <?   echo "\"".$romname."\": {"; ?>
         "device": {
 <?
- $sql = "SELECT rom,version,buildfingerprint,url,md5,changelog,device FROM roms ORDER BY version ASC";
- $query = mysql_query($sql);
- while($rij = mysql_fetch_object($query)) {
+ $sql = "SELECT `rom`, `version`, `buildfingerprint`, `url`, `md5`, `changelog`, `device` FROM `roms` ORDER BY `version` ASC";
+ $query = $db->query($sql);
+ while($rij = $query->fetch_object()) {
 	$rom = htmlspecialchars($rij->rom);
 	$romversionname = htmlspecialchars($rij->romversionname);
 	$version = htmlspecialchars($rij->version);

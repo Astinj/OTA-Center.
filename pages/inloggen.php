@@ -58,7 +58,7 @@ if (isset($_SESSION['user_id'])) {
             $stmt->prepare('SELECT `id`, `naam`, `wachtwoord`, `status`, `actief`, `lastactive` FROM `gebruikers` WHERE `naam` = ?');
             $stmt->bind_param('s', $_POST['user']);
             $stmt->execute();
-            $stmt->bind_result($id, $rij_naam, $wachtwoord, $status, $actief, $lastactive);
+            $stmt->bind_result($userid, $rij_naam, $dbpass, $userstatus, $useractief, $lastactive);
             $stmt->fetch();
             $stmt->close();
 

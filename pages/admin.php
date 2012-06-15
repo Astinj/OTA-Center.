@@ -4,7 +4,7 @@
 // Support by helpdesk90@gmail.com (MSN|Email)
 // Pagina: ledenlijst.php: Alle geregistreerde accounts weergeven
 // Pagina alleen voor admins; safe_admin.php
-include("safe_admin.php");
+include 'safe_admin.php';
 
 if (isset($_GET['edit'])) {
     // Bewerken
@@ -19,14 +19,14 @@ if (isset($_GET['edit'])) {
                     $stmt->bind_param('sssisi', $_POST['naam'], $newpass, $_POST['email'], $_POST['actief'], $_POST['status'], $_GET['edit']);
 
                     if ($stmt->execute()) {
-                        echo "De gebruiker is succesvol gewijzigd, wachtwoord is veranderd.<br />\n<a href=\"?page=admin\">&laquo; Terug naar het beheer</a>";
+                        echo 'De gebruiker is succesvol gewijzigd, wachtwoord is veranderd.<br /><a href="?page=admin">&laquo; Terug naar het beheer</a>';
                     } else {
-                        echo "Fout opgetreden tijdens bewerken.<br />\n<a href=\"javascript:history.back()\">&laquo; Ga terug</a>";
+                        echo 'Fout opgetreden tijdens bewerken.<br /><a href="javascript:history.back()">&laquo; Ga terug</a>';
                     }
 
                     $stmt->close();
                 } else {
-                    echo "De nieuwe wachtwoorden zijn niet hetzelfde.<br />\n<a href=\"javascript:history.back()\">&laquo; Ga terug</a>";
+                    echo 'De nieuwe wachtwoorden zijn niet hetzelfde.<br /><a href="javascript:history.back()">&laquo; Ga terug</a>';
                 }
             } else {
                 // Zonder wachtwoord wijzigen
@@ -35,9 +35,9 @@ if (isset($_GET['edit'])) {
                 $stmt->bind_param('ssisi', $_POST['naam'], $_POST['email'], $_POST['actief'], $_POST['status'], $_GET['edit']);
 
                 if ($stmt->execute()) {
-                    echo "De gebruiker is succesvol gewijzigd.<br />\n<a href=\"?page=admin\">&laquo; Terug naar het beheer</a>";
+                    echo 'De gebruiker is succesvol gewijzigd.<br /><a href="?page=admin">&laquo; Terug naar het beheer</a>';
                 } else {
-                    echo "Fout opgetreden tijdens bewerken.<br />\n<a href=\"javascript:history.back()\">&laquo; Ga terug</a>";
+                    echo 'Fout opgetreden tijdens bewerken.<br /><a href="javascript:history.back()">&laquo; Ga terug</a>';
                 }
 
                 $stmt->close();
@@ -48,14 +48,12 @@ if (isset($_GET['edit'])) {
             $stmt->prepare('SELECT `naam`, `status`, `email`, `actief` FROM `gebruikers` WHERE `id` = ?');
             $stmt->bind_param('i', $_GET['edit']);
             $stmt->execute();
-            $stmt->bind_result($rij_naam, $rij_status, $rij_email, $rij_actief);
+            $stmt->bind_result($rij_naam, $status, $rij_email, $actief);
             $stmt->fetch();
             $stmt->close();
 
             $naam = htmlspecialchars($rij_naam);
-            $status = htmlspecialchars($rij_status);
             $email = htmlspecialchars($rij_email);
-            $actief = htmlspecialchars($rij_actief);
             ?>
             <form method="post" action="?page=admin&edit=<?= $_GET['edit'] ?>">
                 <table>
@@ -94,12 +92,10 @@ if (isset($_GET['edit'])) {
                     <td><select name="edit" size="1">
                         <option value="do">&nbsp;</option>
                         <?
-                        $sql = "SELECT `naam`, `id` FROM `gebruikers` ORDER BY `naam` ASC";
-                        $query = $db->query($sql);
+                        $query = $db->query('SELECT `naam`, `id` FROM `gebruikers` ORDER BY `naam` ASC');
                         while($rij = $query->fetch_object()) {
-                            $id = htmlspecialchars($rij->id);
                             $naam = htmlspecialchars($rij->naam);
-                            echo "<option value=\"".$id."\">".$naam."</option>\n";
+                            echo '<option value="'.$rij->id.'">'.$naam.'</option>';
                         }
                         ?>
                     </select></td>
@@ -117,9 +113,9 @@ if (isset($_GET['edit'])) {
         $stmt->prepare('DELETE FROM `gebruikers` WHERE `id` = ?');
         $stmt->bind_param('i', $_GET['del']);
         if ($stmt->execute()) {
-            echo "De gebruiker met het ID ".$_GET[ 'del']." is succesvol verwijderd.<br />\n<a href=\"?page=admin\">&laquo; Terug naar het beheer</a>";
+            echo 'De gebruiker met het ID '.$_GET['del'].' is succesvol verwijderd.<br /><a href="?page=admin">&laquo; Terug naar het beheer</a>';
         } else {
-            echo "Er is iets fout gegaan bij het verwijderen van userID ".$_GET['del'].". Bestaat het gebruikersID wel?<br />\n<a href=\"?page=admin\">&laquo; Terug naar het beheer</a>";
+            echo 'Er is iets fout gegaan bij het verwijderen van userID '.$_GET['del'].'. Bestaat het gebruikersID wel?<br /><a href="?page=admin">&laquo; Terug naar het beheer</a>';
         }
     } else {
         // Lijst
@@ -131,12 +127,10 @@ if (isset($_GET['edit'])) {
                     <td><select name="del" size="1">
                         <option value="">&nbsp;</option>
                         <?
-                        $sql = "SELECT `naam`, `id` FROM `gebruikers` ORDER BY `naam` ASC";
-                        $query = $db->query($sql);
+                        $query = $db->query('SELECT `naam`, `id` FROM `gebruikers` ORDER BY `naam` ASC');
                         while($rij = $query->fetch_object()) {
-                            $id = htmlspecialchars($rij->id);
                             $naam = htmlspecialchars($rij->naam);
-                            echo "<option value=\"".$id."\">".$naam."</option>\n";
+                            echo '<option value="'.$rij->id.'">'.$naam.'</option>';
                         }
                         ?>
                     </select></td>

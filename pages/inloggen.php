@@ -13,7 +13,7 @@ if (isset($_SESSION['user_id'])) {
         <li><a href="./?page=add">Add Rom</a></li>
         <li><a href="./?page=uitloggen">Logout</a></li>
     </ul>
-    <? if($_SESSION['user_status'] == 1) { ?>
+    <? if ($_SESSION['user_status'] == 1) { ?>
         <div class="sidebar">
             <h2>Admin Menu</h2>
             <ul>
@@ -33,14 +33,10 @@ if (isset($_SESSION['user_id'])) {
         $stmt->prepare('SELECT `id`, `status`, `wachtwoord`, `actief` FROM `gebruikers` WHERE `id` = ?');
         $stmt->bind_param('i', $_COOKIE['user_id']);
         $stmt->execute();
-        $stmt->bind_result($rij_id, $rij_status, $rij_wachtwoord, $rij_actief);
+        $stmt->bind_result($id, $status, $wachtwoord, $actief);
         $stmt->fetch();
         $stmt->close();
 
-        $id = htmlspecialchars($rij_id);
-        $status = htmlspecialchars($rij_status);
-        $dbpass = htmlspecialchars($rij_wachtwoord);
-        $actief = htmlspecialchars($rij_actief);
         if ($dbpass == $_COOKIE['user_password'] AND $actief == 1) {
             $_SESSION['user_id'] = $id;
             $_SESSION['user_status'] = $status;
@@ -62,17 +58,12 @@ if (isset($_SESSION['user_id'])) {
             $stmt->prepare('SELECT `id`, `naam`, `wachtwoord`, `status`, `actief`, `lastactive` FROM `gebruikers` WHERE `naam` = ?');
             $stmt->bind_param('s', $_POST['user']);
             $stmt->execute();
-            $stmt->bind_result($rij_id, $rij_naam, $rij_wachtwoord, $rij_status, $rij_actief, $rij_lastactive);
+            $stmt->bind_result($id, $rij_naam, $wachtwoord, $status, $actief, $lastactive);
             $stmt->fetch();
             $stmt->close();
 
             $userpass = md5($_POST['pass']);
-            $dbpass = htmlspecialchars($rij_wachtwoord);
-            $userid = htmlspecialchars($rij_id);
-            $userstatus = htmlspecialchars($rij_status);
             $username = htmlspecialchars($rij_naam);
-            $useractief = htmlspecialchars($rij_actief);
-            $lastactive = htmlspecialchars($rij_lastactive);
             if ($dbpass == $userpass) {
                 if ($useractief == 1) {
                     $_SESSION['user_id'] = $userid;
@@ -88,12 +79,13 @@ if (isset($_SESSION['user_id'])) {
                     You will be automatticly send to the next page, if nothing happens <a href="./?page=home">Click here.</a>.
 
                     <?
-                    header("Location: ?page=home");
+                    //no point in sending header after contents sent...
+                    //header("Location: ?page=home");
                 } else {
-                    echo "Your account has not been activated. Activate your account by clicking the link in the mail that we send at registration.<br />\n<a href=\"javascript:history.back()\">&laquo; Go Back.</a>";
+                    echo 'Your account has not been activated. Activate your account by clicking the link in the mail that we send at registration.<br /><a href="javascript:history.back()">&laquo; Go Back.</a>';
                 }
             } else {
-                echo "Your password does not match with the account '".$_POST['user']."'.<br />\n<a href=\"javascript:history.back()\">&laquo; Go Back.</a>";
+                echo "Your password does not match with the account '{$_POST['user']}'.<br /><a href=\"javascript:history.back()\">&laquo; Go Back.</a>";
             }
         } else {
             // Inlogform

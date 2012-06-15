@@ -1,7 +1,7 @@
 <?php
 if (!isset($_SESSION['user_id'])) {
-    echo "You are not logged in...";
-    header("Location: ?page=denied");
+    //echo 'You are not logged in...';
+    header('Location: ?page=denied');
     exit();
 }
 ?>

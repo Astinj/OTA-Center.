@@ -4,7 +4,7 @@
 // Support by info@sensation-devs.org (Email)
 // Pagina: update: you can edit the details of given rom(id)
 // the adress would be something like this: http://<domain>/<path>/update.php?id=<romid>
-include('safe_admin.php');
+include 'safe_admin.php';
 error_reporting(E_ALL);
 ini_set('display_errors', true);
 
@@ -14,14 +14,13 @@ if (!empty($_GET['id'])) {
 
     // Retrieve data from database
     $stmt = $db->stmt_init();
-    $stmt->prepare('');
+    $stmt->prepare('SELECT * FROM `gebruikers` WHERE `id` = ?');
     $stmt->bind_param('i', $id);
     $stmt->execute();
     $stmt->bind_result($naam, $wachtwoord, $status, $email, $actief, $lastactive, $actcode);
     $stmt->fetch();
     $stmt->close();
     ?>
-
         <div id="registration">
             <h2>Update User</h2>
             <form id="RegisterUserForm" action="?page=userupdate_ac" method="post">
@@ -63,6 +62,6 @@ if (!empty($_GET['id'])) {
         <script type="text/javascript" src="js/infieldlabels.js"></script>
         <?
 } else {
-    echo "fuck you, add an id at the end of the url ass!";
+    echo 'fuck you, add an id at the end of the url ass!';
 }
 ?>

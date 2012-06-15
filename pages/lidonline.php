@@ -6,19 +6,18 @@
 // Deze pagina is niet bedoeld voor los gebruik, omdat er geen <html></html> tags etc zijn, en geen stylsheet
 // Include deze pagina daarom waar je hem wilt hebben als < ? include("lidonline.php"); ? > (zonder spaties bij haakjes)
 
-$sql = "SELECT `naam`, `status` FROM `gebruikers` WHERE DATE_SUB(NOW(),INTERVAL 10 MINUTE) <= `lastactive` ORDER BY `naam` ASC";
-$query = $db->query($sql);
+$query = $db->query('SELECT `naam`, `status` FROM `gebruikers` WHERE DATE_SUB(NOW(),INTERVAL 10 MINUTE) <= `lastactive` ORDER BY `naam` ASC');
 $tellen = $query->num_rows;
 $i = 1;
 while (rij = $query->fetch_object()) {
     $naam = htmlspecialchars($rij->naam);
-    $status = htmlspecialchars($rij->status);
-    if ($status == 1) {
-        $naam = "<b>".$naam."</b>";
+    if ($rij->status == 1) {
+        $naam = "<b>$naam</b>";
     }
+    
     echo $naam;
     if ($i != $tellen) {
-        echo ", ";
+        echo ', ';
     }
     $i++;
 }

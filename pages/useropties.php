@@ -4,7 +4,7 @@
 // Support by helpdesk90@gmail.com (MSN|Email)
 // Pagina: wachtwoord.php: Pagina om wachtwoord te wijzigen
 // Inloggen verplicht; safe.php
-include("safe.php");
+include "safe.php";
 
 if (isset($_POST['submit'])) {
     if (preg_match("/^[A-Z0-9._%-]+@[A-Z0-9._%-]+\.[A-Z]{2,6}$/i", $_POST['email'])) {
@@ -25,18 +25,18 @@ if (isset($_POST['submit'])) {
                     $stmt->prepare('UPDATE `gebruikers` SET `email` = ?, `wachtwoord` = ? WHERE `id` = ?');
                     $stmt->bind_param('ssi', $_POST['email'], $newpass, $_SESSION['user_id']);
                     if ($stmt->execute()) {
-                        echo "Your mailadress is changed to '".$_POST['email']."', your password has changed too.<br />\n<a href=\"?page=useropties\">&laquo; Go back</a>";
+                        echo "Your mailadress is changed to '{$_POST['email']}', your password has changed too.<br /><a href=\"?page=useropties\">&laquo; Go back</a>";
                         if (isset($_COOKIE['user_password'])) {
                             setcookie("user_password", $newpass, time() + 365 * 86400);
                         }
                     } else {
-                        echo "An error has occured while changing password or mailadress... Please try again later.<br />\n<a href=\"javascript:history.back()\">&laquo; Go Back</a>";
+                        echo 'An error has occured while changing password or mailadress... Please try again later.<br />\n<a href="javascript:history.back()">&laquo; Go Back</a>';
                     }
                 } else {
-                    echo "The new passwords do not match. Please try again.<br />\n<a href=\"javascript:history.back()\">&laquo; Go Back</a>";
+                    echo 'The new passwords do not match. Please try again.<br /><a href="javascript:history.back()">&laquo; Go Back</a>';
                 }
             } else {
-                echo "The filled out 'current password' is not right.<br />\n<a href=\"javascript:history.back()\">&laquo; Go Back</a>";
+                echo 'The filled out \'current password\' is not right.<br />\n<a href="javascript:history.back()">&laquo; Go Back</a>';
             }
         } else {
             // Alleen e-mail wijzigen
@@ -44,13 +44,13 @@ if (isset($_POST['submit'])) {
             $stmt->prepare('UPDATE `gebruikers` SET `email` = ?, WHERE `id` = ?');
             $stmt->bind_param('si', $_POST['email'], $_SESSION['user_id']);
             if ($stmt->execute()) {
-                echo "Your mailadress has changed to '".$_POST['email']."'.<br />\n<a href=\"?page=useropties\">&laquo; Go Back</a>";
+                echo "Your mailadress has changed to '{$_POST['email']}'.<br /><a href=\"?page=useropties\">&laquo; Go Back</a>";
             } else {
-                echo "An error occured while changing your mailadress. Please try again later.<br />\n<a href=\"javascript:history.back()\">&laquo; Go Back</a>";
+                echo 'An error occured while changing your mailadress. Please try again later.<br /><a href="javascript:history.back()">&laquo; Go Back</a>';
             }
         }
     } else {
-        echo "You'd fill out a wrong mailadress (it has to look like name@domain.com).<br />\n<a href=\"javascript:history.back()\">&laquo; Go Back</a>";
+        echo 'You\'d fill out a wrong mailadress (it has to look like name@domain.com).<br /><a href="javascript:history.back()">&laquo; Go Back</a>';
     }
 } else {
     // Formulier

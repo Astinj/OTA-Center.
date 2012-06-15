@@ -13,86 +13,73 @@ if (isset($_GET['id'])) {
         $stmt->bind_param('i', $id);
 
         $stmt->execute();
-        $stmt->bind_result($rij_id, $rij_actcode, $rij_actief);
+        $stmt->bind_result($id, $actcode, $actief);
         $stmt->fetch();
         $stmt->close();
-
-        $dbid = htmlspecialchars($rij_id);
-        $dbcode = htmlspecialchars($rij_actcode);
-        $actief = htmlspecialchars($rij_actief);
 
         if ($actief == 0) {
             if ($dbcode == $_GET['code']) {
                 if (isset($_GET['activeer'])) {
-                    // Activeren en huidige pass behouden
+                    
                     $stmt = $db->stmt_init();
                     $stmt->prepare('UPDATE `gebruikers` SET `actief` = 1, `actcode` = \'\' WHERE `id` = ?');
                     $stmt->bind_param('i', $id);
 
                     if ($stmt->execute()) {
-                        echo "Your account has been activated, you can now login with your old password.<br />\n<a href=\"inloggen.php\">&laquo;  Go to login.</a>";
-                    } else {
-                        echo "An error occured while activating.";
-                    }
-
-                    $stmt->close();
-                } else if (isset($_GET['registratie'])) {
-                    // Activeren naar registratie
-                    $stmt = $db->stmt_init();
-                    $stmt->prepare('UPDATE `gebruikers` SET `actief` = 1, `actcode` = \'\' WHERE `id` = ?');
-                    $stmt->bind_param('i', $id);
-
-                    if ($stmt->execute()) {
-                        echo "Your account has been activated, you can now login.<br />\n<a href=\"?page=inloggen\">&laquo; Go to login.</a>";
-                    } else {
-                        echo "An error occured while activating.";
-                    }
-
-                    $stmt->close();
-                } else {
-                    if (isset($_POST['submit'])) {
-                        // Uitvoeren
-                        if($_POST['pass1'] == $_POST['pass2']) {
-                            $md5pass = md5($_POST['pass1']);
-
-                            $stmt = $db->stmt_init();
-                            $stmt->prepare('UPDATE `gebruikers` SET `wachtwoord` = ?, `actief` = 1, `actcode` = \'\' WHERE `id` = ?');
-                            $stmt->bind_param('si', $md5pass, $id);
-
-                            if ($stmt->execute()) {
-                                echo "Your account has been activated and your password is changed.<br />\n<a href=\"?page=inloggen\">&laquo; Go to login</a>";
-                            } else {
-                                echo "An error occured while changing password.";
-                            }
-
-                            $stmt->close();
+                        if (isset($_GET['activeer'])) {
+                            // Activeren en huidige pass behouden
+                            echo 'Your account has been activated, you can now login with your old password.<br />n<a href="inloggen.php">&laquo; Go to login.</a>';
                         } else {
-                            echo "The filled out passwords do not match.<br />\n<a href=\"javascript:history.back()\">&laquo; Go Back</a>";
+                            // Activeren naar registratie
+                            echo 'Your account has been activated, you can now login.<br /><a href="?page=inloggen">&laquo; Go to login.</a>';
                         }
                     } else {
-                        // Formulier wachtwoord wijzigen
-                        ?>
-                        <form method="post" action="activeren.php?id=<?= $id ?>&code=<?= $_GET['code'] ?>">
-                            <table>
-                                <tr>
-                                    <td>New password:</td><td><input type="password" name="pass1" /></td>
-                                </tr>
-                                <tr>
-                                    <td>Verify:</td><td><input type="password" name="pass2" /></td>
-                                </tr>
-                                <tr>
-                                    <td></td><td><input type="submit" name="submit" value="Change Pass" /></td>
-                                </tr>
-                            </table>
-                        </form>
-                        <?
+                        echo 'An error occured while activating.';
                     }
+
+                    $stmt->close();
+                } else if (isset($_POST['submit'])) {
+                    // Uitvoeren
+                    if($_POST['pass1'] == $_POST['pass2']) {
+                        $md5pass = md5($_POST['pass1']);
+
+                        $stmt = $db->stmt_init();
+                        $stmt->prepare('UPDATE `gebruikers` SET `wachtwoord` = ?, `actief` = 1, `actcode` = \'\' WHERE `id` = ?');
+                        $stmt->bind_param('si', $md5pass, $id);
+
+                        if ($stmt->execute()) {
+                            echo 'Your account has been activated and your password is changed.<br /><a href="?page=inloggen">&laquo; Go to login</a>';
+                        } else {
+                            echo 'An error occured while changing password.';
+                        }
+
+                        $stmt->close();
+                    } else {
+                        echo 'The filled out passwords do not match.<br /><a href="javascript:history.back()">&laquo; Go Back</a>';
+                    }
+                } else {
+                    // Formulier wachtwoord wijzigen
+                    ?>
+                    <form method="post" action="activeren.php?id=<?= $id ?>&code=<?= $_GET['code'] ?>">
+                        <table>
+                            <tr>
+                                <td>New password:</td><td><input type="password" name="pass1" /></td>
+                            </tr>
+                            <tr>
+                                <td>Verify:</td><td><input type="password" name="pass2" /></td>
+                            </tr>
+                            <tr>
+                                <td></td><td><input type="submit" name="submit" value="Change Pass" /></td>
+                            </tr>
+                        </table>
+                    </form>
+                    <?
                 }
             } else {
-                echo "The activation code is not correct. In case you lost it, go to 'forgot password' again.<br />\n<a href=\"forgotpass.php\">&laquo; Go to forgot password.</a>";
+                echo 'The activation code is not correct. In case you lost it, go to \'forgot password\' again.<br /><a href="?page=forgotpass">&laquo; Go to forgot password.</a>';
             }
         } else {
-            echo "Your account was not deactivated. You can login again. In case you lost your password, please click on 'forgot password' on the login page.<br />\n<a href=\"inloggen.php\">&laquo; Go to login</a>";
+            echo 'Your account was not deactivated. You can login again. In case you lost your password, please click on \'forgot password\' on the login page.<br /><a href="?page=inloggen">&laquo; Go to login</a>';
         }
     } else {
         header("Location: ?page=activeren&uid=$id");

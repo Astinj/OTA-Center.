@@ -4,7 +4,7 @@
 // Support by info@sensation-devs.org (Email)
 // Pagina: update: you can edit the details of given rom(id)
 // the adress would be something like this: http://<domain>/<path>/update.php?id=<romid>
-include('safe.php');
+include 'safe.php';
 error_reporting(E_ALL);
 ini_set('display_errors', true);
 
@@ -22,7 +22,7 @@ if (!empty($_GET['id'])) {
     $stmt->close();
 
     if (isset($_SESSION['user_id'])) {
-        if ($_SESSION['user_status'] == 1) {
+        if ($userid == $_SESSION['user_id'] || $_SESSION['user_status'] == 1) {
             ?>
             <div id="registration">
                 <h2>Update Rom</h2>
@@ -63,7 +63,7 @@ if (!empty($_GET['id'])) {
                         </p>
                         <p>
                             <label for="userid"><? echo $userid; ?></label>
-                            <input id="userid" name="userid" type="text" class="rom" value="<? echo $userid; ?>" />
+                            <input id="userid" name="userid" type="<? echo $_SESSION['user_status'] == 1 ? 'text' : 'hidden'; ?>" class="rom" value="<? echo $userid; ?>" />
                         </p>
                             <input name="id" type="hidden" id="id" value="<? echo $id; ?>">
                         <p>
@@ -76,64 +76,11 @@ if (!empty($_GET['id'])) {
             <script type="text/javascript" src="js/infieldlabels.js"></script>
             <?
         } else {
-            if ($userid == $_SESSION['user_id']) {
-                ?>
-
-                <div id="registration">
-                    <h2>Update Rom</h2>
-
-                    <form id="RegisterUserForm" action="?page=update_ac" method="post">
-                        <fieldset>
-                            <p>
-                                <label for="rom"><? echo $rom; ?></label>
-                                <input id="rom" name="rom" type="text" class="rom" value="<? echo $rom; ?>" />
-                            </p>
-                            <p>
-                                <label for="version"><? echo $version; ?></label>
-                                <input id="version" name="version" type="text" class="rom" value="<? echo $version; ?>" />
-                            </p>
-                            <p>
-                                <label for="buildfingerprint"><? echo $buildfingerprint; ?></label>
-                                <input id="buildfingerprint" name="buildfingerprint" type="text" class="rom" value="<? echo $buildfingerprint; ?>" />
-                            </p>
-                            <p>
-                                <label for="url"><? echo $url; ?></label>
-                                <input id="url" name="url" type="text" class="rom" value="<? echo $url; ?>" />
-                            </p>
-                            <p>
-                                <label for="md5"><? echo $md5; ?></label>
-                                <input id="md5" name="md5" type="text" class="rom" value="<? echo $md5; ?>" />
-                            </p>
-                            <p>
-                                <label for="changelog"><? echo $changelog; ?></label>
-                                <textarea id="changelog" name="changelog" class="rom" value="<? echo $changelog; ?>"></textarea>			
-                            </p>
-                            <p>
-                                <label for="device"><? echo $device; ?></label>
-                                <input id="device" name="device" type="text" class="rom" value="<? echo $device; ?>" />
-                            </p>
-                            <p>
-                                <label for="romversionname"><? echo $romversionname; ?></label>
-                                <input id="romversionname" name="romversionname" type="text" class="rom" value="<? echo $romversionname; ?>" />
-                            </p>
-                                <input name="id" type="hidden" id="id" value="<? echo $id; ?>">
-                                <input name="userid" type="hidden" id="user" value="<? echo $userid; ?>">
-                            <p>
-                                <button id="updateRomNew" name="submit_form" type="submit">Update Rom</button>
-                            </p>
-                        </fieldset>
-                    </form>
-                </div>
-                <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
-                <script type="text/javascript" src="js/infieldlabels.js"></script>
-                <?
-            } else {
-                echo "This rom has not been added by you.<br>If you are sure its your rom, please contact an admin to change it the userid of the rom...";
-            }
+            echo 'This rom has not been added by you.<br />If you are sure its your rom, please contact an admin to change it the userid of the rom...';
         }
     } else {
-        echo "You are not logged in...";
+        echo 'You are not logged in...';
     }
 } else {
-    echo "ID not set<br><br><a href='?page=list-roms'>Go to list of ROMs &raquo;</a>";
+    echo 'ID not set<br /><br /><a href="?page=list-roms">Go to list of ROMs &raquo;</a>';
 } ?>

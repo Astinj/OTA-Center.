@@ -4,10 +4,9 @@
 // Support by info@sensation-devs.org (Email)
 // Pagina: list-roms.php: Give all roms in database table 'roms'.
 // the adress would be something like this: http://<domain>/<path>/list-roms.php
-include('safe_admin.php');
+include 'safe_admin.php';
 
-$sql="SELECT * FROM gebruikers";
-$result=$db->query($sql);
+$result = $db->query('SELECT * FROM `gebruikers`');
 ?>
 <h2>Userlist</h2>
 <table style="width:100%; border-spacing:0;">
@@ -20,7 +19,9 @@ $result=$db->query($sql);
         <th><a href="?page=useradd">Add Rom</a></th>
     </tr>
     <?php
-    while($rows=$result->fetch_array()){
+    while($rows = $result->fetch_array()){
+        $rows['naam'] = htmlspecialchars($rows['naam']);
+        $rows['email'] = htmlspecialchars($rows['email']);
         ?>
         <tr>
             <td><? echo $rows['naam']; ?></td>

@@ -1,5 +1,5 @@
 <?php
-include('safe_admin.php');
+include 'safe_admin.php';
 if (isset($_SESSION['user_id'])) {
     ?>
 
@@ -43,6 +43,6 @@ if (isset($_SESSION['user_id'])) {
     <script type="text/javascript" src="js/infieldlabels.js"></script>
     <?
 } else {
-    echo "You are not logged in...";
+    echo 'You are not logged in...';
 }
 ?>

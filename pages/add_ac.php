@@ -7,16 +7,16 @@ if (isset($_SESSION['user_id'])) {
 
     // if successfully updated.
     if ($stmt->execute()) {
-        echo "Added Successfully";
-        echo "<BR>";
-        echo "<a href='?page=list-roms'>View result</a>";
+        echo 'Added Successfully';
+        echo '<br />';
+        echo '<a href="?page=list-roms">View result</a>';
     } else {
-        echo "ERROR";
+        echo 'ERROR';
     }
     $stmt->close();
 } else {
-    echo "You are not logged in.";
-    header("Location: ?page=denied");
+    //echo "You are not logged in.";
+    header('Location: ?page=denied');
     exit();
 }
 ?>

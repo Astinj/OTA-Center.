@@ -3,19 +3,17 @@
 // Copyright Jorik Berkepas
 // Support by helpdesk90@gmail.com (MSN|Email)
 // Pagina: ledenlijst.php: Alle geregistreerde accounts weergeven
-include('safe.php');
+include 'safe.php';
 ?>
 <table>
     <tr>
         <th>Gebruikersnaam</th>
     </tr>
     <?
-    $sql = "SELECT `naam`, `actief` FROM `gebruikers` ORDER BY `naam` ASC";
-    $query = $db->query($sql);
+    $query = $db->query('SELECT `naam`, `actief` FROM `gebruikers` ORDER BY `naam` ASC');
     while($rij = $query->fetch_object()) {
         $naam = htmlspecialchars($rij->naam);
-        $actief = htmlspecialchars($rij->actief);
-        if ($actief == 0) {
+        if ($rij->actief == 0) {
             echo "<tr>\n";
             echo "<td><font color=\"gray\">".$naam."</font></td>\n";
             echo "</tr>\n";

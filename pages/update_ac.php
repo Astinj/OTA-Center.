@@ -4,7 +4,7 @@
 // Support by info@sensation-devs.org (Email)
 // Pagina: update_ac: Updates the rom that is submitted in update
 // the adress would be something like this: http://<domain>/<path>/update_ac.php
-include('safe.php');
+include 'safe.php';
 error_reporting(E_ALL);
 ini_set('display_errors', true);
 
@@ -18,16 +18,16 @@ if (isset($_SESSION['user_id'])) {
 
         // if successfully updated.
         if ($stmt->execute()){
-            echo "Successful";
-            echo "<BR>";
-            echo "<a href='?page=list-roms'>View result</a>";
+            echo 'Successful';
+            echo '<br />';
+            echo '<a href="?page=list-roms">View result</a>';
         } else {
-            echo "ERROR";
+            echo 'ERROR';
         }
     } else {
-        header("Location: ?page=list-roms");
+        header('Location: ?page=list-roms');
     }
 } else {
-    echo "You are not logged in";
+    echo 'You are not logged in';
 }
 ?>

@@ -5,7 +5,7 @@
 // Pagina: list-roms.php: Give all roms in database table 'roms'.
 // the adress would be something like this: http://<domain>/<path>/list-roms.php
 // Connect to server and select database.
-include('safe.php');
+include 'safe.php';
 
 $stmt = $db->stmt_init();
 if ($_SESSION['user_status'] == 1) {
@@ -15,7 +15,7 @@ if ($_SESSION['user_status'] == 1) {
     $stmt->bind_param('i', $_SESSION['user_id']);
 }
 $stmt->execute();
-$stmt->bind_result($rom_id, $rom_name, $rom_version, $rom_url, $rom_userid, $rom_device);
+$stmt->bind_result($rom_id, $rij_rom_name, $rij_rom_version, $rij_rom_url, $rom_userid, $rij_rom_device);
 
 ?>
 <table style="width:100%; border-spacing:0;">
@@ -29,6 +29,10 @@ $stmt->bind_result($rom_id, $rom_name, $rom_version, $rom_url, $rom_userid, $rom
     </tr>
     <?php
     while ($stmt->fetch()) {
+        $rom_name = htmlspecialchars($rij_rom_name);
+        $rom_version = htmlspecialchars($rij_rom_version);
+        $rom_url = htmlspecialchars($rij_rom_url);
+        $rom_device = htmlspecialchars($rij_rom_device);
         ?>
         <tr>
             <td><a href="<? echo $sitebaseurl; ?>pages/romupdate.php?romname=<? echo $rom_name; ?>"><? echo $rom_name; ?></a></td>

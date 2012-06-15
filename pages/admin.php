@@ -18,8 +18,6 @@ if (isset($_GET['edit'])) {
                     $stmt->prepare('UPDATE `gebruikers` SET `naam` = ?, `wachtwoord` = ?, `email` = ?, `actief` = ?, `status` = ? WHERE `id` = ?');
                     $stmt->bind_param('sssisi', $_POST['naam'], $newpass, $_POST['email'], $_POST['actief'], $_POST['status'], $_GET['edit']);
 
-                    //$sql = "UPDATE gebruikers SET naam='".$_POST['naam']."',wachtwoord='".$newpass."',email='".$_POST['email']."',actief='".$_POST['actief']."',status='".$_POST['status']."' WHERE id='".$_GET['edit']."'";
-                    //$query = mysql_query($sql);
                     if ($stmt->execute()) {
                         echo "De gebruiker is succesvol gewijzigd, wachtwoord is veranderd.<br />\n<a href=\"?page=admin\">&laquo; Terug naar het beheer</a>";
                     } else {
@@ -36,8 +34,6 @@ if (isset($_GET['edit'])) {
                 $stmt->prepare('UPDATE `gebruikers` SET `naam` = ?, `email` = ?, `actief` = ?, `status` = ? WHERE `id` = ?');
                 $stmt->bind_param('ssisi', $_POST['naam'], $_POST['email'], $_POST['actief'], $_POST['status'], $_GET['edit']);
 
-                //$sql = "UPDATE gebruikers SET naam='".$_POST['naam']."',email='".$_POST['email']."',actief='".$_POST['actief']."',status='".$_POST['status']."' WHERE id='".$_GET['edit']."'";
-                //$query = mysql_query($sql);
                 if ($stmt->execute()) {
                     echo "De gebruiker is succesvol gewijzigd.<br />\n<a href=\"?page=admin\">&laquo; Terug naar het beheer</a>";
                 } else {
@@ -52,16 +48,14 @@ if (isset($_GET['edit'])) {
             $stmt->prepare('SELECT `naam`, `status`, `email`, `actief` FROM `gebruikers` WHERE `id` = ?');
             $stmt->bind_param('i', $_GET['edit']);
             $stmt->execute();
-            $stmt->bind_result($naam, $status, $email, $actief);
+            $stmt->bind_result($rij_naam, $rij_status, $rij_email, $rij_actief);
             $stmt->fetch();
             $stmt->close();
-            //$sql = "SELECT * FROM gebruikers WHERE id='".$_GET['edit']."'";
-            //$query = mysql_query($sql);
-            //$rij = mysql_fetch_object($query);
-            //$naam = htmlspecialchars($rij->naam);
-            //$status = htmlspecialchars($rij->status);
-            //$email = htmlspecialchars($rij->email);
-            //$actief = htmlspecialchars($rij->actief);
+
+            $naam = htmlspecialchars($rij_naam);
+            $status = htmlspecialchars($rij_status);
+            $email = htmlspecialchars($rij_email);
+            $actief = htmlspecialchars($rij_actief);
             ?>
             <form method="post" action="?page=admin&edit=<?= $_GET['edit'] ?>">
                 <table>
@@ -122,8 +116,6 @@ if (isset($_GET['edit'])) {
         $stmt = $db->stmt_init();
         $stmt->prepare('DELETE FROM `gebruikers` WHERE `id` = ?');
         $stmt->bind_param('i', $_GET['del']);
-        //$sql = "DELETE FROM gebruikers WHERE id='".$_GET['del']."'";
-        //$query = mysql_query($sql);
         if ($stmt->execute()) {
             echo "De gebruiker met het ID ".$_GET[ 'del']." is succesvol verwijderd.<br />\n<a href=\"?page=admin\">&laquo; Terug naar het beheer</a>";
         } else {

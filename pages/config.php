@@ -14,8 +14,6 @@ $db_db = "romupdater"; // Database
 
 // Als je al ergens anders een database connectie hebt gemaakt,
 // maak dan van de volgende twee regels commentaar (# of // ervoor zetten)
-//mysql_connect($db_host,$db_user,$db_pass);
-//mysql_select_db($db_db);
 $db = new mysqli($db_host, $db_user, $db_pass, $db_db);
 
 // Instellingen

@@ -5,15 +5,8 @@
 // Pagina: update: you can edit the details of given rom(id)
 // the adress would be something like this: http://<domain>/<path>/update.php?id=<romid>
 include('safe.php');
-// Connect to server and select database.
 error_reporting(E_ALL);
 ini_set('display_errors', true);
-
-//mysql_connect($db_host, $db_user, $db_pass)or die("cannot connect");
-//mysql_select_db($db_db)or die("cannot select DB");
-
-// get value of id that sent from address bar
-
 
 //Continue when ID is set in the header
 if (!empty($_GET['id'])) {
@@ -28,10 +21,6 @@ if (!empty($_GET['id'])) {
     $stmt->fetch();
     $stmt->close();
 
-    //$sql = "SELECT * FROM roms WHERE id = '".$id."'";
-    //$result=mysql_query($sql);
-
-    //$rows=mysql_fetch_array($result);
     if (isset($_SESSION['user_id'])) {
         if ($_SESSION['user_status'] == 1) {
             ?>

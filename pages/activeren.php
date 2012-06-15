@@ -17,9 +17,6 @@ if (isset($_GET['id'])) {
         $stmt->fetch();
         $stmt->close();
 
-        //$sql = "SELECT id,actcode,actief FROM gebruikers WHERE id='".$_GET['id']."'";
-        //$query = mysql_query($sql);
-        //$rij = mysql_fetch_object($query);
         $dbid = htmlspecialchars($rij_id);
         $dbcode = htmlspecialchars($rij_actcode);
         $actief = htmlspecialchars($rij_actief);
@@ -32,8 +29,6 @@ if (isset($_GET['id'])) {
                     $stmt->prepare('UPDATE `gebruikers` SET `actief` = 1, `actcode` = \'\' WHERE `id` = ?');
                     $stmt->bind_param('i', $id);
 
-                    //$sql = "UPDATE gebruikers SET actief=1,actcode='' WHERE id='".$_GET['id']."'";
-                    //$query = mysql_query($sql);
                     if ($stmt->execute()) {
                         echo "Your account has been activated, you can now login with your old password.<br />\n<a href=\"inloggen.php\">&laquo;  Go to login.</a>";
                     } else {
@@ -47,8 +42,6 @@ if (isset($_GET['id'])) {
                     $stmt->prepare('UPDATE `gebruikers` SET `actief` = 1, `actcode` = \'\' WHERE `id` = ?');
                     $stmt->bind_param('i', $id);
 
-                    //$sql = "UPDATE gebruikers SET actief=1,actcode='' WHERE id='".$_GET['id']."'";
-                    //$query = mysql_query($sql);
                     if ($stmt->execute()) {
                         echo "Your account has been activated, you can now login.<br />\n<a href=\"?page=inloggen\">&laquo; Go to login.</a>";
                     } else {
@@ -66,8 +59,6 @@ if (isset($_GET['id'])) {
                             $stmt->prepare('UPDATE `gebruikers` SET `wachtwoord` = ?, `actief` = 1, `actcode` = \'\' WHERE `id` = ?');
                             $stmt->bind_param('si', $md5pass, $id);
 
-                            //$sql = "UPDATE gebruikers SET wachtwoord='".$md5pass."',actief=1,actcode='' WHERE id='".$_GET['id']."'";
-                            //$query = mysql_query($sql);
                             if ($stmt->execute()) {
                                 echo "Your account has been activated and your password is changed.<br />\n<a href=\"?page=inloggen\">&laquo; Go to login</a>";
                             } else {

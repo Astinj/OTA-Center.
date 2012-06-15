@@ -3,7 +3,6 @@
 // Copyright Jorik Berkepas
 // Support by helpdesk90@gmail.com (MSN|Email)
 // Pagina: inloggen.php: Inloggen
-//include("config.php");
 
 if (isset($_SESSION['user_id'])) {
     ?>
@@ -38,9 +37,6 @@ if (isset($_SESSION['user_id'])) {
         $stmt->fetch();
         $stmt->close();
 
-        //$sql = "SELECT id,status,wachtwoord,actief FROM gebruikers WHERE id='".$_COOKIE['user_id']."'";
-        //$query = mysql_query($sql);
-        //$rij = mysql_fetch_object($query);
         $id = htmlspecialchars($rij_id);
         $status = htmlspecialchars($rij_status);
         $dbpass = htmlspecialchars($rij_wachtwoord);
@@ -70,9 +66,6 @@ if (isset($_SESSION['user_id'])) {
             $stmt->fetch();
             $stmt->close();
 
-            //$sql = "SELECT id,naam,wachtwoord,status,actief,lastactive FROM gebruikers WHERE naam='".$_POST['user']."'";
-            //$query = mysql_query($sql);
-            //$rij = mysql_fetch_object($query);
             $userpass = md5($_POST['pass']);
             $dbpass = htmlspecialchars($rij_wachtwoord);
             $userid = htmlspecialchars($rij_id);

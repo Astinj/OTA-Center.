@@ -1,7 +1,4 @@
 <?php
-// Connect to server and select database.
-//mysql_connect("$db_host", "$db_user", "$db_pass")or die("cannot connect");
-//mysql_select_db("$db_db")or die("cannot select DB");
 
 $id = $_GET['id'];
 
@@ -13,10 +10,6 @@ $stmt->bind_result($userid);
 $stmt->fetch();
 $stmt->close();
 
-//$sql = "SELECT * FROM roms WHERE id = '".$id."'";
-//$result=mysql_query($sql);
-//$rows=mysql_fetch_array($result);
-
 if (isset($_SESSION['user_id'])) {
     // update data in mysql database
     if (isset($rows['id'])) {
@@ -25,8 +18,6 @@ if (isset($_SESSION['user_id'])) {
             $stmt->prepare('DELETE FROM `roms` WHERE `id` = ?');
             $stmt->bind_param('i', $id);
 
-            //$sql2="DELETE FROM roms WHERE  id='$id'";
-            //$result=mysql_query($sql2);
             // if successfully updated.
             if ($stmt->execute()) {
                 echo "Deleted Successfully";
@@ -42,8 +33,6 @@ if (isset($_SESSION['user_id'])) {
                 $stmt->prepare('DELETE FROM `roms` WHERE `id` = ?');
                 $stmt->bind_param('i', $id);
 
-                //$sql2="DELETE FROM roms WHERE  id='$id'";
-                //$result=mysql_query($sql2);
                 // if successfully updated.
                 if ($stmt->execute()) {
                     echo "Deleted Successfully";

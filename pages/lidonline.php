@@ -6,8 +6,6 @@
 // Deze pagina is niet bedoeld voor los gebruik, omdat er geen <html></html> tags etc zijn, en geen stylsheet
 // Include deze pagina daarom waar je hem wilt hebben als < ? include("lidonline.php"); ? > (zonder spaties bij haakjes)
 
-// config.php al eerder geinclude? Maak van de volgende regel dan commentaar (# of //)
-
 $sql = "SELECT `naam`, `status` FROM `gebruikers` WHERE DATE_SUB(NOW(),INTERVAL 10 MINUTE) <= `lastactive` ORDER BY `naam` ASC";
 $query = $db->query($sql);
 $tellen = $query->num_rows;

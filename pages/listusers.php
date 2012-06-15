@@ -4,10 +4,7 @@
 // Support by info@sensation-devs.org (Email)
 // Pagina: list-roms.php: Give all roms in database table 'roms'.
 // the adress would be something like this: http://<domain>/<path>/list-roms.php
-// Connect to server and select database.
 include('safe_admin.php');
-//mysql_connect("$db_host", "$db_user", "$db_pass")or die("cannot connect");
-//mysql_select_db("$db_db")or die("cannot select DB");
 
 $sql="SELECT * FROM gebruikers";
 $result=$db->query($sql);

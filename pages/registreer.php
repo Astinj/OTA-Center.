@@ -17,9 +17,6 @@ if (!isset($_SESSION['user_id'])) {
             $tellen = $stmt->num_rows;
             $stmt->free_result();
             $stmt->close();
-            //$sql = "SELECT id FROM gebruikers WHERE naam='".$_POST['user']."'";
-            //$query = mysql_query($sql);
-            //$tellen = mysql_num_rows($query);
             if ($tellen == 0) {
                 // E-mailcheck
                 if (preg_match("/^[A-Z0-9._%-]+@[A-Z0-9._%-]+\.[A-Z]{2,6}$/i", $_POST['email'])) {
@@ -37,12 +34,7 @@ if (!isset($_SESSION['user_id'])) {
                         $stmt->prepare('INSERT INTO `gebruikers` (`naam`, `wachtwoord`, `status`, `email`, `actief`, `actcode`) VALUES (?, ?, 0, ?, 0, ?)');
                         $stmt->bind_param('', $_POST['user'], $md5pass, $_POST['email'], $actcode);
 
-                        //$sql = "INSERT INTO gebruikers (naam,wachtwoord,status,email,actief,actcode) VALUES ('".$_POST['user']."','".$md5pass."',0,'".$_POST['email']."',0,'".$actcode."')";
-                        //$query = mysql_query($sql);
                         if ($stmt->execute()) {
-                            //$sql = "SELECT id FROM gebruikers WHERE naam='".$_POST['user']."'";
-                            //$query = mysql_query($sql);
-                            //$rij = mysql_fetch_object($query);
                             $dbid = htmlspecialchars($db->insert_id);
                             $bericht = "Hello ".$_POST['user'].",\nYou have registered on this site: ".$sitenaam.", this is the activation mail.\nTo activate your account click on the link below.\n\n";
                             $bericht .= "Confirm registration: ".$forgoturl."?page=activeren&id=".$dbid."&code=".$actcode."&registratie=true \n\n";

@@ -17,9 +17,6 @@ if (isset($_POST['submit'])) {
             $stmt->bind_result($rij_wachtwoord);
             $stmt->fetch();
             $stmt->close();
-            //$sql = "SELECT wachtwoord FROM gebruikers WHERE id='".$_SESSION['user_id']."'";
-            //$query = mysql_query($sql);
-            //$rij = mysql_fetch_object($query);
             $dbpass = htmlspecialchars($rij_wachtwoord);
             if ($dbpass == md5($_POST['pasnow'])) {
                 if ($_POST['pass1'] == $_POST['pass2']) {
@@ -27,8 +24,6 @@ if (isset($_POST['submit'])) {
                     $stmt = $db->stmt_init();
                     $stmt->prepare('UPDATE `gebruikers` SET `email` = ?, `wachtwoord` = ? WHERE `id` = ?');
                     $stmt->bind_param('ssi', $_POST['email'], $newpass, $_SESSION['user_id']);
-                    //$sql = "UPDATE gebruikers SET email='".$_POST['email']."',wachtwoord='".$newpass."' WHERE id='".$_SESSION['user_id']."'";
-                    //$query = mysql_query($sql);
                     if ($stmt->execute()) {
                         echo "Your mailadress is changed to '".$_POST['email']."', your password has changed too.<br />\n<a href=\"?page=useropties\">&laquo; Go back</a>";
                         if (isset($_COOKIE['user_password'])) {
@@ -48,8 +43,6 @@ if (isset($_POST['submit'])) {
             $stmt = $db->stmt_init();
             $stmt->prepare('UPDATE `gebruikers` SET `email` = ?, WHERE `id` = ?');
             $stmt->bind_param('si', $_POST['email'], $_SESSION['user_id']);
-            //$sql = "UPDATE gebruikers SET email='".$_POST['email']."' WHERE id='".$_SESSION['user_id']."'";
-            //$query = mysql_query($sql);
             if ($stmt->execute()) {
                 echo "Your mailadress has changed to '".$_POST['email']."'.<br />\n<a href=\"?page=useropties\">&laquo; Go Back</a>";
             } else {
@@ -69,9 +62,6 @@ if (isset($_POST['submit'])) {
     $stmt->fetch();
     $stmt->close();
 
-    //$sql = "SELECT naam,email FROM gebruikers WHERE id='".$_SESSION['user_id']."'";
-    //$query = mysql_query($sql);
-    //$rij = mysql_fetch_object($query);
     $naam = htmlspecialchars($rij_naam);
     $email = htmlspecialchars($rij_email);
     ?>

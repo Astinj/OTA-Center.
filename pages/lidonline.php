@@ -12,16 +12,16 @@ $sql = "SELECT `naam`, `status` FROM `gebruikers` WHERE DATE_SUB(NOW(),INTERVAL 
 $query = $db->query($sql);
 $tellen = $query->num_rows;
 $i = 1;
-while($rij = $query->fetch_object()) {
- $naam = htmlspecialchars($rij->naam);
- $status = htmlspecialchars($rij->status);
- if($status == 1) {
-  $naam = "<b>".$naam."</b>";
- }
- echo $naam;
- if($i != $tellen) {
-  echo ", ";
- }
- $i++;
-}        
+while (rij = $query->fetch_object()) {
+    $naam = htmlspecialchars($rij->naam);
+    $status = htmlspecialchars($rij->status);
+    if ($status == 1) {
+        $naam = "<b>".$naam."</b>";
+    }
+    echo $naam;
+    if ($i != $tellen) {
+        echo ", ";
+    }
+    $i++;
+}
 ?>

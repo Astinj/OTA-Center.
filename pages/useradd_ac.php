@@ -11,11 +11,11 @@ $stmt->bind_param('ssssss', $_POST[naam], $md5pass, $_POST[status], $_POST[email
 //$sql="INSERT INTO gebruikers (naam, wachtwoord, status, email, actief, actcode) VALUES('$_POST[naam]','$md5pass','$_POST[status]','$_POST[email]','$_POST[actief]','$_POST[actcode]')";
 //$result=mysql_query($sql);
 // if successfully updated.
-if($stmt->execute()){
-	echo "Added Successfully";
-	echo "<BR>";
-	echo "<a href='?page=listusers'>View result</a>";
+if ($stmt->execute()){
+    echo "Added Successfully";
+    echo "<BR>";
+    echo "<a href='?page=listusers'>View result</a>";
 } else {
-	echo "ERROR";
+    echo "ERROR";
 }
 ?>

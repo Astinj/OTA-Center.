@@ -18,7 +18,7 @@ if (!isset($_SESSION['user_id'])) {
             $tellen = $stmt->num_rows;
             $stmt->free_result();
             $stmt->close();
-            
+
             if ($tellen == 0) {
                 // E-mailcheck
                 if (preg_match('/^[A-Z0-9._%-]+@[A-Z0-9._%-]+\.[A-Z]{2,6}$/i', $_POST['email'])) {
@@ -34,7 +34,7 @@ if (!isset($_SESSION['user_id'])) {
                         $md5pass = md5($_POST['pass1']);
                         $stmt = $db->stmt_init();
                         $stmt->prepare('INSERT INTO `gebruikers` (`naam`, `wachtwoord`, `status`, `email`, `actief`, `actcode`) VALUES (?, ?, 0, ?, 0, ?)');
-                        $stmt->bind_param('', $_POST['user'], $md5pass, $_POST['email'], $actcode);
+                        $stmt->bind_param('ssss', $_POST['user'], $md5pass, $_POST['email'], $actcode);
 
                         if ($stmt->execute()) {
                             $dbid = $db->insert_id;
@@ -57,11 +57,11 @@ EOF;
                                 echo "An error has occured whole sending the mail, please send a mail to: <a href=\"mailto:$sitemail\">$sitemail</a>.";
                             }
                         } else {
-                            echo An error has occured while registering your account. Please try again later.<br /><a href="javascript:history.back()">&laquo; Go Back</a>';
+                            echo 'An error has occured while registering your account. Please try again later.<br /><a href="javascript:history.back()">&laquo; Go Back</a>';
                         }
                         $stmt->close();
                     } else {
-                        echo The passwords you typed did not match, please try again.<br /><a href="javascript:history.back()">&laquo; Go Back</a>';
+                        echo 'The passwords you typed did not match, please try again.<br /><a href="javascript:history.back()">&laquo; Go Back</a>';
                     }
                 } else {
                     echo 'The mailadress you typed didn\'t look like a mailadress like (user@domain.ext).<br /><a href="javascript:history.back()">&laquo; Go Back</a>';
@@ -108,8 +108,12 @@ EOF;
                 </fieldset>
             </form>
         </div>
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
-        <script type="text/javascript" src="js/infieldlabels.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $("#RegisterUserForm label").inFieldLabels();
+            });
+        </script>
         <?
     }
 } else {

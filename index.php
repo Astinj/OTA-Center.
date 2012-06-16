@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
     <title>OTA-Center.com</title>
@@ -8,14 +8,17 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" type="text/css" href="css/style.css" />
 
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+
     <script type="text/javascript" src="js/modernizr-1.5.min.js"></script>
     <script type="text/javascript" src="js/_ajax.new.js?<?=rand()?>"></script>
     <script type="text/javascript" src="js/_formdata2querystring.js"></script>
-    <script type="text/javascript" src="js/_applogin.js?<?=rand()?>"></script>
+    <!--<script type="text/javascript" src="js/_applogin.js?<?=rand()?>"></script>-->
     <script type="text/javascript" src="js/infieldlabels.js"></script>
+
 </head>
 <?php
-include('pages/config.php');
+include 'pages/config.php';
 $default_url = 'pages/home.php'; //sets the default_url variable
 
 $allowed_url = array( //this is our array of allowed requests
@@ -75,7 +78,7 @@ $page = $_GET['page']; //sets the page variable from http request
                         <? } else { ?>
                             <li><a href="?page=registreer">Register</a></li>
                         <? } ?>
-                        <? if ($_SESSION['user_status'] == 1) { ?>
+                        <? if (isset($_SESSION['user_status']) && $_SESSION['user_status'] == 1) { ?>
                             <li>
                                 <a href="#">Admin</a>
                                 <ul>
@@ -93,16 +96,15 @@ $page = $_GET['page']; //sets the page variable from http request
         </header>
         <div id="site_content">
             <div id="sidebar_container">
-                <? /* if(isset($_SESSION['user_id'])) { */?>
-                    <!-- <div class="sidebar">
-                        <? include('./pages/loggedin.php'); ?>
-                    </div> -->
-
-                <?/* } else { */?>
+                <? if (isset($_SESSION['user_id'])) { ?>
                     <div class="sidebar">
-                        <? include('./pages/inloggen.php'); ?>
+                        <? //include 'pages/loggedin.php'; ?>
                     </div>
-                <?/* } */?>
+                <? } else if ($page != 'inloggen') { ?>
+                    <div class="sidebar">
+                        <? include 'pages/inloggen.php'; ?>
+                    </div>
+                <? } ?>
                 <div class="sidebar">
                     <h3>Useful Links</h3>
                     <ul>
@@ -113,7 +115,7 @@ $page = $_GET['page']; //sets the page variable from http request
                         <li><a href="#">Last One</a></li>
                     </ul>
                 </div>
-                <? if($_SESSION[user_status] == 1 ) { ?>
+                <? if (isset($_SESSION['user_status']) && $_SESSION['user_status'] == 1) { ?>
                     <div></div>
                 <? } else { ?>
                     <div class="sidebar">
@@ -127,7 +129,7 @@ $page = $_GET['page']; //sets the page variable from http request
                                 google_ad_height = 250;
                                 //-->
                             </script>
-                            <script type="text/javascript"src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+                            <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
                         </div>
                     </div>
                 <? } ?>
@@ -135,14 +137,14 @@ $page = $_GET['page']; //sets the page variable from http request
             <div class="content">
                 <?php
                 if (in_array($page, $allowed_url)) { //check to see if request is in the allowed url list
-                    $file = "pages/".$page.".php"; //setup the full path to page if request is ok
+                    $file = "pages/$page.php"; //setup the full path to page if request is ok
                     if (file_exists($file)) { //make sure file exists
-                        include($file);
+                        include $file;
                     } else { //if it doesnt exist, the default is used
-                        include($default_url);
+                        include $default_url;
                     }
                 } else { //if the request is not in the allowed url list, show default
-                    include($default_url);
+                    include $default_url;
                 }
                 ?>
             </div>
@@ -151,8 +153,6 @@ $page = $_GET['page']; //sets the page variable from http request
             <p>Copyright &copy; OTA-Center.com | <a href="http://m3nti0n-xda.deviantart.com/">design by M3NTI0N</a></p>
         </footer>
     </div>
-    <p>&nbsp;</p>
-    <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/jquery.easing-sooper.js"></script>
     <script type="text/javascript" src="js/jquery.sooperfish.js"></script>
     <script type="text/javascript">

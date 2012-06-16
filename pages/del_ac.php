@@ -3,17 +3,17 @@
 $id = $_GET['id'];
 
 $stmt = $db->stmt_init();
-$stmt->prepare('SELECT `userid` FROM `roms` WHERE `id` = ?');
+$stmt->prepare('SELECT `id`, `userid` FROM `roms` WHERE `id` = ?');
 $stmt->bind_param('i', $id);
 $stmt->execute();
-$stmt->bind_result($userid);
+$stmt->bind_result($romid, $userid);
 $stmt->fetch();
 $stmt->close();
 
 if (isset($_SESSION['user_id'])) {
     // update data in mysql database
-    if (isset($rows['id'])) {
-        if ($userid == $_SESSION['user_id'] || $_SESSION[user_status] == 1) {
+    if (isset($romid)) {
+        if ($userid == $_SESSION['user_id'] || $_SESSION['user_status'] == 1) {
             $stmt = $db->stmt_init();
             $stmt->prepare('DELETE FROM `roms` WHERE `id` = ?');
             $stmt->bind_param('i', $id);

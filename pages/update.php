@@ -27,7 +27,7 @@ if (!empty($_GET['id'])) {
             <div id="registration">
                 <h2>Update Rom</h2>
 
-                <form id="RegisterUserForm" action="?page=update_ac" method="post">
+                <form id="UpdateUserForm" action="?page=update_ac" method="post">
                     <fieldset>
                         <p>
                             <label for="rom"><? echo $rom; ?></label>
@@ -51,7 +51,7 @@ if (!empty($_GET['id'])) {
                         </p>
                         <p>
                             <label for="changelog"><? echo $changelog; ?></label>
-                            <textarea id="changelog" name="changelog" class="rom" value="<? echo $changelog; ?>"></textarea>			
+                            <textarea id="changelog" name="changelog" class="rom" value="<? echo $changelog; ?>"></textarea>
                         </p>
                         <p>
                             <label for="device"><? echo $device; ?></label>
@@ -72,8 +72,12 @@ if (!empty($_GET['id'])) {
                     </fieldset>
                 </form>
             </div>
-            <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
-            <script type="text/javascript" src="js/infieldlabels.js"></script>
+
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    $("#UpdateUserForm label").inFieldLabels();
+                });
+            </script>
             <?
         } else {
             echo 'This rom has not been added by you.<br />If you are sure its your rom, please contact an admin to change it the userid of the rom...';

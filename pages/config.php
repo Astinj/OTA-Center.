@@ -7,8 +7,8 @@ ob_start();
 //ERROR_REPORTING(0);
 
 // MySQL
-$db_user = 'root'; // Gebruiker voor MySQL
-$db_pass = '!Nt3rf4c3'; // Wachtwoord voor MySQL
+$db_user = 'db_user'; // Gebruiker voor MySQL
+$db_pass = 'db_pass'; // Wachtwoord voor MySQL
 $db_host = 'localhost'; // Host voor MySQL; standaard localhost
 $db_db = 'romupdater'; // Database
 

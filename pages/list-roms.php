@@ -46,6 +46,6 @@ $stmt->bind_result($rom_id, $rij_rom_name, $rij_rom_version, $rij_rom_url, $rom_
         </tr>
         <?php
     }
-    stmt->close();
+    $stmt->close();
     ?>
 </table>

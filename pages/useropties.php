@@ -68,7 +68,7 @@ if (isset($_POST['submit'])) {
     <div id="registration">
         <h2>Edit your Account</h2>
 
-        <form id="RegisterUserForm" action="?page=useropties" method="post">
+        <form id="UserOptionsForm" action="?page=useropties" method="post">
             <fieldset>
                 <p>
                     Username: <b><?= $naam ?></b>
@@ -95,8 +95,12 @@ if (isset($_POST['submit'])) {
             </fieldset>
         </form>
     </div>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
-    <script type="text/javascript" src="js/infieldlabels.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#UserOptionsForm label").inFieldLabels();
+        });
+    </script>
     <?
 }
 ?>

@@ -18,9 +18,9 @@ if (isset($_GET['id'])) {
         $stmt->close();
 
         if ($actief == 0) {
-            if ($dbcode == $_GET['code']) {
+            if ($actcode == $_GET['code']) {
                 if (isset($_GET['activeer'])) {
-                    
+
                     $stmt = $db->stmt_init();
                     $stmt->prepare('UPDATE `gebruikers` SET `actief` = 1, `actcode` = \'\' WHERE `id` = ?');
                     $stmt->bind_param('i', $id);
@@ -87,7 +87,8 @@ if (isset($_GET['id'])) {
 } else {
     // Formulier
     ?>
-    <form method="get" action="?page=activeren">
+    <form method="get" action="index.php">
+        <input type="hidden" name="page" value="activeren" />
         <table>
             <tr>
                 <td>UserID:</td><td><input type="text" name="id" maxlength="5" <? if (isset($_GET['uid'])) { echo 'value="'.$_GET['uid'].'"'; } ?> /></td>

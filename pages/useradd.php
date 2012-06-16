@@ -6,7 +6,7 @@ if (isset($_SESSION['user_id'])) {
     <div id="registration">
         <h2>Add User</h2>
 
-        <form id="RegisterUserForm" action="?page=useradd_ac" method="post">
+        <form id="AddUserForm" action="?page=useradd_ac" method="post">
             <fieldset>
                 <p>
                     <label for="naam">Username</label>
@@ -30,7 +30,7 @@ if (isset($_SESSION['user_id'])) {
                 </p>
                 <p>
                     <label for="actcode">Activation code</label>
-                    <textarea id="rom" name="actcode" class="rom"></textarea>			
+                    <textarea id="rom" name="actcode" class="rom"></textarea>
                 </p>
                 <p>
                     <button id="addUserNew" name="submit" type="submit">Add User</button>
@@ -39,8 +39,12 @@ if (isset($_SESSION['user_id'])) {
 
         </form>
     </div>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
-    <script type="text/javascript" src="js/infieldlabels.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#AddUserForm label").inFieldLabels();
+        });
+    </script>
     <?
 } else {
     echo 'You are not logged in...';

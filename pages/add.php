@@ -9,7 +9,7 @@ if (!isset($_SESSION['user_id'])) {
 <div id="registration">
     <h2>Add Rom</h2>
 
-    <form id="RegisterUserForm" action="?page=add_ac" method="post">
+    <form id="AddRomUserForm" action="?page=add_ac" method="post">
         <fieldset>
             <p>
                 <label for="rom">Enter full rom name</label>
@@ -49,5 +49,9 @@ if (!isset($_SESSION['user_id'])) {
         </fieldset>
     </form>
 </div>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
-<script type="text/javascript" src="js/infieldlabels.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#AddRomUserForm label").inFieldLabels();
+    });
+</script>

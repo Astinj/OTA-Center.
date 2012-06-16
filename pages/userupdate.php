@@ -14,16 +14,19 @@ if (!empty($_GET['id'])) {
 
     // Retrieve data from database
     $stmt = $db->stmt_init();
-    $stmt->prepare('SELECT * FROM `gebruikers` WHERE `id` = ?');
+    $stmt->prepare('SELECT `naam`, `wachtwoord`, `status`, `email`, `actief`, `lastactive`, `actcode` FROM `gebruikers` WHERE `id` = ?');
     $stmt->bind_param('i', $id);
     $stmt->execute();
-    $stmt->bind_result($naam, $wachtwoord, $status, $email, $actief, $lastactive, $actcode);
+    $stmt->bind_result($rij_naam, $wachtwoord, $status, $rij_email, $actief, $lastactive, $actcode);
     $stmt->fetch();
     $stmt->close();
+
+    $naam = htmlspecialchars($rij_naam);
+    $email = htmlspecialchars($rij_email);
     ?>
         <div id="registration">
             <h2>Update User</h2>
-            <form id="RegisterUserForm" action="?page=userupdate_ac" method="post">
+            <form id="UpdateUserForm" action="?page=userupdate_ac" method="post">
                 <fieldset>
                     <p>
                         <label for="naam">Username:</label>
@@ -53,13 +56,17 @@ if (!empty($_GET['id'])) {
                     <input name="actcode" type="hidden" id="actcode" value="<? echo $actcode; ?>">
 
                     <p>
-                        <button id="updateRomNew" name="submit_form" type="submit">Update Rom</button>
+                        <button id="updateRomNew" name="submit_form" type="submit">Update User</button>
                     </p>
                 </fieldset>
             </form>
         </div>
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
-        <script type="text/javascript" src="js/infieldlabels.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $("#UpdateUserForm label").inFieldLabels();
+            });
+        </script>
         <?
 } else {
     echo 'fuck you, add an id at the end of the url ass!';

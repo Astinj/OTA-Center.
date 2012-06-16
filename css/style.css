@@ -3,9 +3,9 @@
     font-family: 'RobotoRegular';
     src: url('../fonts/Roboto-Regular-webfont.eot');
     src: url('../fonts/Roboto-Regular-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/Roboto-Regular-webfont.woff') format('woff'),
+         /*url('../fonts/Roboto-Regular-webfont.woff') format('woff'),*/
          url('../fonts/Roboto-Regular-webfont.ttf') format('truetype'),
-         url('../fonts/Roboto-Regular-webfont.svg#RobotoRegular') format('svg');
+         /*url('../fonts/Roboto-Regular-webfont.svg#RobotoRegular') format('svg')*/;
     font-weight: normal;
     font-style: normal;
 
@@ -15,9 +15,9 @@
     font-family: 'RobotoItalic';
     src: url('../fonts/Roboto-Italic-webfont.eot');
     src: url('../fonts/Roboto-Italic-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/Roboto-Italic-webfont.woff') format('woff'),
+         /*url('../fonts/Roboto-Italic-webfont.woff') format('woff'),*/
          url('../fonts/Roboto-Italic-webfont.ttf') format('truetype'),
-         url('../fonts/Roboto-Italic-webfont.svg#RobotoItalic') format('svg');
+         /*url('../fonts/Roboto-Italic-webfont.svg#RobotoItalic') format('svg')*/;
     font-weight: normal;
     font-style: normal;
 
@@ -27,9 +27,9 @@
     font-family: 'RobotoBold';
     src: url('../fonts/Roboto-Bold-webfont.eot');
     src: url('../fonts/Roboto-Bold-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/Roboto-Bold-webfont.woff') format('woff'),
+         /*url('../fonts/Roboto-Bold-webfont.woff') format('woff'),*/
          url('../fonts/Roboto-Bold-webfont.ttf') format('truetype'),
-         url('../fonts/Roboto-Bold-webfont.svg#RobotoBold') format('svg');
+         /*url('../fonts/Roboto-Bold-webfont.svg#RobotoBold') format('svg')*/;
     font-weight: normal;
     font-style: normal;
 
@@ -39,9 +39,9 @@
     font-family: 'RobotoBoldItalic';
     src: url('../fonts/Roboto-BoldItalic-webfont.eot');
     src: url('../fonts/Roboto-BoldItalic-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/Roboto-BoldItalic-webfont.woff') format('woff'),
+         /*url('../fonts/Roboto-BoldItalic-webfont.woff') format('woff'),*/
          url('../fonts/Roboto-BoldItalic-webfont.ttf') format('truetype'),
-         url('../fonts/Roboto-BoldItalic-webfont.svg#RobotoBoldItalic') format('svg');
+         /*url('../fonts/Roboto-BoldItalic-webfont.svg#RobotoBoldItalic') format('svg')*/;
     font-weight: normal;
     font-style: normal;
 
@@ -51,9 +51,9 @@
     font-family: 'RobotoCondensed';
     src: url('../fonts/Roboto-Condensed-webfont.eot');
     src: url('../fonts/Roboto-Condensed-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/Roboto-Condensed-webfont.woff') format('woff'),
+         /*url('../fonts/Roboto-Condensed-webfont.woff') format('woff'),*/
          url('../fonts/Roboto-Condensed-webfont.ttf') format('truetype'),
-         url('../fonts/Roboto-Condensed-webfont.svg#RobotoCondensed') format('svg');
+         /*url('../fonts/Roboto-Condensed-webfont.svg#RobotoCondensed') format('svg')*/;
     font-weight: normal;
     font-style: normal;
 
@@ -63,9 +63,9 @@
     font-family: 'RobotoCondensedItalic';
     src: url('../fonts/Roboto-CondensedItalic-webfont.eot');
     src: url('../fonts/Roboto-CondensedItalic-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/Roboto-CondensedItalic-webfont.woff') format('woff'),
+         /*url('../fonts/Roboto-CondensedItalic-webfont.woff') format('woff'),*/
          url('../fonts/Roboto-CondensedItalic-webfont.ttf') format('truetype'),
-         url('../fonts/Roboto-CondensedItalic-webfont.svg#RobotoCondensedItalic') format('svg');
+         /*url('../fonts/Roboto-CondensedItalic-webfont.svg#RobotoCondensedItalic') format('svg')*/;
     font-weight: normal;
     font-style: normal;
 
@@ -75,9 +75,9 @@
     font-family: 'RobotoBoldCondensed';
     src: url('../fonts/Roboto-BoldCondensed-webfont.eot');
     src: url('../fonts/Roboto-BoldCondensed-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/Roboto-BoldCondensed-webfont.woff') format('woff'),
+         /*url('../fonts/Roboto-BoldCondensed-webfont.woff') format('woff'),*/
          url('../fonts/Roboto-BoldCondensed-webfont.ttf') format('truetype'),
-         url('../fonts/Roboto-BoldCondensed-webfont.svg#RobotoBoldCondensed') format('svg');
+         /*url('../fonts/Roboto-BoldCondensed-webfont.svg#RobotoBoldCondensed') format('svg')*/;
     font-weight: normal;
     font-style: normal;
 
@@ -87,9 +87,9 @@
     font-family: 'RobotoBoldCondensedItalic';
     src: url('../fonts/Roboto-BoldCondensedItalic-webfont.eot');
     src: url('../fonts/Roboto-BoldCondensedItalic-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/Roboto-BoldCondensedItalic-webfont.woff') format('woff'),
+         /*url('../fonts/Roboto-BoldCondensedItalic-webfont.woff') format('woff'),*/
          url('../fonts/Roboto-BoldCondensedItalic-webfont.ttf') format('truetype'),
-         url('../fonts/Roboto-BoldCondensedItalic-webfont.svg#RobotoBoldCondensedItalic') format('svg');
+         /*url('../fonts/Roboto-BoldCondensedItalic-webfont.svg#RobotoBoldCondensedItalic') format('svg')*/;
     font-weight: normal;
     font-style: normal;
 
@@ -99,9 +99,9 @@
     font-family: 'RobotoThin';
     src: url('../fonts/Roboto-Thin-webfont.eot');
     src: url('../fonts/Roboto-Thin-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/Roboto-Thin-webfont.woff') format('woff'),
+         /*url('../fonts/Roboto-Thin-webfont.woff') format('woff'),*/
          url('../fonts/Roboto-Thin-webfont.ttf') format('truetype'),
-         url('../fonts/Roboto-Thin-webfont.svg#RobotoThin') format('svg');
+         /*url('../fonts/Roboto-Thin-webfont.svg#RobotoThin') format('svg')*/;
     font-weight: normal;
     font-style: normal;
 
@@ -111,9 +111,9 @@
     font-family: 'RobotoThinItalic';
     src: url('../fonts/Roboto-ThinItalic-webfont.eot');
     src: url('../fonts/Roboto-ThinItalic-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/Roboto-ThinItalic-webfont.woff') format('woff'),
+         /*url('../fonts/Roboto-ThinItalic-webfont.woff') format('woff'),*/
          url('../fonts/Roboto-ThinItalic-webfont.ttf') format('truetype'),
-         url('../fonts/Roboto-ThinItalic-webfont.svg#RobotoThinItalic') format('svg');
+         /*url('../fonts/Roboto-ThinItalic-webfont.svg#RobotoThinItalic') format('svg')*/;
     font-weight: normal;
     font-style: normal;
 
@@ -123,9 +123,9 @@
     font-family: 'RobotoLight';
     src: url('../fonts/Roboto-Light-webfont.eot');
     src: url('../fonts/Roboto-Light-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/Roboto-Light-webfont.woff') format('woff'),
+         /*url('../fonts/Roboto-Light-webfont.woff') format('woff'),*/
          url('../fonts/Roboto-Light-webfont.ttf') format('truetype'),
-         url('../fonts/Roboto-Light-webfont.svg#RobotoLight') format('svg');
+         /*url('../fonts/Roboto-Light-webfont.svg#RobotoLight') format('svg')*/;
     font-weight: normal;
     font-style: normal;
 
@@ -135,9 +135,9 @@
     font-family: 'RobotoLightItalic';
     src: url('../fonts/Roboto-LightItalic-webfont.eot');
     src: url('../fonts/Roboto-LightItalic-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/Roboto-LightItalic-webfont.woff') format('woff'),
+         /*url('../fonts/Roboto-LightItalic-webfont.woff') format('woff'),*/
          url('../fonts/Roboto-LightItalic-webfont.ttf') format('truetype'),
-         url('../fonts/Roboto-LightItalic-webfont.svg#RobotoLightItalic') format('svg');
+         /*url('../fonts/Roboto-LightItalic-webfont.svg#RobotoLightItalic') format('svg')*/;
     font-weight: normal;
     font-style: normal;
 
@@ -147,9 +147,9 @@
     font-family: 'RobotoMedium';
     src: url('../fonts/Roboto-Medium-webfont.eot');
     src: url('../fonts/Roboto-Medium-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/Roboto-Medium-webfont.woff') format('woff'),
+         /*url('../fonts/Roboto-Medium-webfont.woff') format('woff'),*/
          url('../fonts/Roboto-Medium-webfont.ttf') format('truetype'),
-         url('../fonts/Roboto-Medium-webfont.svg#RobotoMedium') format('svg');
+         /*url('../fonts/Roboto-Medium-webfont.svg#RobotoMedium') format('svg')*/;
     font-weight: normal;
     font-style: normal;
 
@@ -159,9 +159,9 @@
     font-family: 'RobotoMediumItalic';
     src: url('../fonts/Roboto-MediumItalic-webfont.eot');
     src: url('../fonts/Roboto-MediumItalic-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/Roboto-MediumItalic-webfont.woff') format('woff'),
+         /*url('../fonts/Roboto-MediumItalic-webfont.woff') format('woff'),*/
          url('../fonts/Roboto-MediumItalic-webfont.ttf') format('truetype'),
-         url('../fonts/Roboto-MediumItalic-webfont.svg#RobotoMediumItalic') format('svg');
+         /*url('../fonts/Roboto-MediumItalic-webfont.svg#RobotoMediumItalic') format('svg')*/;
     font-weight: normal;
     font-style: normal;
 
@@ -171,9 +171,9 @@
     font-family: 'RobotoBlack';
     src: url('../fonts/Roboto-Black-webfont.eot');
     src: url('../fonts/Roboto-Black-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/Roboto-Black-webfont.woff') format('woff'),
+         /*url('../fonts/Roboto-Black-webfont.woff') format('woff'),*/
          url('../fonts/Roboto-Black-webfont.ttf') format('truetype'),
-         url('../fonts/Roboto-Black-webfont.svg#RobotoBlack') format('svg');
+         /*url('../fonts/Roboto-Black-webfont.svg#RobotoBlack') format('svg')*/;
     font-weight: normal;
     font-style: normal;
 
@@ -183,9 +183,9 @@
     font-family: 'RobotoBlackItalic';
     src: url('../fonts/Roboto-BlackItalic-webfont.eot');
     src: url('../fonts/Roboto-BlackItalic-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/Roboto-BlackItalic-webfont.woff') format('woff'),
+         /*url('../fonts/Roboto-BlackItalic-webfont.woff') format('woff'),*/
          url('../fonts/Roboto-BlackItalic-webfont.ttf') format('truetype'),
-         url('../fonts/Roboto-BlackItalic-webfont.svg#RobotoBlackItalic') format('svg');
+         /*url('../fonts/Roboto-BlackItalic-webfont.svg#RobotoBlackItalic') format('svg')*/;
     font-weight: normal;
     font-style: normal;
 
@@ -193,21 +193,21 @@
 
 
 
-html { 
+html {
   height: 100%;
 }
 
-* { 
+* {
   margin: 0;
   padding: 0;
 }
 
 /* tell the browser to render HTML 5 elements as block */
-article, aside, figure, footer, header, hgroup, nav, section { 
+article, aside, figure, footer, header, hgroup, nav, section {
   display:block;
 }
 
-body { 
+body {
     font-family: 'RobotoRegular';
     font-weight: normal;
     font-style: normal;
@@ -216,22 +216,22 @@ body {
   color: #DDD;
 }
 
-p { 
+p {
   padding: 0 0 20px 0;
   line-height: 1.7em;
 }
 
-img { 
+img {
   border: 0;
 }
 
-h1, h2, h3, h4, h5, h6 { 
+h1, h2, h3, h4, h5, h6 {
   color: #0099cc;
   letter-spacing: 0em;
   padding: 0 0 5px 0;
 }
 
-h1, h2, h3 { 
+h1, h2, h3 {
     font-family: 'RobotoBold';
     font-weight: normal;
     font-style: normal;
@@ -241,18 +241,18 @@ h1, h2, h3 {
   color: #FFF;
 }
 
-h2 { 
+h2 {
   font-size: 160%;
   padding: 9px 0 5px 0;
   color: #0099cc;
 }
 
-h3 { 
+h3 {
   font-size: 140%;
   padding: 5px 0 0 0;
 }
 
-h4, h6 { 
+h4, h6 {
   color: #0099cc;
   padding: 0 0 5px 0;
     font-family: 'RobotoRegular';
@@ -260,7 +260,7 @@ h4, h6 {
     font-style: normal;
 }
 
-h5, h6 { 
+h5, h6 {
   color: #888;
     font-family: 'RobotoItalic';
     font-weight: normal;
@@ -269,62 +269,62 @@ h5, h6 {
   padding: 0 0 15px 0;
 }
 
-a, a:hover { 
+a, a:hover {
   outline: none;
   text-decoration: underline;
   color: #0099cc;
 }
 
-a:hover { 
+a:hover {
   text-decoration: none;
 }
 
-blockquote { 
-  margin: 20px 0; 
+blockquote {
+  margin: 20px 0;
   padding: 10px 20px 0 20px;
   border: 1px solid #0099cc;
   background: #FFF;
 }
 
-ul { 
+ul {
   margin: 2px 0 22px 17px;
 }
 
-ul li { 
+ul li {
   list-style-type: circle;
-  margin: 0 0 6px 0; 
+  margin: 0 0 6px 0;
   padding: 0 0 4px 5px;
   line-height: 1.5em;
 }
 
-ol { 
+ol {
   margin: 8px 0 22px 20px;
 }
 
-ol li { 
+ol li {
   margin: 0 0 11px 0;
 }
 
-.left { 
+.left {
   float: left;
   width: auto;
   margin-right: 10px;
 }
 
-.right { 
-  float: right; 
+.right {
+  float: right;
   width: auto;
   margin-left: 10px;
 }
 
-.center { 
+.center {
   display: block;
   text-align: center;
   margin: 20px auto;
 }
 
-#main, nav, #container, #logo, #site_content, footer { 
-  margin-left: auto; 
+#main, nav, #container, #logo, #site_content, footer {
+  margin-left: auto;
   margin-right: auto;
 }
 
@@ -334,21 +334,21 @@ ol li {
   padding-bottom: 30px;
 }
 
-header { 
+header {
   background: transparent;
   height: 200px;
 }
 
-#logo { 
+#logo {
   float: left;
   color: #888;
 }
-#logospacer { 
+#logospacer {
   height: 200px;
   color: #888;
 }
 
-#logo h1, #logo h2 { 
+#logo h1, #logo h2 {
   font-family: 'RobotoBold';
   font-size: 24px;
   border-bottom: 0;
@@ -356,43 +356,43 @@ header {
   margin: 0;
 }
 
-#logo_text h1, #logo_text h1 a, #logo_text h1 a:hover { 
+#logo_text h1, #logo_text h1 a, #logo_text h1 a:hover {
   padding: 0;
   color: #FFF;
   text-decoration: none;
 }
 
-#logo_text h1 a .logo_colour { 
+#logo_text h1 a .logo_colour {
   color: #0099cc;
 }
 
-#logo_text a:hover .logo_colour { 
+#logo_text a:hover .logo_colour {
   color: #FFF;
 }
 
-#logo_text h2 { 
+#logo_text h2 {
   font-size: 140%;
   padding: 0 0 0 0;
   color: #FFF;
 }
 
-nav { 
+nav {
   float: left;
   height: 45px;
   width: 1024px;
   margin: 0 auto 0 auto;
   color: #FFF;
   border:  1px #0099cc solid;
-  border-bottom: 5px #0099cc solid;  
+  border-bottom: 5px #0099cc solid;
   background: #010101;
-} 
+}
 
-#menu_container { 
+#menu_container {
   width: 1024px;
   margin: 0 auto 0 auto;
 }
 
-#site_content { 
+#site_content {
   width: 974px;
   overflow: hidden;
   margin: 0px auto 0 auto;
@@ -408,29 +408,29 @@ background: -o-linear-gradient(top, #010101 1%,#242b2f 100%); /* Opera 11.10+ */
 background: -ms-linear-gradient(top, #010101 1%,#242b2f 100%); /* IE10+ */
 background: linear-gradient(top, #010101 1%,#242b2f 100%); /* W3C */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#010101', endColorstr='#242b2f',GradientType=0 ); /* IE6-8 */
-} 
+}
 
-#sidebar_container { 
+#sidebar_container {
   float: right;
   width: 250px;
   border-left: 5px #0099cc solid;
   padding: 20px 5px 0 0;
 }
 
-.sidebar { 
+.sidebar {
   float: right;
   width: 220px;
   margin: 0 0 17px 0;
   padding: 0 15px 5px 13px;
 }
 
-.gsense { 
+.gsense {
   width: 250px;
   height: 250px;
   background: #282828 url(../images/please.png) no-repeat;
 }
 
-.sidebar h3, .content h1 { 
+.sidebar h3, .content h1 {
   padding: 0 15px 20px 0;
   font-family: 'RobotoBold';
   font-size: 24px;
@@ -439,39 +439,39 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#010101', end
   color: #0099cc;
 }
 
-.sidebar h3 { 
+.sidebar h3 {
   padding: 0 15px 14px 0;
   color: #0099cc;
   font-family: 'RobotoBold';
   font-size: 24px;
 }
 
-.sidebar ul { 
+.sidebar ul {
   margin: 0 0 15px 0;
-} 
+}
 
-.sidebar li a, .sidebar li a:hover { 
+.sidebar li a, .sidebar li a:hover {
   color: #0099cc;
   text-decoration: none;
-} 
+}
 
-.sidebar li a:hover { 
+.sidebar li a:hover {
   text-decoration: underline;
-} 
+}
 
-.sidebar_item, .content_item { 
+.sidebar_item, .content_item {
   padding: 15px 0;
 }
 
-.paperclip { 
+.paperclip {
   float: left;
-  position: relative; 
+  position: relative;
   z-index: 0;
-  vertical-align: middle; 
+  vertical-align: middle;
   margin: -15px 0 -60px -40px;
 }
 
-.content { 
+.content {
   text-align: left;
   width: 630px;
   margin: 0 0 15px 0;
@@ -479,27 +479,27 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#010101', end
   font-size: 120%;
   padding: 14px 0 0 0;
 }
-  
-.content ul { 
+
+.content ul {
   margin: 2px 0 22px 0px;
 }
 
-.content ul li, .sidebar ul li { 
+.content ul li, .sidebar ul li {
   list-style-type: none;
   background: url(../images/bullet.png) no-repeat;
-  margin: 0 0 0 0; 
+  margin: 0 0 0 0;
   padding: 0 0 4px 28px;
   line-height: 1.5em;
 }
 
-footer { 
+footer {
   width: 1024px;
   font-family: 'RobotoRegular';
   font-size: 14px;
   text-shadow: 1px 1px #000;
   height: 30px;
   padding: 5px 0 20px 0;
-  text-align: center; 
+  text-align: center;
   color: #FFF;
   margin-top: 0px;
   border: 1px #0099cc solid;
@@ -507,64 +507,64 @@ footer {
   background: #242b2f;
 }
 
-footer p { 
+footer p {
   line-height: 1.7em;
   padding: 0 0 10px 0;
 }
 
-footer a { 
+footer a {
   color: #0099cc;
   text-decoration: none;
 }
 
-footer a:hover { 
+footer a:hover {
   color: #0099cc;
   text-decoration: underline;
 }
 
-.form_settings { 
+.form_settings {
   margin: 15px 0 0 0;
 }
 
-.form_settings p { 
+.form_settings p {
   padding: 0 0 4px 0;
 }
 
-.form_settings span { 
-  float: left; 
-  width: 200px; 
+.form_settings span {
+  float: left;
+  width: 200px;
   text-align: left;
 }
-  
-.form_settings input, .form_settings textarea { 
-  padding: 5px; 
-  width: 299px; 
+
+.form_settings input, .form_settings textarea {
+  padding: 5px;
+  width: 299px;
   font-family: 'RobotoRegular';
   font-size: 12px;
-  border: 1px solid #0099cc; 
-  background: #EFF8FB; 
+  border: 1px solid #0099cc;
+  background: #EFF8FB;
   color: #47433F;
   border-radius: 7px 7px 7px 7px;
   -moz-border-radius: 7px 7px 7px 7px;
-  -webkit-border: 7px 7px 7px 7px;  
+  -webkit-border: 7px 7px 7px 7px;
 }
-  
-.form_settings .submit { 
+
+.form_settings .submit {
   font-family: 'RobotoRegular';
   font-size: 14px;
-  border: 0; 
-  width: 99px; 
-  margin: 0 0 0 212px; 
+  border: 0;
+  width: 99px;
+  margin: 0 0 0 212px;
   height: 33px;
   padding: 2px 0 3px 0;
-  cursor: pointer; 
-  background: #1EC9F4; 
-  -webkit-border-radius: .5em .5em .5em .5em ; 
+  cursor: pointer;
+  background: #1EC9F4;
+  -webkit-border-radius: .5em .5em .5em .5em ;
   -moz-border-radius: .5em .5em .5em .5em ;
   border-radius: .5em .5em .5em .5em ;
   -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
   -moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
-  box-shadow: 0 1px 2px rgba(0,0,0,.2);  
+  box-shadow: 0 1px 2px rgba(0,0,0,.2);
   color: #FFF;
   border: solid 1px #0D8AA9;
   background: #46C4DD;
@@ -573,50 +573,49 @@ footer a:hover {
   text-shadow: 1px 1px #178497;
 }
 
-.form_settings textarea, .form_settings select { 
+.form_settings textarea, .form_settings select {
   font-family: 'RobotoRegular';
   font-size: 12px;
   width: 299px;
 }
 
-.form_settings select { 
+.form_settings select {
   width: 310px;
 }
 
-.form_settings .checkbox { 
-  margin: 4px 0; 
-  padding: 0; 
+.form_settings .checkbox {
+  margin: 4px 0;
+  padding: 0;
   width: 14px;
   border: 0;
   background: none;
 }
 
-.separator { 
+.separator {
   width: 100%;
   height: 0;
   border-top: 1px solid #0099cc;
   border-bottom: 1px solid #282828;
   margin: 0 0 20px 0;
 }
-  
-table { 
+
+table {
   margin: 10px 0 30px 0;
 }
 
-table tr th, table tr td { 
+table tr th, table tr td {
   background: #0099cc;
   color: #FFF;
   padding: 7px 4px;
   text-align: left;
 }
-  
-table tr td { 
+
+table tr td {
   background: #D3F2F7;
   color: #0099cc;
   border-top: 1px solid #282828;
   border-left: 1px solid #282828;
 }
-
 
 
 
@@ -627,79 +626,79 @@ Author: Jurriaan Roelofs
 **/
 
 /* Configuration of menu width */
-html body ul.sf-menu ul,html body ul.sf-menu ul li { 
+html body ul.sf-menu ul,html body ul.sf-menu ul li {
   width: 200px;
 }
 
-html body ul.sf-menu ul ul { 
+html body ul.sf-menu ul ul {
   margin: 0 0 0 200px;
 }
 
 /* Framework for proper showing/hiding/positioning */
-ul.sf-menu,ul.sf-menu * { 
+ul.sf-menu,ul.sf-menu * {
   margin: 0;
   padding: 0;
 }
 
-ul.sf-menu { 
+ul.sf-menu {
   display: block;
   position: relative;
 }
-  
-ul.sf-menu li { 
+
+ul.sf-menu li {
   display: block;
   list-style: none;
   float: left;
   position: relative;
 }
-  
-ul.sf-menu li:hover { 
-  visibility: inherit; /* fixes IE7 'sticky bug' */ 
+
+ul.sf-menu li:hover {
+  visibility: inherit; /* fixes IE7 'sticky bug' */
 }
 
-ul.sf-menu a { 
+ul.sf-menu a {
   display: block;
   position: relative;
 }
-  
-ul.sf-menu ul { 
+
+ul.sf-menu ul {
   position: absolute;
   left: 0;
-  width: 150px; 
+  width: 150px;
   top: auto;
   left: -999999px;
 }
-  
-ul.sf-menu ul a { 
-  zoom: 1; /* IE6/7 fix */ 
+
+ul.sf-menu ul a {
+  zoom: 1; /* IE6/7 fix */
 }
 
-ul.sf-menu ul li { 
+ul.sf-menu ul li {
   float: left; /* Must always be floated otherwise there will be a rogue 1px margin-bottom in IE6/7 */
   width: 150px;
 }
-  
-ul.sf-menu ul ul { 
+
+ul.sf-menu ul ul {
   top: 0;
   margin: 0 0 0 150px;
 }
 
-ul.sf-menu li:hover ul,ul.sf-menu li:focus ul,ul.sf-menu li.sf-hover ul, 
+ul.sf-menu li:hover ul,ul.sf-menu li:focus ul,ul.sf-menu li.sf-hover ul,
 ul.sf-menu ul li:hover ul,ul.sf-menu ul li:focus ul,ul.sf-menu ul li.sf-hover ul,
 ul.sf-menu ul ul li:hover ul,ul.sf-menu ul ul li:focus ul,ul.sf-menu ul ul li.sf-hover ul,
-ul.sf-menu ul ul ul li:hover ul,ul.sf-menu ul ul ul li:focus ul,ul.sf-menu ul ul ul li.sf-hover ul { 
+ul.sf-menu ul ul ul li:hover ul,ul.sf-menu ul ul ul li:focus ul,ul.sf-menu ul ul ul li.sf-hover ul {
   left: auto;
 }
-  
+
 ul.sf-menu li:hover ul ul,ul.sf-menu li:focus ul ul,ul.sf-menu li.sf-hover ul ul,
 ul.sf-menu ul li:hover ul ul,ul.sf-menu ul li:focus ul ul,ul.sf-menu ul li.sf-hover ul ul,
 ul.sf-menu ul ul li:hover ul ul,ul.sf-menu ul ul li:focus ul ul,ul.sf-menu ul ul li.sf-hover ul ul,
-ul.sf-menu ul ul ul li:hover ul ul,ul.sf-menu ul ul ul li:focus ul ul,ul.sf-menu ul ul ul li.sf-hover ul ul { 
+ul.sf-menu ul ul ul li:hover ul ul,ul.sf-menu ul ul ul li:focus ul ul,ul.sf-menu ul ul ul li.sf-hover ul ul {
   left: -999999px;
 }
 
 /* autoArrows CSS */
-span.sf-arrow { 
+span.sf-arrow {
   width: 7px;
   height: 7px;
   position: absolute;
@@ -711,24 +710,24 @@ span.sf-arrow {
   font-size: 1px;
 }
 
-ul ul span.sf-arrow { 
+ul ul span.sf-arrow {
   left: 10;
   top: 20px;
   background-position: 0 100%;
 }
 
 /* Theming the menu */
-ul#nav { 
+ul#nav {
   float: left;
 }
 
-ul#nav ul { 
-  background: #0099cc;  
+ul#nav ul {
+  background: #0099cc;
   margin-top: 5px;
   padding-bottom: 15px;
 }
 
-ul#nav li a { 
+ul#nav li a {
   padding:17px 20px 6px 20px;
   font-family: 'RobotoBold';
   font-size: 16px;
@@ -738,12 +737,12 @@ ul#nav li a {
   margin-right: 2px;
 }
 
-ul#nav li a:hover,ul#nav li a:focus { 
+ul#nav li a:hover,ul#nav li a:focus {
   color: #0099cc;
   text-shadow: none;
 }
 
-ul#nav ul li a:hover,ul#nav ul li a:focus { 
+ul#nav ul li a:hover,ul#nav ul li a:focus {
   color: #242b2f;
   text-shadow: none;
 }
@@ -788,11 +787,11 @@ body { font-size: 12px; }
       /* color: #8c910b; */
       text-shadow: 0px -1px 0px #000;
       }
-	  
+
 #registration fieldset {
       padding: 20px;
       }
-	  
+
 input.text {
       -webkit-border-radius: 15px;
       -moz-border-radius: 15px;
@@ -820,7 +819,7 @@ input.text {
           );
       color:#333;
       text-shadow:0px 1px 0px #FFF;
-}	
+}
 input.login {
       -webkit-border-radius: 15px;
       -moz-border-radius: 15px;
@@ -848,7 +847,7 @@ input.login {
           );
       color:#333;
       text-shadow:0px 1px 0px #FFF;
-} 
+}
 input.rom {
       -webkit-border-radius: 15px;
       -moz-border-radius: 15px;
@@ -875,7 +874,7 @@ input.rom {
           );
       color:#333;
       text-shadow:0px 1px 0px #FFF;
-}	 
+}
 textarea.rom {
       -webkit-border-radius: 15px;
       -moz-border-radius: 15px;
@@ -903,49 +902,49 @@ textarea.rom {
           );
       color:#333;
       text-shadow:0px 1px 0px #FFF;
-}	  
+}
 
- input#email { 
- 	background-position: 4px 5px; 
+ input#email {
+ 	background-position: 4px 5px;
 	background-position: 4px 5px, 0px 0px;
 	}
-	
- input#pass { 
- 	background-position: 4px -20px; 
+
+ input#pass {
+ 	background-position: 4px -20px;
 	background-position: 4px -20px, 0px 0px;
 	}
 
-input#pass1 { 
- 	background-position: 4px -20px; 
+input#pass1 {
+ 	background-position: 4px -20px;
 	background-position: 4px -20px, 0px 0px;
 	}
-input#pass2 { 
- 	background-position: 4px -20px; 
+input#pass2 {
+ 	background-position: 4px -20px;
 	background-position: 4px -20px, 0px 0px;
 	}
- input#pasnow { 
- 	background-position: 4px -20px; 
+ input#pasnow {
+ 	background-position: 4px -20px;
 	background-position: 4px -20px, 0px 0px;
 	}
-	
- input#name { 
- 	background-position: 4px -46px; 
-	background-position: 4px -46px, 0px 0px; 
+
+ input#name {
+ 	background-position: 4px -46px;
+	background-position: 4px -46px, 0px 0px;
 	}
- input#username { 
- 	background-position: 4px -46px; 
-	background-position: 4px -46px, 0px 0px; 
+ input#username {
+ 	background-position: 4px -46px;
+	background-position: 4px -46px, 0px 0px;
 	}
-input#user { 
- 	background-position: 4px -46px; 
-	background-position: 4px -46px, 0px 0px; 
+input#user {
+ 	background-position: 4px -46px;
+	background-position: 4px -46px, 0px 0px;
 	}
- input#tel { 
- 	background-position: 4px -76px; 
-	background-position: 4px -76px, 0px 0px; 
+ input#tel {
+ 	background-position: 4px -76px;
+	background-position: 4px -76px, 0px 0px;
 	}
-	
-	
+
+
 #registration h2 {
 	/* color: #fff; */
 	text-shadow: 0px -1px 0px #000;
@@ -957,7 +956,7 @@ input#user {
 	font-weight: normal;
 	font-size: 24px;
 	}
-	
+
 #registerNew {
 	width: 203px;
 	height: 40px;
@@ -967,7 +966,7 @@ input#user {
 	cursor: pointer;
 	float: right;
 	}
-	
+
 	#registerNew:hover { background-position: 0px -41px; }
 	#registerNew:active { background-position: 0px -82px; }
 
@@ -980,10 +979,10 @@ input#user {
 	cursor: pointer;
 	float: right;
 	}
-	
+
 	#loginNew:hover { background-position: 0px -25px; }
 	#loginNew:active { background-position: 0px -50px; }
-	
+
 #addRomNew {
 	width: 203px;
 	height: 40px;
@@ -993,10 +992,10 @@ input#user {
 	cursor: pointer;
 	float: right;
 	}
-	
+
 	#addRomNew:hover { background-position: 0px -41px; }
 	#addRomNew:active { background-position: 0px -82px; }
-	
+
 #updateRomNew {
 	width: 203px;
 	height: 40px;
@@ -1006,10 +1005,10 @@ input#user {
 	cursor: pointer;
 	float: right;
 	}
-	
+
 	#updateRomNew:hover { background-position: 0px -41px; }
 	#updateRomNew:active { background-position: 0px -82px; }
-	
+
 #updateAccountNew {
 	width: 203px;
 	height: 40px;
@@ -1019,13 +1018,13 @@ input#user {
 	cursor: pointer;
 	float: right;
 	}
-	
+
 	#updateAccountNew:hover { background-position: 0px -41px; }
-	#updateAccountNew:active { background-position: 0px -82px; }	
+	#updateAccountNew:active { background-position: 0px -82px; }
  #registration p {
       position: relative;
       }
-	  
+
 fieldset label.infield /* .infield label added by JS */ {
     color: #333;
     text-shadow: 0px 1px 0px #fff;

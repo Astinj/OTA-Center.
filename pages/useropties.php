@@ -6,9 +6,9 @@
 // Inloggen verplicht; safe.php
 include "safe.php";
 
-if (isset($_POST['submit'])) {
-    if (preg_match("/^[A-Z0-9._%-]+@[A-Z0-9._%-]+\.[A-Z]{2,6}$/i", $_POST['email'])) {
-        if ($_POST['pass1'] != "") {
+if (isset($_POST['useropties_submit'])) {
+    if (preg_match("/^[A-Z0-9._%-]+@[A-Z0-9._%-]+\.[A-Z]{2,6}$/i", $_POST['useropties_email'])) {
+        if ($_POST['useropties_pass1'] != "") {
             // Wachtwoord wijzigen
             $stmt = $db->stmt_init();
             $stmt->prepare('SELECT `wachtwoord` FROM `gebruikers` WHERE `id` = ?');
@@ -18,12 +18,12 @@ if (isset($_POST['submit'])) {
             $stmt->fetch();
             $stmt->close();
             $dbpass = htmlspecialchars($rij_wachtwoord);
-            if ($dbpass == md5($_POST['pasnow'])) {
-                if ($_POST['pass1'] == $_POST['pass2']) {
-                    $newpass = md5($_POST['pass1']);
+            if ($dbpass == md5($_POST['useropties_passnow'])) {
+                if ($_POST['useropties_pass1'] == $_POST['useropties_pass2']) {
+                    $newpass = md5($_POST['useropties_pass1']);
                     $stmt = $db->stmt_init();
                     $stmt->prepare('UPDATE `gebruikers` SET `email` = ?, `wachtwoord` = ? WHERE `id` = ?');
-                    $stmt->bind_param('ssi', $_POST['email'], $newpass, $_SESSION['user_id']);
+                    $stmt->bind_param('ssi', $_POST['useropties_email'], $newpass, $_SESSION['user_id']);
                     if ($stmt->execute()) {
                         echo "Your mailadress is changed to '{$_POST['email']}', your password has changed too.<br /><a href=\"?page=useropties\">&laquo; Go back</a>";
                         if (isset($_COOKIE['user_password'])) {
@@ -42,9 +42,9 @@ if (isset($_POST['submit'])) {
             // Alleen e-mail wijzigen
             $stmt = $db->stmt_init();
             $stmt->prepare('UPDATE `gebruikers` SET `email` = ?, WHERE `id` = ?');
-            $stmt->bind_param('si', $_POST['email'], $_SESSION['user_id']);
+            $stmt->bind_param('si', $_POST['useropties_email'], $_SESSION['user_id']);
             if ($stmt->execute()) {
-                echo "Your mailadress has changed to '{$_POST['email']}'.<br /><a href=\"?page=useropties\">&laquo; Go Back</a>";
+                echo "Your mailadress has changed to '{$_POST['useropties_email']}'.<br /><a href=\"?page=useropties\">&laquo; Go Back</a>";
             } else {
                 echo 'An error occured while changing your mailadress. Please try again later.<br /><a href="javascript:history.back()">&laquo; Go Back</a>';
             }
@@ -65,32 +65,32 @@ if (isset($_POST['submit'])) {
     $naam = htmlspecialchars($rij_naam);
     $email = htmlspecialchars($rij_email);
     ?>
-    <div id="registration">
+    <div class="formdiv">
         <h2>Edit your Account</h2>
 
-        <form id="UserOptionsForm" action="?page=useropties" method="post">
+        <form id="useropties_form" action="?page=useropties" method="post">
             <fieldset>
                 <p>
                     Username: <b><?= $naam ?></b>
                 </p>
                 <p>
-                    <label for="email">Email</label>
-                    <input id="email" name="email" type="text" class="text" value="" />
+                    <label for="useropties_email">Email</label>
+                    <input id="useropties_email" name="useropties_email" type="text" class="text" value="" />
                 </p>
                 <p>
-                    <label for="pasnow">Current Password</label>
-                    <input id="pasnow" name="pasnow" class="text" type="password" />
+                    <label for="useropties_passnow">Current Password</label>
+                    <input id="useropties_passnow" name="useropties_passnow" class="text" type="password" />
                 </p>
                 <p>
-                    <label for="pass1">New Password</label>
-                    <input id="pass1" name="pass1" class="text" type="password" />
+                    <label for="useropties_pass1">New Password</label>
+                    <input id="useropties_pass1" name="useropties_pass1" class="text" type="password" />
                 </p>
                 <p>
-                    <label for="pass2">Verify</label>
-                    <input id="pass2" name="pass2" class="text" type="password" />
+                    <label for="useropties_pass2">Verify</label>
+                    <input id="useropties_pass2" name="useropties_pass2" class="text" type="password" />
                 </p>
                 <p>
-                    <button id="updateAccountNew" name="submit" type="submit">Save</button>
+                    <button id="useropties_submit" name="useropties_submit" type="submit">Save</button>
                 </p>
             </fieldset>
         </form>
@@ -98,7 +98,7 @@ if (isset($_POST['submit'])) {
 
     <script type="text/javascript">
         $(document).ready(function() {
-            $("#UserOptionsForm label").inFieldLabels();
+            $("#useropties_form label").inFieldLabels();
         });
     </script>
     <?

@@ -52,7 +52,10 @@ $page = $_GET['page']; //sets the page variable from http request
     <div id="main">
         <header>
             <div id="logo">
-                <a href="#"><img style="" src="./images/android.gif" /><img style="" src="./images/test.png" /></a>
+                <a href="#">
+                    <img src="images/android.gif" alt="Android" width="300" height="148" />
+                    <img src="images/test.png" alt="OTA Update Center" width="500" height="148" />
+                </a>
             </div>
             <nav>
                 <div id="menu_container">

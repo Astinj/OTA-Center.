@@ -3,10 +3,10 @@ include 'safe_admin.php';
 if (isset($_SESSION['user_id'])) {
     ?>
 
-    <div id="registration">
+    <div class="formdiv">
         <h2>Add User</h2>
 
-        <form id="AddUserForm" action="?page=useradd_ac" method="post">
+        <form id="add_user_form" action="?page=useradd_ac" method="post">
             <fieldset>
                 <p>
                     <label for="naam">Username</label>
@@ -33,7 +33,7 @@ if (isset($_SESSION['user_id'])) {
                     <textarea id="rom" name="actcode" class="rom"></textarea>
                 </p>
                 <p>
-                    <button id="addUserNew" name="submit" type="submit">Add User</button>
+                    <button id="add_user_submit" name="submit" type="submit">Add User</button>
                 </p>
             </fieldset>
 
@@ -42,7 +42,7 @@ if (isset($_SESSION['user_id'])) {
 
     <script type="text/javascript">
         $(document).ready(function() {
-            $("#AddUserForm label").inFieldLabels();
+            $("#add_user_form label").inFieldLabels();
         });
     </script>
     <?

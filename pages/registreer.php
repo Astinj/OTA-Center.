@@ -5,14 +5,14 @@
 // Pagina: registreer.php: Registreren voor nieuw account
 
 if (!isset($_SESSION['user_id'])) {
-    if (isset($_POST['submit'])) {
+    if (isset($_POST['registreer_submit'])) {
         // Uitvoeren
         // Velden controleren
-        if (!empty($_POST['user']) && !empty($_POST['pass1']) && !empty($_POST['pass2']) && !empty($_POST['email'])) {
+        if (!empty($_POST['registreer_user']) && !empty($_POST['registreer_pass1']) && !empty($_POST['registreer_pass2']) && !empty($_POST['registreer_email'])) {
             // Gebuikersnaamcheck
             $stmt = $db->stmt_init();
             $stmt->prepare('SELECT `id` FROM `gebruikers` WHERE `naam` = ?');
-            $stmt->bind_param('s', $_POST['user']);
+            $stmt->bind_param('s', $_POST['registreer_user']);
             $stmt->execute();
             $stmt->store_result();
             $tellen = $stmt->num_rows;
@@ -23,7 +23,7 @@ if (!isset($_SESSION['user_id'])) {
                 // E-mailcheck
                 if (preg_match('/^[A-Z0-9._%-]+@[A-Z0-9._%-]+\.[A-Z]{2,6}$/i', $_POST['email'])) {
                     // Email correct
-                    if ($_POST['pass1'] == $_POST['pass2']) {
+                    if ($_POST['registreer_pass1'] == $_POST['registreer_pass2']) {
                         $actcode = mt_srand((double) microtime()*100000);
                         while (strlen($actcode) <= 10) {
                             $i = chr(mt_rand (0,255));
@@ -31,10 +31,10 @@ if (!isset($_SESSION['user_id'])) {
                                 $actcode = $actcode.$i;
                             }
                         }
-                        $md5pass = md5($_POST['pass1']);
+                        $md5pass = md5($_POST['registreer_pass1']);
                         $stmt = $db->stmt_init();
                         $stmt->prepare('INSERT INTO `gebruikers` (`naam`, `wachtwoord`, `status`, `email`, `actief`, `actcode`) VALUES (?, ?, 0, ?, 0, ?)');
-                        $stmt->bind_param('ssss', $_POST['user'], $md5pass, $_POST['email'], $actcode);
+                        $stmt->bind_param('ssss', $_POST['registreer_user'], $md5pass, $_POST['registreer_email'], $actcode);
 
                         if ($stmt->execute()) {
                             $dbid = $db->insert_id;
@@ -46,11 +46,11 @@ To activate your account click on the link below.
 Confirm registration: {$sitebaseurl}?page=activeren&id=$dbid&code=$actcode&registratie=true
 
 As soon as you clicked on the link you will be able to login with:
-Username: {$_POST['user']}
-Password: {$_POST['pass1']}
-This message has been send automaticly **
+Username: {$_POST['registreer_user']}
+Password: {$_POST['registreer_pass1']}
+This message has been send automatically **
 EOF;
-                            $mail = mail($_POST['email'], "Registration $sitenaam", $bericht, "From: $sitenaam <$sitemail>");
+                            $mail = mail($_POST['registreer_email'], "Registration $sitenaam", $bericht, "From: $sitenaam <$sitemail>");
                             if ($mail == TRUE) {
                                 echo 'You are registered successfully! As soon as you clicked the link in the mail, you will be able to login.<br /><a href="?page=inloggen">&laquo; Goto loginpage.</a>';
                             } else {
@@ -67,7 +67,7 @@ EOF;
                     echo 'The mailadress you typed didn\'t look like a mailadress like (user@domain.ext).<br /><a href="javascript:history.back()">&laquo; Go Back</a>';
                 }
             } else {
-                echo "The username '{$_POST['user']}' is not available anymore. Try another username.<br /><a href=\"javascript:history.back()\">&laquo; Go Back.</a>";
+                echo "The username '{$_POST['registreer_user']}' is not available anymore. Try another username.<br /><a href=\"javascript:history.back()\">&laquo; Go Back.</a>";
             }
         } else {
             echo 'You forgot to fill out one or more fields.<br /><a href="javascript:history.back()">&laquo; Go Back</a>';
@@ -80,29 +80,29 @@ EOF;
         # Pass + check
         # emailcheck (uitvoeren)
         ?>
-        <div id="registration">
+        <div class="formdiv">
             <h2>Create an Account</h2>
 
-            <form id="RegisterUserForm" action="?page=registreer" method="post">
+            <form id="register_form" action="?page=registreer" method="post">
                 <fieldset>
                     <p>
-                        <label for="user">Username</label>
-                        <input id="user" name="user" type="text" class="text" value="" />
+                        <label for="registreer_user">Username</label>
+                        <input id="registreer_user" name="registreer_user" type="text" class="text" value="" />
                     </p>
                     <p>
-                        <label for="pass1">Password</label>
-                        <input id="pass1" name="pass1" class="text" type="password" />
+                        <label for="registreer_pass1">Password</label>
+                        <input id="registreer_pass1" name="registreer_pass1" class="text" type="password" />
                     </p>
                     <p>
-                        <label for="pass2">Verify</label>
-                        <input id="pass2" name="pass2" class="text" type="password" />
+                        <label for="registreer_pass2">Verify</label>
+                        <input id="registreer_pass2" name="registreer_pass2" class="text" type="password" />
                     </p>
                     <p>
-                        <label for="email">E-Mail</label>
-                        <input id="email" name="email" type="text" class="text" value="" />
+                        <label for="registreer_email">E-Mail</label>
+                        <input id="registreer_email" name="registreer_email" type="text" class="text" value="" />
                     </p>
                     <p>
-                        <button id="registerNew" name="submit" type="submit">Register</button>
+                        <button id="registreer_submit" name="registreer_submit" type="submit">Register</button>
                     </p>
                     <small>After registration you will get a mail from us with an activation link. Until you clicked the link, you won't be able to log in.</small>
                 </fieldset>
@@ -111,7 +111,7 @@ EOF;
 
         <script type="text/javascript">
             $(document).ready(function() {
-                $("#RegisterUserForm label").inFieldLabels();
+                $("#register_form label").inFieldLabels();
             });
         </script>
         <?

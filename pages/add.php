@@ -6,10 +6,10 @@ if (!isset($_SESSION['user_id'])) {
 }
 ?>
 
-<div id="registration">
+<div class="formdiv">
     <h2>Add Rom</h2>
 
-    <form id="AddRomUserForm" action="?page=add_ac" method="post">
+    <form id="add_rom_form" action="?page=add_ac" method="post">
         <fieldset>
             <p>
                 <label for="rom">Enter full rom name</label>
@@ -44,7 +44,7 @@ if (!isset($_SESSION['user_id'])) {
                 <input id="romversionname" name="romversionname" type="text" class="rom" value="" />
             </p>
             <p>
-                <button id="addRomNew" name="submit" type="submit">Add Rom</button>
+                <button id="add_rom_submit" name="submit" type="submit">Add Rom</button>
             </p>
         </fieldset>
     </form>
@@ -52,6 +52,6 @@ if (!isset($_SESSION['user_id'])) {
 
 <script type="text/javascript">
     $(document).ready(function() {
-        $("#AddRomUserForm label").inFieldLabels();
+        $("#add_rom_form label").inFieldLabels();
     });
 </script>

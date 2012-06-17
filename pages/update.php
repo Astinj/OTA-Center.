@@ -24,10 +24,10 @@ if (!empty($_GET['id'])) {
     if (isset($_SESSION['user_id'])) {
         if ($userid == $_SESSION['user_id'] || $_SESSION['user_status'] == 1) {
             ?>
-            <div id="registration">
+            <div class="formdiv">
                 <h2>Update Rom</h2>
 
-                <form id="UpdateUserForm" action="?page=update_ac" method="post">
+                <form id="update_rom_form" action="?page=update_ac" method="post">
                     <fieldset>
                         <p>
                             <label for="rom"><? echo $rom; ?></label>
@@ -67,7 +67,7 @@ if (!empty($_GET['id'])) {
                         </p>
                             <input name="id" type="hidden" id="id" value="<? echo $id; ?>">
                         <p>
-                            <button id="updateRomNew" name="submit_form" type="submit">Update Rom</button>
+                            <button id="update_rom_submit" name="submit_form" type="submit">Update Rom</button>
                         </p>
                     </fieldset>
                 </form>
@@ -75,7 +75,7 @@ if (!empty($_GET['id'])) {
 
             <script type="text/javascript">
                 $(document).ready(function() {
-                    $("#UpdateUserForm label").inFieldLabels();
+                    $("#update_rom_form label").inFieldLabels();
                 });
             </script>
             <?

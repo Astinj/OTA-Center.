@@ -36,7 +36,7 @@ if (isset($_SESSION['user_id'])) {
     $stmt->fetch();
     $stmt->close();
 
-    if ($dbpass == $_COOKIE['user_password'] AND $actief == 1) {
+    if ($dbpass == $_COOKIE['user_password'] && $actief == 1) {
         $_SESSION['user_id'] = $id;
         $_SESSION['user_status'] = $status;
         ?>
@@ -50,7 +50,7 @@ if (isset($_SESSION['user_id'])) {
         setcookie("user_id", "", time() - 3600);
         setcookie("user_password", "", time() - 3600);
     }
-} else if (isset($_POST['submit'])) {
+} else if (isset($_POST['login_submit'])) {
     // Inloggen
     $stmt = $db->stmt_init();
     $stmt->prepare('SELECT `id`, `naam`, `wachtwoord`, `status`, `actief`, `lastactive` FROM `gebruikers` WHERE `naam` = ?');
@@ -88,19 +88,19 @@ if (isset($_SESSION['user_id'])) {
 } else {
     // Inlogform
     ?>
-    <div id="registration">
+    <div class="formdiv">
         <h2>Login to your Account</h2>
 
-        <form id="LoginUserForm" action="" method="post">
+        <form id="login_form" action="" method="post">
             <fieldset>
                 <p>
                     <label for="login_user">Username</label>
-                    <input id="login_user" name="login_user" type="text" class="login" value="" />
+                    <input id="login_user" name="login_user" type="text" class="icon" value="" />
                 </p>
 
                 <p>
                     <label for="login_pass">Password</label>
-                    <input id="login_pass" name="login_pass" class="login" type="password" />
+                    <input id="login_pass" name="login_pass" type="password" class="icon" />
                 </p>
 
                 <p>
@@ -109,7 +109,7 @@ if (isset($_SESSION['user_id'])) {
                 </p>
 
                 <p>
-                    <button id="loginNew" name="submit" type="submit">Login</button>
+                    <button id="login_submit" name="login_submit" type="submit">Login</button>
                 </p>
             </fieldset>
 
@@ -118,7 +118,7 @@ if (isset($_SESSION['user_id'])) {
 
     <script type="text/javascript">
         $(document).ready(function() {
-            $("#LoginUserForm label").inFieldLabels();
+            $("#login_form label").inFieldLabels();
         });
     </script>
 <? } ?>

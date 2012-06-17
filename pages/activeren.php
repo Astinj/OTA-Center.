@@ -38,10 +38,10 @@ if (isset($_GET['id'])) {
                     }
 
                     $stmt->close();
-                } else if (isset($_POST['submit'])) {
+                } else if (isset($_POST['activeer_submit'])) {
                     // Uitvoeren
-                    if($_POST['pass1'] == $_POST['pass2']) {
-                        $md5pass = md5($_POST['pass1']);
+                    if($_POST['activeer_pass1'] == $_POST['activeer_pass2']) {
+                        $md5pass = md5($_POST['activeer_pass1']);
 
                         $stmt = $db->stmt_init();
                         $stmt->prepare('UPDATE `gebruikers` SET `wachtwoord` = ?, `actief` = 1, `actcode` = \'\' WHERE `id` = ?');
@@ -63,13 +63,13 @@ if (isset($_GET['id'])) {
                     <form method="post" action="activeren.php?id=<?= $id ?>&code=<?= $_GET['code'] ?>">
                         <table>
                             <tr>
-                                <td>New password:</td><td><input type="password" name="pass1" /></td>
+                                <td>New password:</td><td><input type="password" name="activeer_pass1" /></td>
                             </tr>
                             <tr>
-                                <td>Verify:</td><td><input type="password" name="pass2" /></td>
+                                <td>Verify:</td><td><input type="password" name="activeer_pass2" /></td>
                             </tr>
                             <tr>
-                                <td></td><td><input type="submit" name="submit" value="Change Pass" /></td>
+                                <td></td><td><input type="submit" name="activeer_submit" value="Change Pass" /></td>
                             </tr>
                         </table>
                     </form>

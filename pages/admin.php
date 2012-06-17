@@ -9,14 +9,14 @@ include 'safe_admin.php';
 if (isset($_GET['edit'])) {
     // Bewerken
     if (is_numeric($_GET['edit'])) {
-        if (isset($_POST['submit'])) {
+        if (isset($_POST['admin_submit'])) {
             // Bewerkenuitvoeren
-            if ($_POST['pass1'] != "") {
-                if ($_POST['pass1'] == $_POST['pass2']) {
-                    $newpass = md5($_POST['pass1']);
+            if ($_POST['admin_pass1'] != "") {
+                if ($_POST['admin_pass1'] == $_POST['admin_pass2']) {
+                    $newpass = md5($_POST['admin_pass1']);
                     $stmt = $db->stmt_init();
                     $stmt->prepare('UPDATE `gebruikers` SET `naam` = ?, `wachtwoord` = ?, `email` = ?, `actief` = ?, `status` = ? WHERE `id` = ?');
-                    $stmt->bind_param('sssisi', $_POST['naam'], $newpass, $_POST['email'], $_POST['actief'], $_POST['status'], $_GET['edit']);
+                    $stmt->bind_param('sssisi', $_POST['admin_naam'], $newpass, $_POST['admin_email'], $_POST['admin_actief'], $_POST['admin_status'], $_GET['edit']);
 
                     if ($stmt->execute()) {
                         echo 'De gebruiker is succesvol gewijzigd, wachtwoord is veranderd.<br /><a href="?page=admin">&laquo; Terug naar het beheer</a>';
@@ -32,7 +32,7 @@ if (isset($_GET['edit'])) {
                 // Zonder wachtwoord wijzigen
                 $stmt = $db->stmt_init();
                 $stmt->prepare('UPDATE `gebruikers` SET `naam` = ?, `email` = ?, `actief` = ?, `status` = ? WHERE `id` = ?');
-                $stmt->bind_param('ssisi', $_POST['naam'], $_POST['email'], $_POST['actief'], $_POST['status'], $_GET['edit']);
+                $stmt->bind_param('ssisi', $_POST['admin_naam'], $_POST['admin_email'], $_POST['admin_actief'], $_POST['admin_status'], $_GET['edit']);
 
                 if ($stmt->execute()) {
                     echo 'De gebruiker is succesvol gewijzigd.<br /><a href="?page=admin">&laquo; Terug naar het beheer</a>';
@@ -58,25 +58,25 @@ if (isset($_GET['edit'])) {
             <form method="post" action="?page=admin&edit=<?= $_GET['edit'] ?>">
                 <table>
                     <tr>
-                        <td>Naam:</td><td><input type="text" name="naam" value="<?= $naam ?>" maxlength="50" /></td>
+                        <td>Naam:</td><td><input type="text" name="admin_naam" value="<?= $naam ?>" maxlength="50" /></td>
                     </tr>
                     <tr>
-                        <td>Nieuw wachtwoord:</td><td><input type="password" name="pass1" /> <small>(leeglaten voor huidige)</small></td>
+                        <td>Nieuw wachtwoord:</td><td><input type="password" name="admin_pass1" /> <small>(leeglaten voor huidige)</small></td>
                     </tr>
                     <tr>
-                        <td>Herhaal:</td><td><input type="password" name="pass2" /></td>
+                        <td>Herhaal:</td><td><input type="password" name="admin_pass2" /></td>
                     </tr>
                     <tr>
-                        <td>E-mailadres:</td><td><input type="text" name="email" value="<?= $email ?>" maxlength="100" /></td>
+                        <td>E-mailadres:</td><td><input type="text" name="admin_email" value="<?= $email ?>" maxlength="100" /></td>
                     </tr>
                     <tr>
-                        <td>Actief:</td><td><input type="text" name="actief" value="<?= $actief ?>" maxlength="1" size="1" /> <small>(1 = actief, 0 = niet actief)</small></td>
+                        <td>Actief:</td><td><input type="text" name="admin_actief" value="<?= $actief ?>" maxlength="1" size="1" /> <small>(1 = actief, 0 = niet actief)</small></td>
                     </tr>
                     <tr>
-                        <td>Status:</td><td><input type="text" name="status" value="<?= $status ?>" maxlength="1" size="1" /> <small>(1 = admin, 0 = gebruiker)</small></td>
+                        <td>Status:</td><td><input type="text" name="admin_status" value="<?= $status ?>" maxlength="1" size="1" /> <small>(1 = admin, 0 = gebruiker)</small></td>
                     </tr>
                     <tr>
-                        <td></td><td><input type="submit" name="submit" value="Opslaan" /></td>
+                        <td></td><td><input type="submit" name="admin_submit" value="Opslaan" /></td>
                     </tr>
                 </table>
             </form>

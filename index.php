@@ -43,7 +43,8 @@ $allowed_url = array( //this is our array of allowed requests
     'denied',
     'credits',
     'irc',
-    'admin'
+    'admin',
+    'forgotpass'
 );
 
 $page = $_GET['page']; //sets the page variable from http request

@@ -61,7 +61,7 @@ if (isset($_GET['id'])) {
                 } else {
                     // Formulier wachtwoord wijzigen
                     ?>
-                    <form method="post" action="activeren.php?id=<?= $id ?>&code=<?= $_GET['code'] ?>">
+                    <form method="post" action="?page=activeren&id=<?= $id ?>&code=<?= $_GET['code'] ?>">
                         <table>
                             <tr>
                                 <td>New password:</td><td><input type="password" name="activeer_pass1" /></td>

@@ -11,16 +11,18 @@ if (isset($_POST['useropties_submit'])) {
         if ($_POST['useropties_pass1'] != "") {
             // Wachtwoord wijzigen
             $stmt = $db->stmt_init();
-            $stmt->prepare('SELECT `wachtwoord` FROM `gebruikers` WHERE `id` = ?');
+            $stmt->prepare('SELECT `naam`, `wachtwoord` FROM `gebruikers` WHERE `id` = ?');
             $stmt->bind_param('i', $_SESSION['user_id']);
             $stmt->execute();
-            $stmt->bind_result($rij_wachtwoord);
+            $stmt->bind_result($naam, $dbpass);
             $stmt->fetch();
             $stmt->close();
-            $dbpass = htmlspecialchars($rij_wachtwoord);
-            if ($dbpass == md5($_POST['useropties_passnow'])) {
+            
+            $userpass = hash('sha256', $sitesalt.$_POST['login_pass'].$_POST['login_user'].substr($dbpass, 0, 64));
+            if (substr($dbpass, 64) == $userpass)) {
                 if ($_POST['useropties_pass1'] == $_POST['useropties_pass2']) {
-                    $newpass = md5($_POST['useropties_pass1']);
+                    $usersalt = bin2hex(mcrypt_create_iv(32, MCRYPT_DEV_URANDOM));
+                    $newpass = $usersalt.hash('sha256', $sitesalt.$_POST['useropties_pass1'].$naam.$usersalt);
                     $stmt = $db->stmt_init();
                     $stmt->prepare('UPDATE `gebruikers` SET `email` = ?, `wachtwoord` = ? WHERE `id` = ?');
                     $stmt->bind_param('ssi', $_POST['useropties_email'], $newpass, $_SESSION['user_id']);

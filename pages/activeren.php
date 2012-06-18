@@ -9,11 +9,11 @@ if (isset($_GET['id'])) {
 
     if (isset($_GET['code'])) {
         $stmt = $db->stmt_init();
-        $stmt->prepare('SELECT `id`, `actcode`, `actief` FROM `gebruikers` WHERE `id` = ?');
+        $stmt->prepare('SELECT `id`, `naam`, `actcode`, `actief` FROM `gebruikers` WHERE `id` = ?');
         $stmt->bind_param('i', $id);
 
         $stmt->execute();
-        $stmt->bind_result($id, $actcode, $actief);
+        $stmt->bind_result($id, $naam, $actcode, $actief);
         $stmt->fetch();
         $stmt->close();
 
@@ -41,11 +41,12 @@ if (isset($_GET['id'])) {
                 } else if (isset($_POST['activeer_submit'])) {
                     // Uitvoeren
                     if($_POST['activeer_pass1'] == $_POST['activeer_pass2']) {
-                        $md5pass = md5($_POST['activeer_pass1']);
+                        $usersalt = bin2hex(mcrypt_create_iv(32, MCRYPT_DEV_URANDOM));
+                        $hashpass = $usersalt.hash('sha256', $sitesalt.$_POST['activeer_pass1'].$naam.$usersalt);
 
                         $stmt = $db->stmt_init();
                         $stmt->prepare('UPDATE `gebruikers` SET `wachtwoord` = ?, `actief` = 1, `actcode` = \'\' WHERE `id` = ?');
-                        $stmt->bind_param('si', $md5pass, $id);
+                        $stmt->bind_param('si', $hashpass, $id);
 
                         if ($stmt->execute()) {
                             echo 'Your account has been activated and your password is changed.<br /><a href="?page=inloggen">&laquo; Go to login</a>';

@@ -13,7 +13,8 @@ if (isset($_GET['edit'])) {
             // Bewerkenuitvoeren
             if ($_POST['admin_pass1'] != "") {
                 if ($_POST['admin_pass1'] == $_POST['admin_pass2']) {
-                    $newpass = md5($_POST['admin_pass1']);
+                    $usersalt = bin2hex(mcrypt_create_iv(32, MCRYPT_DEV_URANDOM));
+                    $newpass = $usersalt.hash('sha256', $sitesalt.$_POST['admin_pass1'].$_POST['admin_naam'].$usersalt);
                     $stmt = $db->stmt_init();
                     $stmt->prepare('UPDATE `gebruikers` SET `naam` = ?, `wachtwoord` = ?, `email` = ?, `actief` = ?, `status` = ? WHERE `id` = ?');
                     $stmt->bind_param('sssisi', $_POST['admin_naam'], $newpass, $_POST['admin_email'], $_POST['admin_actief'], $_POST['admin_status'], $_GET['edit']);

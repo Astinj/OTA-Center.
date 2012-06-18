@@ -22,4 +22,5 @@ $forgoturl = 'http://sensation-devs.org/romupdater/'; // Volledige URL naar inlo
 $sitenaam = 'OTA-Service'; // Naam van je site; deze word oa. gebruikt bij het verzenden van mail
 $sitemail = 'ota@sensation-devs.org'; // Afzender van verzonden mail
 $sitebaseurl = 'http://www.sensation-devs.org/romupdater/';
+$sitesalt = 'supersecretlongsalt - replace on install';
 ?>

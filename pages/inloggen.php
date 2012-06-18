@@ -60,9 +60,9 @@ if (isset($_SESSION['user_id'])) {
     $stmt->fetch();
     $stmt->close();
 
-    $userpass = md5($_POST['login_pass']);
+    $userpass = hash('sha256', $sitesalt.$_POST['login_pass'].$_POST['login_user'].substr($dbpass, 0, 64));
     $username = htmlspecialchars($rij_naam);
-    if ($dbpass == $userpass) {
+    if (substr($dbpass, 64) == $userpass) {
         if ($useractief == 1) {
             $_SESSION['user_id'] = $userid;
             $_SESSION['user_name'] = $username;

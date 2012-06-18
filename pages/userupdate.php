@@ -33,7 +33,7 @@ if (!empty($_GET['id'])) {
                         <input id="update_user_name" name="name" type="text" class="rom" value="<? echo $naam; ?>" />
                     </p>
                     <p>
-                        <label for="update_user_pass">Password in md5:</label>
+                        <label for="update_user_pass">Salted Password in SHA-256:</label>
                         <input id="update_user_pass" name="update_user_pass" type="text" class="rom" value="<? echo $wachtwoord; ?>" />
                     </p>
                     <p>

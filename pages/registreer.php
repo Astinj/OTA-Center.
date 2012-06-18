@@ -21,7 +21,7 @@ if (!isset($_SESSION['user_id'])) {
 
             if ($tellen == 0) {
                 // E-mailcheck
-                if (preg_match('/^[A-Z0-9._%-]+@[A-Z0-9._%-]+\.[A-Z]{2,6}$/i', $_POST['email'])) {
+                if (preg_match('/^[A-Z0-9._%-]+@[A-Z0-9._%-]+\.[A-Z]{2,6}$/i', $_POST['registreer_email'])) {
                     // Email correct
                     if ($_POST['registreer_pass1'] == $_POST['registreer_pass2']) {
                         $actcode = mt_srand((double) microtime()*100000);
@@ -88,19 +88,19 @@ EOF;
                 <fieldset>
                     <p>
                         <label for="registreer_user">Username</label>
-                        <input id="registreer_user" name="registreer_user" type="text" class="text" value="" />
+                        <input id="registreer_user" name="registreer_user" type="text" value="" class="icon" />
                     </p>
                     <p>
                         <label for="registreer_pass1">Password</label>
-                        <input id="registreer_pass1" name="registreer_pass1" class="text" type="password" />
+                        <input id="registreer_pass1" name="registreer_pass1" type="password" class="icon" />
                     </p>
                     <p>
                         <label for="registreer_pass2">Verify</label>
-                        <input id="registreer_pass2" name="registreer_pass2" class="text" type="password" />
+                        <input id="registreer_pass2" name="registreer_pass2" type="password" class="icon" />
                     </p>
                     <p>
                         <label for="registreer_email">E-Mail</label>
-                        <input id="registreer_email" name="registreer_email" type="text" class="text" value="" />
+                        <input id="registreer_email" name="registreer_email" type="text" value="" class="icon" />
                     </p>
                     <p>
                         <button id="registreer_submit" name="registreer_submit" type="submit">Register</button>

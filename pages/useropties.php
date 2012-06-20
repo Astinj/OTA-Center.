@@ -6,7 +6,7 @@
 // Inloggen verplicht; safe.php
 include "safe.php";
 
-if (isset($_POST['useropties_submit'])) {
+if (isset($_POST['update_user_submit'])) {
     if (preg_match("/^[A-Z0-9._%-]+@[A-Z0-9._%-]+\.[A-Z]{2,6}$/i", $_POST['useropties_email'])) {
         if ($_POST['useropties_pass1'] != "") {
             // Wachtwoord wijzigen
@@ -17,9 +17,9 @@ if (isset($_POST['useropties_submit'])) {
             $stmt->bind_result($naam, $dbpass);
             $stmt->fetch();
             $stmt->close();
-            
-            $userpass = hash('sha256', $sitesalt.$_POST['login_pass'].$_POST['login_user'].substr($dbpass, 0, 64));
-            if (substr($dbpass, 64) == $userpass)) {
+
+            $userpass = hash('sha256', $sitesalt.$_POST['useropties_passnow'].$naam.substr($dbpass, 0, 64));
+            if (substr($dbpass, 64) == $userpass) {
                 if ($_POST['useropties_pass1'] == $_POST['useropties_pass2']) {
                     $usersalt = bin2hex(mcrypt_create_iv(32, MCRYPT_DEV_URANDOM));
                     $newpass = $usersalt.hash('sha256', $sitesalt.$_POST['useropties_pass1'].$naam.$usersalt);
@@ -27,7 +27,7 @@ if (isset($_POST['useropties_submit'])) {
                     $stmt->prepare('UPDATE `gebruikers` SET `email` = ?, `wachtwoord` = ? WHERE `id` = ?');
                     $stmt->bind_param('ssi', $_POST['useropties_email'], $newpass, $_SESSION['user_id']);
                     if ($stmt->execute()) {
-                        echo "Your mailadress is changed to '{$_POST['email']}', your password has changed too.<br /><a href=\"?page=useropties\">&laquo; Go back</a>";
+                        echo "Your mailadress is changed to '{$_POST['useropties_email']}', your password has changed too.<br /><a href=\"?page=useropties\">&laquo; Go back</a>";
                         if (isset($_COOKIE['user_password'])) {
                             setcookie("user_password", $newpass, time() + 365 * 86400);
                         }
@@ -38,7 +38,7 @@ if (isset($_POST['useropties_submit'])) {
                     echo 'The new passwords do not match. Please try again.<br /><a href="javascript:history.back()">&laquo; Go Back</a>';
                 }
             } else {
-                echo 'The filled out \'current password\' is not right.<br />\n<a href="javascript:history.back()">&laquo; Go Back</a>';
+                echo 'The filled out \'current password\' is not right.<br /><a href="javascript:history.back()">&laquo; Go Back</a>';
             }
         } else {
             // Alleen e-mail wijzigen
@@ -60,7 +60,7 @@ if (isset($_POST['useropties_submit'])) {
     $stmt->prepare('SELECT `naam`, `email` FROM `gebruikers` WHERE `id` = ?');
     $stmt->bind_param('i', $_SESSION['user_id']);
     $stmt->execute();
-    $stmt->bind_result($rij_namm, $rij_email);
+    $stmt->bind_result($rij_naam, $rij_email);
     $stmt->fetch();
     $stmt->close();
 
@@ -77,22 +77,22 @@ if (isset($_POST['useropties_submit'])) {
                 </p>
                 <p>
                     <label for="useropties_email">Email</label>
-                    <input id="useropties_email" name="useropties_email" type="text" class="text" value="" />
+                    <input id="useropties_email" name="useropties_email" type="text" value="<?= $email ?>" class="icon" />
                 </p>
                 <p>
                     <label for="useropties_passnow">Current Password</label>
-                    <input id="useropties_passnow" name="useropties_passnow" class="text" type="password" />
+                    <input id="useropties_passnow" name="useropties_passnow" type="password" class="icon" />
                 </p>
                 <p>
                     <label for="useropties_pass1">New Password</label>
-                    <input id="useropties_pass1" name="useropties_pass1" class="text" type="password" />
+                    <input id="useropties_pass1" name="useropties_pass1" type="password" class="icon" />
                 </p>
                 <p>
                     <label for="useropties_pass2">Verify</label>
-                    <input id="useropties_pass2" name="useropties_pass2" class="text" type="password" />
+                    <input id="useropties_pass2" name="useropties_pass2" type="password" class="icon" />
                 </p>
                 <p>
-                    <button id="useropties_submit" name="useropties_submit" type="submit">Save</button>
+                    <button id="update_user_submit" name="update_user_submit" type="submit">Save</button>
                 </p>
             </fieldset>
         </form>

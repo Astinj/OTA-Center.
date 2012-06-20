@@ -33,7 +33,7 @@ if (!isset($_SESSION['user_id'])) {
 
                     if ($stmt->execute()) {
                         $bericht = <<<EOF
-Beste {$_POST['user']},
+Beste {$_POST['forgot_user']},
 Op de website $sitenaam heb je aangegeven dat je je wachtwoord bent vergeten.
 Om je wachtwoord te wijzigen, druk je op de link onderaan deze mail, en wijzig je je wachtwoord.
 Wanneer je niet je wachtwoord wilt wijzigen, klik je op de 2e link, deze zal je account weer activeren, met je huidige wachtwoord.

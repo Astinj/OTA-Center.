@@ -6,13 +6,15 @@
 
 if (isset($_SESSION['user_id'])) {
     ?>
-    <h2>Welcome <a href="./?page=useropties"><? echo $_SESSION['user_name']; ?></a></h2>
-    <ul>
-        <li><a href="./?page=home">Home</a></li>
-        <li><a href="./?page=list-roms">List Roms</a></li>
-        <li><a href="./?page=add">Add Rom</a></li>
-        <li><a href="./?page=uitloggen">Logout</a></li>
-    </ul>
+    <div class="sidebar">
+        <h2>Welcome <a href="./?page=useropties"><? echo $_SESSION['user_name']; ?></a></h2>
+        <ul>
+            <li><a href="./?page=home">Home</a></li>
+            <li><a href="./?page=list-roms">List Roms</a></li>
+            <li><a href="./?page=add">Add Rom</a></li>
+            <li><a href="./?page=uitloggen">Logout</a></li>
+        </ul>
+    </div>
     <? if ($_SESSION['user_status'] == 1) { ?>
         <div class="sidebar">
             <h2>Admin Menu</h2>

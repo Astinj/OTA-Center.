@@ -100,14 +100,8 @@ $page = $_GET['page']; //sets the page variable from http request
         </header>
         <div id="site_content">
             <div id="sidebar_container">
-                <? if (isset($_SESSION['user_id'])) { ?>
-                    <div class="sidebar">
-                        <? //include 'pages/loggedin.php'; ?>
-                    </div>
-                <? } else if ($page != 'inloggen') { ?>
-                    <div class="sidebar">
-                        <? include 'pages/inloggen.php'; ?>
-                    </div>
+                <? if ($page != 'inloggen') { ?>
+                    <? include 'pages/inloggen.php'; ?>
                 <? } ?>
                 <div class="sidebar">
                     <h3>Useful Links</h3>

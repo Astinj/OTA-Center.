@@ -11,6 +11,51 @@ ini_set('display_errors', true);
 // when the form of update.php is submitted with info, continue, if else redirect to list-roms.php page
 if (isset($_SESSION['user_id'])) {
     if (isset($_POST['submit_form'])) {
+        $stmt = $db->stmt_init();
+        $stmt->prepare('SELECT `md5`, `version` FROM `id` = ?');
+        $stmt->bind_param('i', $_POST['id']);
+        $stmt->execute();
+        $stmt->bind_result($md5, $version);
+        $stmt->fetch();
+        $stmt->close();
+        
+        if ($md5 != $_POST['md5'] && $version != $_POST['version']) {
+            $stmt = $db->stmt_init();
+            $stmt->prepare('SELECT `reg_id` FROM `ota_devices` WHERE `romid` = ? AND `device` = ?');
+            $stmt->bind_param('ss', $_POST['romid'], $_POST['device']);
+            $stmt->execute();
+            $stmt->bind_result($regid);
+            
+            $regids = array();
+            while ($stmt->fetch()) $regids[] = $regid;
+            $stmt->close();
+            
+            $ch = curl_init('https://android.googleapis.com/gcm/send');
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode(array(
+                'registration_ids' => $regids,
+                'collapse_key' => 'ROM Update Available',
+                'data' => array(
+                    'info_rom' => $_POST['rom'],
+                    'info_changelog' => $_POST['changelog'],
+                    'info_url' => $_POST['url'],
+                    'info_build' => $_POST['buildfingerprint']
+                ),
+                'delay_while_idle' => true
+            )));
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+                'Content-Type: application/json',
+                'Authorization: key=GCM_API_KEY'
+            ));
+            
+            $result = curl_exec($ch);
+            
+            if (curl_getinfo($ch, CURLINFO_HTTP_CODE) != 200) {
+                echo 'NOTE: Sending GCM notification(s) unsuccessful.<br /><br />';
+            }
+        }
+        
         // update data in mysql database
         $stmt = $db->stmt_init();
         $stmt->prepare('UPDATE `roms` SET `rom` = ?, `romid` = ? `version` = ?, `buildfingerprint` = ?, `url` = ?, `md5` = ?, `changelog` = ?, `userid` = ?, `device` = ?, `romversionname` = ? WHERE `id` = ?');
@@ -24,6 +69,8 @@ if (isset($_SESSION['user_id'])) {
         } else {
             echo 'ERROR';
         }
+        
+        $stmt->close();
     } else {
         header('Location: ?page=list-roms');
     }

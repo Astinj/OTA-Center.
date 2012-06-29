@@ -2,8 +2,8 @@
 if (isset($_SESSION['user_id'])) {
     // update data in mysql database
     $stmt = $db->stmt_init();
-    $stmt->prepare('INSERT INTO `roms` (`rom`, `version`, `buildfingerprint`, `url`, `md5`, `changelog`, `userid`, `device`, `romversionname`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)');
-    $stmt->bind_param('ssssssiss', $_POST['rom'], $_POST['version'], $_POST['buildfingerprint'], $_POST['url'], $_POST['md5'], $_POST['changelog'], $_SESSION['user_id'], $_POST['device'], $_POST['romversionname']);
+    $stmt->prepare('INSERT INTO `roms` (`rom`, `romid`, `version`, `buildfingerprint`, `url`, `md5`, `changelog`, `userid`, `device`, `romversionname`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)');
+    $stmt->bind_param('sssssssiss', $_POST['rom'], $_POST['romid'], $_POST['version'], $_POST['buildfingerprint'], $_POST['url'], $_POST['md5'], $_POST['changelog'], $_SESSION['user_id'], $_POST['device'], $_POST['romversionname']);
 
     // if successfully updated.
     if ($stmt->execute()) {

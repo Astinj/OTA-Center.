@@ -16,6 +16,10 @@ if (!isset($_SESSION['user_id'])) {
                 <input id="rom" name="rom" type="text" class="rom" value="" />
             </p>
             <p>
+                <label for="romid">Enter ROM OTA ID</label>
+                <input id="romid" name="romid" type="text" class="rom" value="" />
+            </p>
+            <p>
                 <label for="version">Enter version number as: 1.2.0</label>
                 <input id="version" name="version" type="text" class="rom" value="" />
             </p>

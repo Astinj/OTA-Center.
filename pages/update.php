@@ -14,7 +14,7 @@ if (!empty($_GET['id'])) {
 
     // Retrieve data from database
     $stmt = $db->stmt_init();
-    $stmt->prepare('SELECT `id`, `rom`, `version`, `buildfingerprint`, `url`, `md5`, `changelog`, `device`, `romversionname`, `userid` FROM `roms` WHERE `id` = ?');
+    $stmt->prepare('SELECT `id`, `rom`, `romid`, `version`, `buildfingerprint`, `url`, `md5`, `changelog`, `device`, `romversionname`, `userid` FROM `roms` WHERE `id` = ?');
     $stmt->bind_param('i', $id);
     $stmt->execute();
     $stmt->bind_result($id, $rom, $version, $buildfingerprint, $url, $md5, $changelog, $device, $romversionname, $userid);
@@ -32,6 +32,10 @@ if (!empty($_GET['id'])) {
                         <p>
                             <label for="rom"><? echo $rom; ?></label>
                             <input id="rom" name="rom" type="text" class="rom" value="<? echo $rom; ?>" />
+                        </p>
+                        <p>
+                            <label for="romid"><? echo $romid; ?></label>
+                            <input id="romid" name="romid" type="text" class="rom" value="<? echo $romid; ?>" />
                         </p>
                         <p>
                             <label for="version"><? echo $version; ?></label>

@@ -8,24 +8,31 @@
 header('Content-Type: application/json');
 
 include 'config.php';
-$romname = $_GET['romname'];
+$romid = $_GET['rom'];
+$device = $_GET['device'];
 
-$json = array();
+$stmt = $db->stmt_init();
+$stmt->prepare('SELECT `rom`, `version`, `buildfingerprint`, `url`, `md5`, `changelog`, `device` FROM `roms` WHERE `romid` = ? AND `device` = ? ORDER BY `version` ASC LIMIT 1');
+$stmt->bind_param('ss', $romid, $device);
+$stmt->execute();
+$stmt->bind_result($version, $rom, $buildfingerprint, $url, $md5, $changelog);
 
-$sql = "SELECT `rom`, `version`, `buildfingerprint`, `url`, `md5`, `changelog`, `device` FROM `roms` ORDER BY `version` ASC";
-$query = $db->query($sql);
-while($rij = $query->fetch_object()) {
-    if ($rij->rom == $romname) {
-        $json[$rij->device] = array(
-            'version' => $rij->version,
-            'rom' => $rij->rom,
-            'build-fingerprint' => $rij->buildfingerprint,
-            'url' => $rij->url,
-            'md5' => $rij->md5,
-            'changelog' => $rij->changelog
-        );
-    }
+if ($stmt->fetch()) {
+    $json = array(
+        'version' => $version,
+        'rom' => $rom,
+        'build-fingerprint' => $buildfingerprint,
+        'url' => $url,
+        'md5' => $md5,
+        'changelog' => $changelog
+    );
+} else {
+    $json = array(
+        'error' => 'Invalid ROM/device combo!'
+    );
 }
 
-echo json_encode(array("$romname" => $json));
+$stmt->close();
+
+echo json_encode($json);
 ?>

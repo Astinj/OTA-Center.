@@ -44,7 +44,7 @@ Hello {$_POST['user']},
 You have registered on this site: $sitenaam, this is the activation mail.
 To activate your account click on the link below.
 
-Confirm registration: {$sitebaseurl}?page=activeren&id=$dbid&code=$actcode&registratie=true
+Confirm registration: {$sitebaseurl}?page=activeren&id=$dbid&code=$actcode&activeer=true
 
 As soon as you clicked on the link you will be able to login with:
 Username: {$_POST['registreer_user']}

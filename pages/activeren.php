@@ -26,13 +26,8 @@ if (isset($_GET['id'])) {
                     $stmt->bind_param('i', $id);
 
                     if ($stmt->execute()) {
-                        if (isset($_GET['activeer'])) {
-                            // Activeren en huidige pass behouden
-                            echo 'Your account has been activated, you can now login with your old password.<br />n<a href="inloggen.php">&laquo; Go to login.</a>';
-                        } else {
-                            // Activeren naar registratie
-                            echo 'Your account has been activated, you can now login.<br /><a href="?page=inloggen">&laquo; Go to login.</a>';
-                        }
+                        // Activeren naar registratie
+                        echo 'Your account has been activated, you can now login.<br /><a href="?page=inloggen">&laquo; Go to login.</a>';
                     } else {
                         echo 'An error occured while activating.';
                     }

@@ -55,7 +55,7 @@ if (!empty($_GET['id'])) {
                         </p>
                         <p>
                             <label for="changelog"><? echo $changelog; ?></label>
-                            <textarea id="changelog" name="changelog" class="rom" value="<? echo $changelog; ?>"></textarea>
+                            <textarea id="changelog" name="changelog" class="rom"><? echo $changelog; ?></textarea>
                         </p>
                         <p>
                             <label for="device"><? echo $device; ?></label>

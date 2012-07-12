@@ -50,7 +50,7 @@ if (!empty($_GET['id'])) {
                     </p>
                     <p>
                         <label for="update_user_lastactive">Last active on:</label>
-                        <input id="update_user_lastactive" name="update_user_lastactive" disable="disable" type="text" class="rom" value="<? echo $lastactive; ?>" />
+                        <input id="update_user_lastactive" name="update_user_lastactive" disabled="disabled" type="text" class="rom" value="<? echo $lastactive; ?>" />
                     </p>
                     <input name="id" type="hidden" id="id" value="<? echo $id; ?>">
                     <input name="actcode" type="hidden" id="actcode" value="<? echo $actcode; ?>">

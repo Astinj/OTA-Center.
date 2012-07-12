@@ -9,12 +9,12 @@
 $query = $db->query('SELECT `naam`, `status` FROM `gebruikers` WHERE DATE_SUB(NOW(),INTERVAL 10 MINUTE) <= `lastactive` ORDER BY `naam` ASC');
 $tellen = $query->num_rows;
 $i = 1;
-while (rij = $query->fetch_object()) {
+while ($rij = $query->fetch_object()) {
     $naam = htmlspecialchars($rij->naam);
     if ($rij->status == 1) {
         $naam = "<b>$naam</b>";
     }
-    
+
     echo $naam;
     if ($i != $tellen) {
         echo ', ';

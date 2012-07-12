@@ -18,7 +18,7 @@ if (isset($_POST['submit_form'])) {
     // if successfully updated.
     if ($stmt->execute()){
         echo 'Successful';
-        echo '<br />";
+        echo '<br />';
         echo '<a href="?page=listusers">View result</a>';
     } else {
         echo 'ERROR';

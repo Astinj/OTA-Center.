@@ -4,6 +4,43 @@
 // Support by helpdesk90@gmail.com (MSN|Email)
 // Pagina: inloggen.php: Inloggen
 
+if (isset($_POST['login_submit'])) {
+    // Inloggen
+    $stmt = $db->stmt_init();
+    $stmt->prepare('SELECT `id`, `naam`, `wachtwoord`, `status`, `actief`, `lastactive` FROM `gebruikers` WHERE `naam` = ?');
+    $stmt->bind_param('s', $_POST['login_user']);
+    $stmt->execute();
+    $stmt->bind_result($userid, $rij_naam, $dbpass, $userstatus, $useractief, $lastactive);
+    $stmt->fetch();
+    $stmt->close();
+
+    $userpass = hash('sha256', $sitesalt.$_POST['login_pass'].$_POST['login_user'].substr($dbpass, 0, 64));
+    $username = htmlspecialchars($rij_naam);
+    if (substr($dbpass, 64) == $userpass) {
+        if ($useractief == 1) {
+            $_SESSION['user_id'] = $userid;
+            $_SESSION['user_name'] = $username;
+            $_SESSION['user_lastactive'] = $lastactive;
+            $_SESSION['user_status'] = $userstatus;
+            if (isset($_POST['login_cookie'])) {
+                setcookie("user_id", $userid, time() + 365 * 86400);
+                setcookie("user_password", $dbpass, time() + 365 * 86400);
+            }
+            ?>
+            You are logged in correctly.<br />
+            You will be automatticly send to the next page, if nothing happens <a href="./?page=home">Click here.</a>.
+
+            <?
+            //no point in sending header after contents sent...
+            //header("Location: ?page=home");
+        } else {
+            echo 'Your account has not been activated. Activate your account by clicking the link in the mail that we send at registration.<br /><a href="javascript:history.back()">&laquo; Go Back.</a>';
+        }
+    } else {
+        echo "Your password does not match with the account '{$_POST['login_user']}'.<br /><a href=\"javascript:history.back()\">&laquo; Go Back.</a>";
+    }
+}
+
 if (isset($_SESSION['user_id'])) {
     ?>
     <div class="sidebar">
@@ -51,41 +88,6 @@ if (isset($_SESSION['user_id'])) {
         echo "The cookies found on your pc do not match our database, it can be that your password has changed or that your account has been deactivated. <br />\nYour old cookies have been deleted.";
         setcookie("user_id", "", time() - 3600);
         setcookie("user_password", "", time() - 3600);
-    }
-} else if (isset($_POST['login_submit'])) {
-    // Inloggen
-    $stmt = $db->stmt_init();
-    $stmt->prepare('SELECT `id`, `naam`, `wachtwoord`, `status`, `actief`, `lastactive` FROM `gebruikers` WHERE `naam` = ?');
-    $stmt->bind_param('s', $_POST['login_user']);
-    $stmt->execute();
-    $stmt->bind_result($userid, $rij_naam, $dbpass, $userstatus, $useractief, $lastactive);
-    $stmt->fetch();
-    $stmt->close();
-
-    $userpass = hash('sha256', $sitesalt.$_POST['login_pass'].$_POST['login_user'].substr($dbpass, 0, 64));
-    $username = htmlspecialchars($rij_naam);
-    if (substr($dbpass, 64) == $userpass) {
-        if ($useractief == 1) {
-            $_SESSION['user_id'] = $userid;
-            $_SESSION['user_name'] = $username;
-            $_SESSION['user_lastactive'] = $lastactive;
-            $_SESSION['user_status'] = $userstatus;
-            if (isset($_POST['login_cookie'])) {
-                setcookie("user_id", $userid, time() + 365 * 86400);
-                setcookie("user_password", $dbpass, time() + 365 * 86400);
-            }
-            ?>
-            You are logged in correctly.<br />
-            You will be automatticly send to the next page, if nothing happens <a href="./?page=home">Click here.</a>.
-
-            <?
-            //no point in sending header after contents sent...
-            //header("Location: ?page=home");
-        } else {
-            echo 'Your account has not been activated. Activate your account by clicking the link in the mail that we send at registration.<br /><a href="javascript:history.back()">&laquo; Go Back.</a>';
-        }
-    } else {
-        echo "Your password does not match with the account '{$_POST['login_user']}'.<br /><a href=\"javascript:history.back()\">&laquo; Go Back.</a>";
     }
 } else {
     // Inlogform

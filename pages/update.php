@@ -17,7 +17,7 @@ if (!empty($_GET['id'])) {
     $stmt->prepare('SELECT `id`, `rom`, `romid`, `version`, `buildfingerprint`, `url`, `md5`, `changelog`, `device`, `romversionname`, `userid` FROM `roms` WHERE `id` = ?');
     $stmt->bind_param('i', $id);
     $stmt->execute();
-    $stmt->bind_result($id, $rom, $version, $buildfingerprint, $url, $md5, $changelog, $device, $romversionname, $userid);
+    $stmt->bind_result($id, $rom, $romid, $version, $buildfingerprint, $url, $md5, $changelog, $device, $romversionname, $userid);
     $stmt->fetch();
     $stmt->close();
 

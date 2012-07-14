@@ -12,7 +12,7 @@ ini_set('display_errors', true);
 if (isset($_SESSION['user_id'])) {
     if (isset($_POST['submit_form'])) {
         $stmt = $db->stmt_init();
-        $stmt->prepare('SELECT `md5`, `version` FROM `id` = ?');
+        $stmt->prepare('SELECT `md5`, `version` FROM `roms` WHERE `id` = ?');
         $stmt->bind_param('i', $_POST['id']);
         $stmt->execute();
         $stmt->bind_result($md5, $version);
@@ -60,7 +60,7 @@ if (isset($_SESSION['user_id'])) {
 
         // update data in mysql database
         $stmt = $db->stmt_init();
-        $stmt->prepare('UPDATE `roms` SET `rom` = ?, `romid` = ? `version` = ?, `buildfingerprint` = ?, `url` = ?, `md5` = ?, `changelog` = ?, `userid` = ?, `device` = ?, `romversionname` = ? WHERE `id` = ?');
+        $stmt->prepare('UPDATE `roms` SET `rom` = ?, `romid` = ?, `version` = ?, `buildfingerprint` = ?, `url` = ?, `md5` = ?, `changelog` = ?, `userid` = ?, `device` = ?, `romversionname` = ? WHERE `id` = ?');
         $stmt->bind_param('sssssssissi', $_POST['rom'], $_POST['romid'], $_POST['version'], $_POST['buildfingerprint'], $_POST['url'], $_POST['md5'], $_POST['changelog'], $_POST['userid'], $_POST['device'], $_POST['romversionname'], $_POST['id']);
 
         // if successfully updated.

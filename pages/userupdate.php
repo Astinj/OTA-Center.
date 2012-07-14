@@ -30,7 +30,7 @@ if (!empty($_GET['id'])) {
                 <fieldset>
                     <p>
                         <label for="update_user_name">Username:</label>
-                        <input id="update_user_name" name="name" type="text" class="rom" value="<? echo $naam; ?>" />
+                        <input id="update_user_name" name="update_user_name" type="text" class="rom" value="<? echo $naam; ?>" />
                     </p>
                     <p>
                         <label for="update_user_pass">Salted Password in SHA-256:</label>

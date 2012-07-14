@@ -13,7 +13,7 @@ if (isset($_POST['submit_form'])) {
     // update data in mysql database
     $stmt = $db->stmt_init();
     $stmt->prepare('UPDATE `gebruikers` SET `naam` = ?, `wachtwoord` = ?, `status` = ?, `email` = ?, `actief` = ?, `lastactive` = ?, `actcode` = ? WHERE `id` = ?');
-    $stmt->bind_param('ssssssi', $_POST['naam'], $_POST['wachtwoord'], $_POST['status'], $_POST['email'], $_POST['actief'], $_POST['lastactive'], $_POST['actcode'], $_POST['id']);
+    $stmt->bind_param('sssssssi', $_POST['update_user_name'], $_POST['update_user_pass'], $_POST['update_user_status'], $_POST['update_user_email'], $_POST['update_user_actief'], $_POST['update_user_lastactive'], $_POST['actcode'], $_POST['id']);
 
     // if successfully updated.
     if ($stmt->execute()){

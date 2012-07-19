@@ -17,7 +17,7 @@ if (isset($_POST['do']) && isset($_POST['reg_id'])) {
         }
     } else if ($_POST['do'] == 'unregister') {
         $stmt = $db->stmt_init();
-        $stmt->prepare('DELETE FROM `ota_devices` WHERE `romid` = ?');
+        $stmt->prepare('DELETE FROM `ota_devices` WHERE `reg_id` = ?');
         $stmt->bind_param('s', $_POST['reg_id']);
         $stmt->execute();
         $stmt->close();

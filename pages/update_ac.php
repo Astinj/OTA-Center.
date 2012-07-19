@@ -15,11 +15,27 @@ if (isset($_SESSION['user_id'])) {
         $stmt->prepare('SELECT `md5`, `version` FROM `roms` WHERE `id` = ?');
         $stmt->bind_param('i', $_POST['id']);
         $stmt->execute();
-        $stmt->bind_result($md5, $version);
+        $stmt->bind_result($oldmd5, $oldversion);
         $stmt->fetch();
         $stmt->close();
 
-        if ($md5 != $_POST['md5'] && $version != $_POST['version']) {
+        // update data in mysql database
+        $stmt = $db->stmt_init();
+        $stmt->prepare('UPDATE `roms` SET `rom` = ?, `romid` = ?, `version` = ?, `buildfingerprint` = ?, `url` = ?, `md5` = ?, `changelog` = ?, `userid` = ?, `device` = ?, `romversionname` = ? WHERE `id` = ?');
+        $stmt->bind_param('sssssssissi', $_POST['rom'], $_POST['romid'], $_POST['version'], $_POST['buildfingerprint'], $_POST['url'], $_POST['md5'], $_POST['changelog'], $_POST['userid'], $_POST['device'], $_POST['romversionname'], $_POST['id']);
+
+        // if successfully updated.
+        if ($stmt->execute()){
+            echo 'Successful';
+            echo '<br />';
+            echo '<a href="?page=list-roms">View result</a>';
+        } else {
+            echo 'ERROR';
+        }
+
+        $stmt->close();
+
+        if ($oldmd5 != $_POST['md5'] && $oldversion != $_POST['version']) {
             $stmt = $db->stmt_init();
             $stmt->prepare('SELECT `reg_id` FROM `ota_devices` WHERE `romid` = ? AND `device` = ?');
             $stmt->bind_param('ss', $_POST['romid'], $_POST['device']);
@@ -41,7 +57,8 @@ if (isset($_SESSION['user_id'])) {
                         'info_rom' => $_POST['rom'],
                         'info_changelog' => $_POST['changelog'],
                         'info_url' => $_POST['url'],
-                        'info_build' => $_POST['buildfingerprint']
+                        'info_build' => $_POST['buildfingerprint'],
+                        'info_md5' => $_POST['md5']
                     ),
                     'delay_while_idle' => true
                 )));
@@ -57,22 +74,6 @@ if (isset($_SESSION['user_id'])) {
                 }
             }
         }
-
-        // update data in mysql database
-        $stmt = $db->stmt_init();
-        $stmt->prepare('UPDATE `roms` SET `rom` = ?, `romid` = ?, `version` = ?, `buildfingerprint` = ?, `url` = ?, `md5` = ?, `changelog` = ?, `userid` = ?, `device` = ?, `romversionname` = ? WHERE `id` = ?');
-        $stmt->bind_param('sssssssissi', $_POST['rom'], $_POST['romid'], $_POST['version'], $_POST['buildfingerprint'], $_POST['url'], $_POST['md5'], $_POST['changelog'], $_POST['userid'], $_POST['device'], $_POST['romversionname'], $_POST['id']);
-
-        // if successfully updated.
-        if ($stmt->execute()){
-            echo 'Successful';
-            echo '<br />';
-            echo '<a href="?page=list-roms">View result</a>';
-        } else {
-            echo 'ERROR';
-        }
-
-        $stmt->close();
     } else {
         header('Location: ?page=list-roms');
     }

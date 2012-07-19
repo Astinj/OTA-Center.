@@ -64,7 +64,7 @@ if (isset($_SESSION['user_id'])) {
                 )));
                 curl_setopt($ch, CURLOPT_HTTPHEADER, array(
                     'Content-Type: application/json',
-                    'Authorization: key=GCM_API_KEY'
+                    'Authorization: key='.$gcmapikey
                 ));
 
                 $result = curl_exec($ch);

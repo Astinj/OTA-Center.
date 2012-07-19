@@ -23,4 +23,5 @@ $sitenaam = 'OTA-Service'; // Naam van je site; deze word oa. gebruikt bij het v
 $sitemail = 'ota@otaupdatecenter.pro'; // Afzender van verzonden mail
 $sitebaseurl = 'https://otaupdatecenter.pro';
 $sitesalt = 'supersecretlongsalt - replace on install';
+$gcmapikey = 'GCM_API_KEY';
 ?>

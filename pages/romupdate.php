@@ -12,7 +12,7 @@ $romid = $_GET['rom'];
 $device = $_GET['device'];
 
 $stmt = $db->stmt_init();
-$stmt->prepare('SELECT `rom`, `version`, `buildfingerprint`, `url`, `md5`, `changelog`, `device` FROM `roms` WHERE `romid` = ? AND `device` = ? ORDER BY `version` ASC LIMIT 1');
+$stmt->prepare('SELECT `version`, `rom`, `buildfingerprint`, `url`, `md5`, `changelog` FROM `roms` WHERE `romid` = ? AND `device` = ? ORDER BY `version` ASC LIMIT 1');
 $stmt->bind_param('ss', $romid, $device);
 $stmt->execute();
 $stmt->bind_result($version, $rom, $buildfingerprint, $url, $md5, $changelog);

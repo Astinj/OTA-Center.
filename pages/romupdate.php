@@ -28,7 +28,7 @@ if ($stmt->fetch()) {
     );
 } else {
     $json = array(
-        'error' => 'Invalid ROM/device combo!'
+        'error' => 'Invalid ROM ('.$romid.') & device ('.$device.') combo!'
     );
 }
 

@@ -44,7 +44,8 @@ $allowed_url = array( //this is our array of allowed requests
     'credits',
     'irc',
     'admin',
-    'forgotpass'
+    'forgotpass',
+    'faq'
 );
 
 $page = $_GET['page']; //sets the page variable from http request
@@ -93,7 +94,7 @@ $page = $_GET['page']; //sets the page variable from http request
                         <? }  ?>
                         <li><a href="?page=credits">Credits</a></li>
                         <li><a href="?page=irc">Contact Us</a></li>
-
+                        <li><a href="?page=faq">FAQ</a></li>
                     </ul>
                 </div>
             </nav>

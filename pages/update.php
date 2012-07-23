@@ -14,10 +14,10 @@ if (!empty($_GET['id'])) {
 
     // Retrieve data from database
     $stmt = $db->stmt_init();
-    $stmt->prepare('SELECT `id`, `rom`, `romid`, `version`, `buildfingerprint`, `url`, `md5`, `changelog`, `device`, `romversionname`, `userid` FROM `roms` WHERE `id` = ?');
+    $stmt->prepare('SELECT `id`, `rom`, `romid`, `version`, `url`, `md5`, `changelog`, `device`, `userid` FROM `roms` WHERE `id` = ?');
     $stmt->bind_param('i', $id);
     $stmt->execute();
-    $stmt->bind_result($id, $rom, $romid, $version, $buildfingerprint, $url, $md5, $changelog, $device, $romversionname, $userid);
+    $stmt->bind_result($id, $rom, $romid, $version, $url, $md5, $changelog, $device, $userid);
     $stmt->fetch();
     $stmt->close();
 
@@ -42,10 +42,6 @@ if (!empty($_GET['id'])) {
                             <input id="version" name="version" type="text" class="rom" value="<? echo $version; ?>" />
                         </p>
                         <p>
-                            <label for="buildfingerprint"><? echo $buildfingerprint; ?></label>
-                            <input id="buildfingerprint" name="buildfingerprint" type="text" class="rom" value="<? echo $buildfingerprint; ?>" />
-                        </p>
-                        <p>
                             <label for="url"><? echo $url; ?></label>
                             <input id="url" name="url" type="text" class="rom" value="<? echo $url; ?>" />
                         </p>
@@ -60,10 +56,6 @@ if (!empty($_GET['id'])) {
                         <p>
                             <label for="device"><? echo $device; ?></label>
                             <input id="device" name="device" type="text" class="rom" value="<? echo $device; ?>" />
-                        </p>
-                        <p>
-                            <label for="romversionname"><? echo $romversionname; ?></label>
-                            <input id="romversionname" name="romversionname" type="text" class="rom" value="<? echo $romversionname; ?>" />
                         </p>
                         <p>
                             <label for="userid"><? echo $userid; ?></label>

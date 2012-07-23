@@ -24,10 +24,6 @@ if (!isset($_SESSION['user_id'])) {
                 <input id="version" name="version" type="text" class="rom" value="" />
             </p>
             <p>
-                <label for="buildfingerprint">Enter buildfingerprint here.</label>
-                <input id="buildfingerprint" name="buildfingerprint" type="text" class="rom" value="" />
-            </p>
-            <p>
                 <label for="url">Enter download url.</label>
                 <input id="url" name="url" type="text" class="rom" value="" />
             </p>
@@ -42,10 +38,6 @@ if (!isset($_SESSION['user_id'])) {
             <p>
                 <label for="device">Enter devicename here.</label>
                 <input id="device" name="device" type="text" class="rom" value="" />
-            </p>
-            <p>
-                <label for="romversionname">Enter rom versionname here.</label>
-                <input id="romversionname" name="romversionname" type="text" class="rom" value="" />
             </p>
             <p>
                 <button id="add_rom_submit" name="submit" type="submit">Add Rom</button>

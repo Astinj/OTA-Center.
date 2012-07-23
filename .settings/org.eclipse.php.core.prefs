@@ -1,3 +1,4 @@
-#Thu Jul 12 13:20:04 EDT 2012
 eclipse.preferences.version=1
 include_path=0;/OTA-Center
+phpVersion=php5.3
+useShortTags=true

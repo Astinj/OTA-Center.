@@ -93,8 +93,8 @@ $page = $_GET['page']; //sets the page variable from http request
                             </li>
                         <? }  ?>
                         <li><a href="?page=credits">Credits</a></li>
-                        <li><a href="?page=irc">Contact Us</a></li>
                         <li><a href="?page=faq">FAQ</a></li>
+                        <li><a href="?page=irc">Contact Us</a></li>
                     </ul>
                 </div>
             </nav>

@@ -20,11 +20,10 @@ $stmt->bind_result($rom_id, $rij_rom_name, $rij_rom_version, $rij_rom_url, $rom_
 ?>
 <table style="width:100%; border-spacing:0;">
     <tr>
-        <th>Rom</th>
+        <th>ROM Name</th>
         <th>Version</th>
-        <th>url</th>
-        <th>userid</th>
-        <th>device</th>
+        <th>Download URL</th>
+        <th>Device</th>
         <th><a href="?page=add">Add Rom</a></th>
     </tr>
     <?php
@@ -35,14 +34,13 @@ $stmt->bind_result($rom_id, $rij_rom_name, $rij_rom_version, $rij_rom_url, $rom_
         $rom_device = htmlspecialchars($rij_rom_device);
         ?>
         <tr>
-            <td><a href="<? echo $sitebaseurl; ?>pages/romupdate.php?romname=<? echo $rom_name; ?>"><? echo $rom_name; ?></a></td>
+            <td><? echo $rom_name; ?></td>
             <td><? echo $rom_version; ?></td>
-            <td><? echo $rom_url; ?></td>
-            <td><? echo $rom_userid; ?></td>
+            <td><a href="<? echo $rom_url; ?>"><? echo $rom_url; ?></a></td>
             <td><? echo $rom_device; ?></td>
 
             <!--- link to update.php and send value of id --->
-            <td align="center"><a href="?page=update&id=<? echo $rom_id; ?>">update</a>-<a href="?page=del_ac&id=<? echo $rom_id; ?>">delete</a></td>
+            <td align="center"><a href="?page=update&id=<? echo $rom_id; ?>">Update</a> &bull; <a href="?page=del_ac&id=<? echo $rom_id; ?>">Delete</a></td>
         </tr>
         <?php
     }

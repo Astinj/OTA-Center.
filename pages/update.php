@@ -14,10 +14,10 @@ if (!empty($_GET['id'])) {
 
     // Retrieve data from database
     $stmt = $db->stmt_init();
-    $stmt->prepare('SELECT `id`, `rom`, `romid`, `version`, `url`, `md5`, `changelog`, `device`, `userid` FROM `roms` WHERE `id` = ?');
+    $stmt->prepare('SELECT `id`, `rom`, `romid`, `version`, `date`, `url`, `md5`, `changelog`, `device`, `userid` FROM `roms` WHERE `id` = ?');
     $stmt->bind_param('i', $id);
     $stmt->execute();
-    $stmt->bind_result($id, $rom, $romid, $version, $url, $md5, $changelog, $device, $userid);
+    $stmt->bind_result($id, $rom, $romid, $version, $date, $url, $md5, $changelog, $device, $userid);
     $stmt->fetch();
     $stmt->close();
 
@@ -40,6 +40,10 @@ if (!empty($_GET['id'])) {
                         <p>
                             <label for="version"><? echo $version; ?></label>
                             <input id="version" name="version" type="text" class="rom" value="<? echo $version; ?>" />
+                        </p>
+                        <p>
+                            <label for="date"><? echo $date; ?></label>
+                            <input id="date" name="date" type="text" class="rom" value="<? echo $date; ?>" />
                         </p>
                         <p>
                             <label for="url"><? echo $url; ?></label>

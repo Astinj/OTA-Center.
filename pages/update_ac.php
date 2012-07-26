@@ -12,17 +12,17 @@ ini_set('display_errors', true);
 if (isset($_SESSION['user_id'])) {
     if (isset($_POST['submit_form'])) {
         $stmt = $db->stmt_init();
-        $stmt->prepare('SELECT `version` FROM `roms` WHERE `id` = ?');
+        $stmt->prepare('SELECT `version`, `date` FROM `roms` WHERE `id` = ?');
         $stmt->bind_param('i', $_POST['id']);
         $stmt->execute();
-        $stmt->bind_result($oldversion);
+        $stmt->bind_result($oldversion, $olddate);
         $stmt->fetch();
         $stmt->close();
 
         // update data in mysql database
         $stmt = $db->stmt_init();
-        $stmt->prepare('UPDATE `roms` SET `rom` = ?, `romid` = ?, `version` = ?, `url` = ?, `md5` = ?, `changelog` = ?, `userid` = ?, `device` = ? WHERE `id` = ?');
-        $stmt->bind_param('ssssssisi', $_POST['rom'], $_POST['romid'], $_POST['version'], $_POST['url'], $_POST['md5'], $_POST['changelog'], $_POST['userid'], $_POST['device'], $_POST['id']);
+        $stmt->prepare('UPDATE `roms` SET `rom` = ?, `romid` = ?, `version` = ?, `date` = ?, `url` = ?, `md5` = ?, `changelog` = ?, `userid` = ?, `device` = ? WHERE `id` = ?');
+        $stmt->bind_param('sssssssisi', $_POST['rom'], $_POST['romid'], $_POST['version'], $_POST['date'], $_POST['url'], $_POST['md5'], $_POST['changelog'], $_POST['userid'], $_POST['device'], $_POST['id']);
 
         // if successfully updated.
         if ($stmt->execute()){
@@ -35,7 +35,7 @@ if (isset($_SESSION['user_id'])) {
 
         $stmt->close();
 
-        if ($oldversion != $_POST['version']) {
+        if ($oldversion != $_POST['version'] || strtotime($olddate) < strtotime($_POST['date'])) {
             $stmt = $db->stmt_init();
             $stmt->prepare('SELECT `reg_id` FROM `ota_devices` WHERE `romid` = ? AND `device` = ?');
             $stmt->bind_param('ss', $_POST['romid'], $_POST['device']);

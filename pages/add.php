@@ -16,12 +16,16 @@ if (!isset($_SESSION['user_id'])) {
                 <input id="rom" name="rom" type="text" class="rom" value="" />
             </p>
             <p>
-                <label for="romid">Enter ROM OTA ID</label>
+                <label for="romid">Enter ROM OTA ID (as in build.prop)</label>
                 <input id="romid" name="romid" type="text" class="rom" value="" />
             </p>
             <p>
-                <label for="version">Enter version number as: 1.2.0</label>
+                <label for="version">Enter ROM version (as in build.prop)</label>
                 <input id="version" name="version" type="text" class="rom" value="" />
+            </p>
+            <p>
+                <label for="date">Enter OTA date/time here (yyyymmdd-hhmm, as in build.prop).</label>
+                <input id="date" name="date" type="text" class="rom" value="" />
             </p>
             <p>
                 <label for="url">Enter download url.</label>
@@ -32,7 +36,7 @@ if (!isset($_SESSION['user_id'])) {
                 <input id="md5" name="md5" type="text" class="rom" value="" />
             </p>
             <p>
-                <label for="changelog">Enter Changelog here..</label>
+                <label for="changelog">Enter Changelog here.</label>
                 <textarea id="changelog" name="changelog" class="rom"></textarea>
             </p>
             <p>

@@ -12,14 +12,15 @@ $romid = $_GET['rom'];
 $device = $_GET['device'];
 
 $stmt = $db->stmt_init();
-$stmt->prepare('SELECT `version`, `rom`, `url`, `md5`, `changelog` FROM `roms` WHERE `romid` = ? AND `device` = ? ORDER BY `version` ASC LIMIT 1');
+$stmt->prepare('SELECT `version`, `date`, `rom`, `url`, `md5`, `changelog` FROM `roms` WHERE `romid` = ? AND `device` = ? ORDER BY `version` ASC LIMIT 1');
 $stmt->bind_param('ss', $romid, $device);
 $stmt->execute();
-$stmt->bind_result($version, $rom, $url, $md5, $changelog);
+$stmt->bind_result($version, $date, $rom, $url, $md5, $changelog);
 
 if ($stmt->fetch()) {
     $json = array(
         'version' => $version,
+        'date' => $date,
         'rom' => $rom,
         'url' => $url,
         'md5' => $md5,

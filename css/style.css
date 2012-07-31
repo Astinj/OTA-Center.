@@ -675,7 +675,7 @@ input[type="text"], input[type="password"], textarea {
     border-radius: 15px;
     border:solid 1px #0099cc;
     font-size: 14px;
-    width: 90%;
+    width: 100%;
     padding: 7px 8px 7px 30px;
     box-shadow: 0px 1px 0px #777;
     -webkit-box-shadow: 0px 1px 0px #777;
@@ -695,6 +695,9 @@ input[type="text"], input[type="password"], textarea {
     );
     color: #333;
     text-shadow: 0px 1px 0px #FFF;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
 }
 
 input.icon {

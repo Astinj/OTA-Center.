@@ -115,7 +115,7 @@ if (isset($_SESSION['user_id'])) {
                 <p>
                     <button id="login_submit" name="login_submit" type="submit">Login</button>
                     <br />
-                    <a href="?page=forgotpass">Forgot password?</a>
+                    <a style="float:right" href="?page=forgotpass">Forgot password?</a>
                 </p>
             </fieldset>
 

@@ -18,10 +18,9 @@ $db = new mysqli($db_host, $db_user, $db_pass, $db_db);
 
 // Instellingen
 $loginpage = '?page=list-roms'; // Pagina waar de gebruiker heen wordt gestuurd wanneer deze is ingelogd
-$forgoturl = 'http://sensation-devs.org/romupdater/'; // Volledige URL naar inlogsysteem, voor activeren van wachtwoord vergeten, / aan einde
 $sitenaam = 'OTA-Service'; // Naam van je site; deze word oa. gebruikt bij het verzenden van mail
-$sitemail = 'ota@otaupdatecenter.pro'; // Afzender van verzonden mail
-$sitebaseurl = 'https://otaupdatecenter.pro';
+$sitemail = 'noreplay@otaupdatecenter.pro'; // Afzender van verzonden mail
+$sitebaseurl = 'https://otaupdatecenter.pro/';
 $sitesalt = 'supersecretlongsalt - replace on install';
 $gcmapikey = 'GCM_API_KEY';
 ?>

@@ -7,12 +7,18 @@
 // Connect to server and select database.
 include 'safe.php';
 
+$page = 0;
+$perpage = 20;
+if (isset($_GET['p'])) $page = intval($_GET['p']);
+$pageoffset = $page_num * $perpage;
+
 $stmt = $db->stmt_init();
 if ($_SESSION['user_status'] == 1) {
-    $stmt->prepare('SELECT `id`, `rom`, `version`, `url`, `userid`, `device` FROM `roms`');
+    $stmt->prepare('SELECT SQL_CALC_FOUND_ROWS `id`, `rom`, `version`, `url`, `userid`, `device` FROM `roms` LIMIT ?, ?');
+    $stmt->bind_param('ii', $pageoffset, $perpage);
 } else {
-    $stmt->prepare('SELECT `id`, `rom`, `version`, `url`, `userid`, `device` FROM `roms` WHERE `userid` = ?');
-    $stmt->bind_param('i', $_SESSION['user_id']);
+    $stmt->prepare('SELECT SQL_CALC_FOUND_ROWS `id`, `rom`, `version`, `url`, `userid`, `device` FROM `roms` WHERE `userid` = ? LIMIT ?, ?');
+    $stmt->bind_param('iii', $_SESSION['user_id'], $pageoffset, $perpage);
 }
 $stmt->execute();
 $stmt->bind_result($rom_id, $rij_rom_name, $rij_rom_version, $rij_rom_url, $rom_userid, $rij_rom_device);
@@ -22,7 +28,6 @@ $stmt->bind_result($rom_id, $rij_rom_name, $rij_rom_version, $rij_rom_url, $rom_
     <tr>
         <th>ROM Name</th>
         <th>Version</th>
-        <!--- th>Download URL</th> --->
         <th>Device</th>
         <th><a href="?page=add">Add Rom</a></th>
     </tr>
@@ -30,20 +35,39 @@ $stmt->bind_result($rom_id, $rij_rom_name, $rij_rom_version, $rij_rom_url, $rom_
     while ($stmt->fetch()) {
         $rom_name = htmlspecialchars($rij_rom_name);
         $rom_version = htmlspecialchars($rij_rom_version);
-  //        $rom_url = htmlspecialchars($rij_rom_url);
+        $rom_url = htmlspecialchars($rij_rom_url);
         $rom_device = htmlspecialchars($rij_rom_device);
         ?>
         <tr>
             <td><? echo $rom_name; ?></td>
             <td><? echo $rom_version; ?></td>
-    <!---        <td><a href="<? echo $rom_url; ?>"><? echo $rom_url; ?></a></td> --->
             <td><? echo $rom_device; ?></td>
 
             <!--- link to update.php and send value of id --->
-            <td align="center"><a href="?page=update&id=<? echo $rom_id; ?>">Update</a> &bull; <a href="?page=del_ac&id=<? echo $rom_id; ?>">Delete</a></td>
+            <td align="center">
+                <a href="<?php echo $rom_url; ?>" target="_blank">Download</a> &bull;
+                <a href="?page=update&id=<? echo $rom_id; ?>">Update</a> &bull;
+                <a href="?page=del_ac&id=<? echo $rom_id; ?>">Delete</a>
+            </td>
         </tr>
         <?php
     }
     $stmt->close();
+
+    $total_count_row = $db->query('SELECT FOUND_ROWS()')->fetch_row();
+    $total_count = $total_count_row[0];
     ?>
+    <tr><td colspan="2" style="text-align:left;font-size:smaller;">
+        Showing <?php echo $pageoffset + 1; ?> - <?php echo min($total_count, $pageoffset + $perpage); ?> of <?php echo $total_count; ?> ROMs.
+    </td><td colspan="2" style="text-align:right;font-size:smaller;">
+        <?php if ($page != 0) { ?>
+            <a href="?page=list-roms&p=<?php echo ($page-1); ?>;">&laquo;</a>
+        <?php }
+        $maxpage = ceil($total_count / $perpage);
+        ?>
+        Page <?php echo ($page+1); ?> of <?php echo $maxpage; ?>
+        <?php if ($page < $maxpage - 1) { ?>
+            <a href="?page=list-roms&p=<?php echo ($page+1); ?>;">&raquo;</a>
+        <?php } ?>
+    </td></tr>
 </table>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>OTA-Center.com</title>
+    <title>OTA Update Center</title>
 
     <meta name="description" content="Over The Air Rom Update Center." />
     <meta name="keywords" content="OTA, Over The Air, Rom, Update, Center, Android, XDA, Custom, Roms, AOSP, Sense, Updater, Admin, App, Online Updates" />
@@ -107,11 +107,11 @@ $page = $_GET['page']; //sets the page variable from http request
                 <div class="sidebar">
                     <h3>Useful Links</h3>
                     <ul>
-                        <li><a href="http://www.xda-developers.com/" target="xdadevelopers">Xda-developers</a></li>
-                        <li><a href="#">Another Link</a></li>
-                        <li><a href="#">And Another</a></li>
-                        <li><a href="#">One More</a></li>
-                        <li><a href="#">Last One</a></li>
+                        <li><a href="http://www.xda-developers.com/" target="xdadevelopers">XDA-Developers</a></li>
+                        <li><a href="http://dropbox.com">Dropbox</a></li>
+                        <li><a href="http://drive.google.com">Google Drive</a></li>
+                        <li><a href="http://goo.im">Goo.im</a></li>
+                        <!--- <li><a href="#">Last One</a></li> --->
                     </ul>
                 </div>
                 <? if (isset($_SESSION['user_status']) && $_SESSION['user_status'] == 1) { ?>
@@ -149,7 +149,7 @@ $page = $_GET['page']; //sets the page variable from http request
             </div>
         </div>
         <footer>
-            <p>Copyright &copy; OTA-Center.com | <a href="http://m3nti0n-xda.deviantart.com/">design by M3NTI0N</a></p>
+            <p>Copyright &copy; OTAUpdateCenter.pro | <a href="http://m3nti0n-xda.deviantart.com/">design by M3NTI0N</a></p>
         </footer>
     </div>
     <script type="text/javascript" src="js/jquery.easing-sooper.js"></script>

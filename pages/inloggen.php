@@ -26,13 +26,7 @@ if (isset($_POST['login_submit'])) {
                 setcookie("user_id", $userid, time() + 365 * 86400);
                 setcookie("user_password", $dbpass, time() + 365 * 86400);
             }
-            ?>
-            You are logged in correctly.<br />
-            You will be automatticly send to the next page, if nothing happens <a href="./?page=home">Click here.</a>.
-
-            <?
-            //no point in sending header after contents sent...
-            //header("Location: ?page=home");
+            header("Location: ?page=home");
         } else {
             echo 'Your account has not been activated. Activate your account by clicking the link in the mail that we send at registration.<br /><a href="javascript:history.back()">&laquo; Go Back.</a>';
         }

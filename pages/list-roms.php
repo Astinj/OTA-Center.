@@ -22,7 +22,7 @@ $stmt->bind_result($rom_id, $rij_rom_name, $rij_rom_version, $rij_rom_url, $rom_
     <tr>
         <th>ROM Name</th>
         <th>Version</th>
-        <th>Download URL</th>
+        <!--- th>Download URL</th> --->
         <th>Device</th>
         <th><a href="?page=add">Add Rom</a></th>
     </tr>
@@ -30,13 +30,13 @@ $stmt->bind_result($rom_id, $rij_rom_name, $rij_rom_version, $rij_rom_url, $rom_
     while ($stmt->fetch()) {
         $rom_name = htmlspecialchars($rij_rom_name);
         $rom_version = htmlspecialchars($rij_rom_version);
-        $rom_url = htmlspecialchars($rij_rom_url);
+  //        $rom_url = htmlspecialchars($rij_rom_url);
         $rom_device = htmlspecialchars($rij_rom_device);
         ?>
         <tr>
             <td><? echo $rom_name; ?></td>
             <td><? echo $rom_version; ?></td>
-            <td><a href="<? echo $rom_url; ?>"><? echo $rom_url; ?></a></td>
+    <!---        <td><a href="<? echo $rom_url; ?>"><? echo $rom_url; ?></a></td> --->
             <td><? echo $rom_device; ?></td>
 
             <!--- link to update.php and send value of id --->

@@ -71,6 +71,21 @@ otaupdater.otaver=&lt;The human-readable version number/name&gt;
         depending on when their device pulls the information from our servers.
     </li>
     <li>
+        <h4><b>My users get a MD5 error.</b></h4>
+        Make sure your rom is uploaded on an host with direct linking abilities. such as dropbox, goo-im or your own ftp.<br />
+        If thats not the problem, be sure the MD5 on the website is right or the upload is not corrupted.
+    </li>
+    <li>
+        <h4><b>Why do i not get the updates?!</b></h4>
+        Make sure you are using the right device name on the website. for example, a Galaxy Nexus (GSM) is called 'maguro' and the HTC Sensation is called 'pyramid', make sure you use the short names. if you are not sure you are using the right name please use the command: 'adb shell getprop ro.product.device'
+        That will give the device name you need to use for your rom.
+    </li>
+    <li>
+        <h4><b>Why don't i get the update notification?</b></h4>
+        Make sure you are logged into the Google Play Store, before the rom is updated in the database.
+        When you are adding the rom to the database, the Google Cloud Message will not work, the Google Cloud Messages only work on an existing rom, as soon as you update it.
+    </li>
+    <li>
         <h4><b>Your app doesn't work on device X.</b></h4>
         First off, please make sure you are using the latest version of our app!<br />
         We have a very limited number of devices to test on, so we depend on you to give us feedback.

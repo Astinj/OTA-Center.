@@ -40,7 +40,7 @@ if (!isset($_SESSION['user_id'])) {
                 <textarea id="changelog" name="changelog" class="rom"></textarea>
             </p>
             <p>
-                <label for="device">Enter devicename here.</label>
+                <label for="device">Enter devicename (adb shell getprop ro.product.device) here.</label>
                 <input id="device" name="device" type="text" class="rom" value="" />
             </p>
             <p>

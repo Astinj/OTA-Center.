@@ -45,7 +45,8 @@ $allowed_url = array( //this is our array of allowed requests
     'irc',
     'admin',
     'forgotpass',
-    'faq'
+    'faq',
+    'forcegcm'
 );
 
 $page = $_GET['page']; //sets the page variable from http request

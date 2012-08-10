@@ -14,7 +14,7 @@ if (isset($_POST['do']) && isset($_POST['reg_id'])) {
     $stmt->close();
 
     if ($_POST['do'] == 'register') {
-        if (isset($_POST['device'], $_POST['rom_id'], $_POST['device_id'])) {
+        if (isset($_POST['reg_id'], $_POST['device'], $_POST['rom_id'], $_POST['device_id'])) {
             $stmt = $db->stmt_init();
             $stmt->prepare('INSERT INTO `ota_devices2` (`reg_id`, `device`, `romid`, `device_id`) VALUES (?, ?, ?, ?) ON DUPLICATE KEY UPDATE `device` = ?, `romid` = ?, `reg_id` = ?, `device_id` = ?');
             $stmt->bind_param('ssssssss', $_POST['reg_id'], $_POST['device'], $_POST['rom_id'], $_POST['device_id'], $_POST['device'], $_POST['rom_id'], $_POST['reg_id'], $_POST['device_id']);
@@ -45,13 +45,23 @@ if (isset($_POST['do']) && isset($_POST['reg_id'])) {
             $stmt->close();
 
             echo json_encode($json);
+        } else {
+            echo json_encode(array('error' => 'Registration parameters not all present!'));
         }
     } else if ($_POST['do'] == 'unregister') {
-        $stmt = $db->stmt_init();
-        $stmt->prepare('DELETE FROM `ota_devices2` WHERE `reg_id` = ?');
-        $stmt->bind_param('s', $_POST['reg_id']);
-        $stmt->execute();
-        $stmt->close();
+        if (isset($_POST['reg_id'])) {
+            $stmt = $db->stmt_init();
+            $stmt->prepare('DELETE FROM `ota_devices2` WHERE `reg_id` = ?');
+            $stmt->bind_param('s', $_POST['reg_id']);
+            $stmt->execute();
+            $stmt->close();
+        } else {
+            echo json_encode(array('error' => 'No registration ID provided for unregistration!'));
+        }
+    } else {
+        echo json_encode(array('error' => 'Invalid action ('.$_POST['do'].')!'));
     }
+} else {
+    echo json_encode(array('error' => 'Invalid request!'));
 }
 ?>

@@ -18,8 +18,8 @@ $stmt->fetch();
 $stmt->close();
 
 $stmt = $db->stmt_init();
-$stmt->prepare('SELECT `reg_id` FROM `ota_devices` WHERE `romid` = ? AND `device` = ?');
-$stmt->bind_param('ss', $romid, $device);
+$stmt->prepare('SELECT `reg_id` FROM `ota_devices` WHERE `romid` = ? AND `device` = ? UNION SELECT `reg_id` FROM `ota_devices2` WHERE `romid` = ? AND `device` = ?');
+$stmt->bind_param('ss', $romid, $device, $romid, $device);
 $stmt->execute();
 $stmt->bind_result($regid);
 

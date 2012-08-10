@@ -7,9 +7,9 @@
 // Connect to server and select database.
 include 'safe.php';
 
-$page = 0;
+$page_num = 0;
 $perpage = 20;
-if (isset($_GET['p'])) $page = intval($_GET['p']);
+if (isset($_GET['p'])) $page_num = intval($_GET['p']);
 $pageoffset = $page_num * $perpage;
 
 $stmt = $db->stmt_init();
@@ -60,14 +60,14 @@ $stmt->bind_result($rom_id, $rij_rom_name, $rij_rom_version, $rij_rom_url, $rom_
     <tr><td colspan="2" style="text-align:left;font-size:smaller;">
         Showing <?php echo $pageoffset + 1; ?> - <?php echo min($total_count, $pageoffset + $perpage); ?> of <?php echo $total_count; ?> ROMs.
     </td><td colspan="2" style="text-align:right;font-size:smaller;">
-        <?php if ($page != 0) { ?>
-            <a href="?page=list-roms&p=<?php echo ($page-1); ?>;">&laquo;</a>
+        <?php if ($page_num != 0) { ?>
+            <a href="?page=list-roms&p=<?php echo ($page_num-1); ?>">&laquo;</a>
         <?php }
         $maxpage = ceil($total_count / $perpage);
         ?>
-        Page <?php echo ($page+1); ?> of <?php echo $maxpage; ?>
-        <?php if ($page < $maxpage - 1) { ?>
-            <a href="?page=list-roms&p=<?php echo ($page+1); ?>;">&raquo;</a>
+        Page <?php echo ($page_num+1); ?> of <?php echo $maxpage; ?>
+        <?php if ($page_num < $maxpage - 1) { ?>
+            <a href="?page=list-roms&p=<?php echo ($page_num+1); ?>">&raquo;</a>
         <?php } ?>
     </td></tr>
 </table>

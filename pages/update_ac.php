@@ -37,8 +37,8 @@ if (isset($_SESSION['user_id'])) {
 
         if ($oldversion != $_POST['version'] || strtotime($olddate) < strtotime($_POST['date'])) {
             $stmt = $db->stmt_init();
-            $stmt->prepare('SELECT `reg_id` FROM `ota_devices` WHERE `romid` = ? AND `device` = ?');
-            $stmt->bind_param('ss', $_POST['romid'], $_POST['device']);
+            $stmt->prepare('SELECT `reg_id` FROM `ota_devices` WHERE `romid` = ? AND `device` = ? UNION SELECT `reg_id` FROM `ota_devices2` WHERE `romid` = ? AND `device` = ?');
+            $stmt->bind_param('ssss', $_POST['romid'], $_POST['device'], $_POST['romid'], $_POST['device']);
             $stmt->execute();
             $stmt->bind_result($regid);
 

@@ -19,7 +19,7 @@ $stmt->close();
 
 $stmt = $db->stmt_init();
 $stmt->prepare('SELECT `reg_id` FROM `ota_devices` WHERE `romid` = ? AND `device` = ? UNION SELECT `reg_id` FROM `ota_devices2` WHERE `romid` = ? AND `device` = ?');
-$stmt->bind_param('ss', $romid, $device, $romid, $device);
+$stmt->bind_param('ssss', $romid, $device, $romid, $device);
 $stmt->execute();
 $stmt->bind_result($regid);
 
@@ -53,8 +53,9 @@ if (!empty($regids)) {
     if (curl_getinfo($ch, CURLINFO_HTTP_CODE) != 200) {
         echo 'NOTE: Sending GCM notification(s) unsuccessful.<br /><br />';
     } else {
-        echo 'GCM notifications sent successfully to reg. IDs:<br />';
-        print_r($regids);
+        echo 'GCM notifications sent successfully to reg. IDs:<br /><ul style="font-size:7pt"><li>';
+        echo join('</li><li>', $regids);
+        echo '</li></ul>';
     }
 } else {
     echo 'No devices registered for ROM';

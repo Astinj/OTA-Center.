@@ -23,4 +23,6 @@ $sitemail = 'noreplay@otaupdatecenter.pro'; // Afzender van verzonden mail
 $sitebaseurl = 'https://otaupdatecenter.pro/';
 $sitesalt = 'supersecretlongsalt - replace on install';
 $gcmapikey = 'GCM_API_KEY';
+$recaptcha_pubkey = 'public recapcha key';
+$recaptcha_privkey = 'private recapcha key';
 ?>
